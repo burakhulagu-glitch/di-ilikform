@@ -175,13 +175,21 @@ textarea.inp{resize:vertical;min-height:90px}
 .clear-step{margin-left:auto;border:1px solid rgba(216,90,48,.48);background:rgba(216,90,48,.12);color:#FFD0C0;
   border-radius:10px;padding:8px 12px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);white-space:nowrap}
 .clear-step:hover{background:rgba(216,90,48,.24);border-color:rgba(216,90,48,.78);color:#fff}
-.param-clear{border:1px solid rgba(216,90,48,.42);background:rgba(216,90,48,.1);color:#FFD0C0;
-  border-radius:9px;padding:7px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);white-space:nowrap}
+.param-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.param-clear,.param-copy,.param-delete{border-radius:9px;padding:7px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);white-space:nowrap;transition:all .2s}
+.param-clear{border:1px solid rgba(216,90,48,.42);background:rgba(216,90,48,.1);color:#FFD0C0}
 .param-clear:hover{background:rgba(216,90,48,.22);border-color:rgba(216,90,48,.75);color:#fff}
+.param-copy{border:1px solid rgba(91,163,232,.52);background:rgba(91,163,232,.12);color:#CFE7FF}
+.param-copy:hover{background:rgba(91,163,232,.24);border-color:rgba(91,163,232,.85);color:#fff}
+.param-delete{border:1px solid rgba(216,90,48,.62);background:rgba(216,90,48,.16);color:#FFD0C0}
+.param-delete:hover{background:rgba(216,90,48,.32);border-color:rgba(216,90,48,.9);color:#fff}
+.param-delete:disabled{opacity:.38;cursor:not-allowed;filter:grayscale(.3)}
+.model-param-guide{margin:0 0 1.15rem;padding:1rem 1.15rem;border-radius:14px;border:1.5px solid rgba(240,208,96,.58);background:linear-gradient(135deg,rgba(240,208,96,.18),rgba(74,53,168,.22));box-shadow:0 0 18px rgba(240,208,96,.16),inset 0 0 18px rgba(255,255,255,.035);color:#FFF5C8;font-size:14px;line-height:1.55}
+.model-param-guide strong{display:block;color:#FFE27A;font-size:15px;margin-bottom:.25rem}
 .tooth-remove{border:1px solid rgba(216,90,48,.38);background:rgba(216,90,48,.1);color:#FFD0C0;
   border-radius:8px;padding:7px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);white-space:nowrap}
 .tooth-remove:hover{background:rgba(216,90,48,.24);color:#fff}
-@media(max-width:620px){.chdr{flex-wrap:wrap}.clear-step{width:100%;margin-left:0}.phdr{gap:8px;flex-wrap:wrap}.param-clear{width:100%}.rr{align-items:flex-start;flex-wrap:wrap}.tooth-remove{width:100%}}
+@media(max-width:620px){.chdr{flex-wrap:wrap}.clear-step{width:100%;margin-left:0}.phdr{gap:8px;flex-wrap:wrap}.param-actions{width:100%;justify-content:flex-start}.param-clear,.param-copy,.param-delete{flex:1;min-width:150px}.rr{align-items:flex-start;flex-wrap:wrap}.tooth-remove{width:100%}}
 
 
 .analysts{position:fixed;bottom:1.25rem;right:1.25rem;font-size:11px;color:var(--tx3);
@@ -190,7 +198,7 @@ textarea.inp{resize:vertical;min-height:90px}
   backdrop-filter:blur(12px);pointer-events:none}
 .analysts strong{color:var(--glt);display:block}
 @media print{
-  .prog-bar,.site-header,.nav,.analysts,.sum-acts,.sum-edit,.clear-step,.param-clear,.tooth-remove{display:none!important}
+  .prog-bar,.site-header,.nav,.analysts,.sum-acts,.sum-edit,.clear-step,.param-actions,.param-clear,.param-copy,.param-delete,.tooth-remove{display:none!important}
   body{background:#fff!important;color:#111!important;font-size:12pt}
   .main{max-width:none;padding:0}
   .card{box-shadow:none!important;border:1px solid #ccc!important;background:#fff!important;color:#111!important;break-inside:auto;page-break-inside:auto;backdrop-filter:none!important}
@@ -310,14 +318,24 @@ function resetStep(){
   R();
 }
 
+function nextParamId(){
+  return st.params.reduce(function(m,p){return Math.max(m,p.id||0);},0)+1;
+}
 function addParam(){
-  const id=st.params.length+1;
-  st.params.push(freshParam(id));
+  st.params.push(freshParam(nextParamId()));
+  R();
+}
+function cloneParam(id){
+  const src=st.params.find(function(p){return p.id===id;});
+  if(!src)return;
+  const copy=JSON.parse(JSON.stringify(src));
+  copy.id=nextParamId();
+  st.params.push(copy);
   R();
 }
 function rmParam(id){
   if(st.params.length<=1)return;
-  st.params=st.params.filter(p=>p.id!==id);
+  st.params=st.params.filter(function(p){return p.id!==id;});
   R();
 }
 function setRole(pid,t,r){
@@ -501,11 +519,15 @@ function stepBody(){
     var sl2=st.region!=='upper';
     return (
       '<p class="ql">Her model parametresi için dişleri seçin, ardından rollerini belirleyin. Seçili bir dişe tekrar tıklayarak veya satırdaki “Dişi kaldır” butonuyla seçimi kaldırabilirsiniz.</p>'+
+      '<div class="model-param-guide"><strong>Model parametresi ne zaman eklenir?</strong>Farklı implant boyu/çapı, kantilever uzantı uzunluğu, greft durumu, materyal veya yükleme koşulu karşılaştırılacaksa her varyasyon için ayrı bir model parametresi oluşturun. Bu sayfada yalnızca dişler ve roller seçilir; her parametreye ait ölçü, greft ve kuvvet bilgileri ilerleyen sayfalarda ayrı ayrı girilecektir.</div>'+
       st.params.map(function(p){
         return '<div class="pb">'+
           '<div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span>'+
-          '<button class="param-clear" onclick="clearParamAll('+p.id+')">Bu parametreyi temizle</button>'+
-          (st.params.length>1?'<button class="brm" onclick="rmParam('+p.id+')" title="Parametreyi tamamen kaldır">×</button>':'')+
+          '<div class="param-actions">'+
+          '<button class="param-clear" onclick="clearParamAll('+p.id+')">Temizle</button>'+
+          '<button class="param-copy" onclick="cloneParam('+p.id+')">Kopya çoğalt</button>'+
+          (st.params.length>1?'<button class="param-delete" onclick="rmParam('+p.id+')">Model parametresini sil</button>':'<button class="param-delete" disabled title="En az bir model parametresi kalmalıdır">Model parametresini sil</button>')+
+          '</div>'+
           '</div>'+
           '<p class="ql" style="margin-top:0">Dahil edilecek dişlere tıklayın:</p>'+
           '<div class="arch-wrap">'+toothSVG(su2,sl2,p.id,true)+'</div>'+
