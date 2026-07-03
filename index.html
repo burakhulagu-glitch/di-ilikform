@@ -78,19 +78,34 @@ textarea.inp{resize:vertical;min-height:90px}
 .tg .tb{transition:all .25s}
 .tg:hover .tb{filter:drop-shadow(0 0 7px rgba(61,36,148,.65))}
 .tg:hover .badge{fill:rgba(61,36,148,1)}
-.tg.picked .tb{fill:#DDD5FF!important;stroke:rgba(61,36,148,.8)!important;stroke-width:1.5!important}
+.tg.picked .tb{fill:#DDD5FF!important;stroke:rgba(61,36,148,.95)!important;stroke-width:2!important}
 .tg.picked .badge{fill:rgba(61,36,148,1)!important}
-.tg.impl .tb{fill:#BEE0FF!important;stroke:rgba(55,138,221,.8)!important}
+.tg.impl .tb{fill:#BEE0FF!important;stroke:rgba(55,138,221,.95)!important;stroke-width:2!important}
 .tg.impl .badge{fill:rgba(55,138,221,1)!important}
-.tg.pont .tb{fill:#B8F0DC!important;stroke:rgba(29,158,117,.8)!important}
+.tg.pont .tb{fill:#B8F0DC!important;stroke:rgba(29,158,117,.95)!important;stroke-width:2!important}
 .tg.pont .badge{fill:rgba(29,158,117,1)!important}
-.tg.kant .tb{fill:#FFD0C0!important;stroke:rgba(216,90,48,.8)!important}
+.tg.kant .tb{fill:#FFD0C0!important;stroke:rgba(216,90,48,.95)!important;stroke-width:2!important}
 .tg.kant .badge{fill:rgba(216,90,48,1)!important}
 .tg.dim{cursor:default;pointer-events:none;opacity:.2}
 @keyframes archGlow{0%,100%{filter:drop-shadow(0 0 4px rgba(61,36,148,.3))}
   50%{filter:drop-shadow(0 0 14px rgba(61,36,148,.75))}}
+@keyframes toothGlowPick{0%,100%{filter:drop-shadow(0 0 7px rgba(221,213,255,.75)) drop-shadow(0 0 14px rgba(61,36,148,.55))}
+  50%{filter:drop-shadow(0 0 12px rgba(255,255,255,.95)) drop-shadow(0 0 25px rgba(139,117,208,.9))}}
+@keyframes toothGlowImpl{0%,100%{filter:drop-shadow(0 0 7px rgba(190,224,255,.75)) drop-shadow(0 0 14px rgba(55,138,221,.55))}
+  50%{filter:drop-shadow(0 0 12px rgba(255,255,255,.95)) drop-shadow(0 0 25px rgba(91,163,232,.95))}}
+@keyframes toothGlowPont{0%,100%{filter:drop-shadow(0 0 7px rgba(184,240,220,.75)) drop-shadow(0 0 14px rgba(29,158,117,.55))}
+  50%{filter:drop-shadow(0 0 12px rgba(255,255,255,.95)) drop-shadow(0 0 25px rgba(29,158,117,.95))}}
+@keyframes toothGlowKant{0%,100%{filter:drop-shadow(0 0 7px rgba(255,208,192,.75)) drop-shadow(0 0 14px rgba(216,90,48,.55))}
+  50%{filter:drop-shadow(0 0 12px rgba(255,255,255,.95)) drop-shadow(0 0 25px rgba(216,90,48,.95))}}
+@keyframes badgeGlow{0%,100%{filter:drop-shadow(0 0 4px rgba(255,255,255,.35))}
+  50%{filter:drop-shadow(0 0 10px rgba(255,255,255,.85))}}
 .region-upper-active .tg[data-arch="upper"] .tb,
 .region-lower-active .tg[data-arch="lower"] .tb{animation:archGlow 1.5s ease infinite}
+.tg.picked .tb{animation:toothGlowPick 1.15s ease-in-out infinite!important}
+.tg.impl .tb{animation:toothGlowImpl 1.15s ease-in-out infinite!important}
+.tg.pont .tb{animation:toothGlowPont 1.15s ease-in-out infinite!important}
+.tg.kant .tb{animation:toothGlowKant 1.15s ease-in-out infinite!important}
+.tg.picked .badge,.tg.impl .badge,.tg.pont .badge,.tg.kant .badge{animation:badgeGlow 1.15s ease-in-out infinite!important}
 .pb{border:1.5px solid rgba(255,255,255,.1);border-radius:14px;padding:1.5rem;margin-bottom:1rem;background:rgba(255,255,255,.04)}
 .phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
 .plbl{font-size:14px;font-weight:700;color:#C8BCFF;background:rgba(139,117,208,.15);
