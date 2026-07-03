@@ -175,12 +175,12 @@ textarea.inp{resize:vertical;min-height:90px}
 .clear-step{margin-left:auto;border:1px solid rgba(216,90,48,.48);background:rgba(216,90,48,.12);color:#FFD0C0;
   border-radius:10px;padding:8px 12px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);white-space:nowrap}
 .clear-step:hover{background:rgba(216,90,48,.24);border-color:rgba(216,90,48,.78);color:#fff}
-.param-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.param-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08)}
 .param-clear,.param-copy,.param-delete{border-radius:9px;padding:7px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);white-space:nowrap;transition:all .2s}
 .param-clear{border:1px solid rgba(216,90,48,.42);background:rgba(216,90,48,.1);color:#FFD0C0}
 .param-clear:hover{background:rgba(216,90,48,.22);border-color:rgba(216,90,48,.75);color:#fff}
-.param-copy{border:1px solid rgba(91,163,232,.52);background:rgba(91,163,232,.12);color:#CFE7FF}
-.param-copy:hover{background:rgba(91,163,232,.24);border-color:rgba(91,163,232,.85);color:#fff}
+.param-copy{border:1px solid rgba(240,208,96,.55);background:rgba(240,208,96,.13);color:#FFF0A8}
+.param-copy:hover{background:rgba(240,208,96,.24);border-color:rgba(240,208,96,.9);color:#fff}
 .param-delete{border:1px solid rgba(216,90,48,.62);background:rgba(216,90,48,.16);color:#FFD0C0}
 .param-delete:hover{background:rgba(216,90,48,.32);border-color:rgba(216,90,48,.9);color:#fff}
 .param-delete:disabled{opacity:.38;cursor:not-allowed;filter:grayscale(.3)}
@@ -189,7 +189,7 @@ textarea.inp{resize:vertical;min-height:90px}
 .tooth-remove{border:1px solid rgba(216,90,48,.38);background:rgba(216,90,48,.1);color:#FFD0C0;
   border-radius:8px;padding:7px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);white-space:nowrap}
 .tooth-remove:hover{background:rgba(216,90,48,.24);color:#fff}
-@media(max-width:620px){.chdr{flex-wrap:wrap}.clear-step{width:100%;margin-left:0}.phdr{gap:8px;flex-wrap:wrap}.param-actions{width:100%;justify-content:flex-start}.param-clear,.param-copy,.param-delete{flex:1;min-width:150px}.rr{align-items:flex-start;flex-wrap:wrap}.tooth-remove{width:100%}}
+@media(max-width:620px){.chdr{flex-wrap:wrap}.clear-step{width:100%;margin-left:0}.phdr{gap:8px;flex-wrap:wrap}.param-actions{width:100%;justify-content:flex-start}.param-clear,.param-copy,.param-delete{flex:1;min-width:160px}.rr{align-items:flex-start;flex-wrap:wrap}.tooth-remove{width:100%}}
 
 
 .analysts{position:fixed;bottom:1.25rem;right:1.25rem;font-size:11px;color:var(--tx3);
@@ -522,13 +522,7 @@ function stepBody(){
       '<div class="model-param-guide"><strong>Model parametresi ne zaman eklenir?</strong>Farklı implant boyu/çapı, kantilever uzantı uzunluğu, greft durumu, materyal veya yükleme koşulu karşılaştırılacaksa her varyasyon için ayrı bir model parametresi oluşturun. Bu sayfada yalnızca dişler ve roller seçilir; her parametreye ait ölçü, greft ve kuvvet bilgileri ilerleyen sayfalarda ayrı ayrı girilecektir.</div>'+
       st.params.map(function(p){
         return '<div class="pb">'+
-          '<div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span>'+
-          '<div class="param-actions">'+
-          '<button class="param-clear" onclick="clearParamAll('+p.id+')">Temizle</button>'+
-          '<button class="param-copy" onclick="cloneParam('+p.id+')">Kopya çoğalt</button>'+
-          (st.params.length>1?'<button class="param-delete" onclick="rmParam('+p.id+')">Model parametresini sil</button>':'<button class="param-delete" disabled title="En az bir model parametresi kalmalıdır">Model parametresini sil</button>')+
-          '</div>'+
-          '</div>'+
+          '<div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span></div>'+
           '<p class="ql" style="margin-top:0">Dahil edilecek dişlere tıklayın:</p>'+
           '<div class="arch-wrap">'+toothSVG(su2,sl2,p.id,true)+'</div>'+
           '<p style="font-size:13px;color:var(--tx3);margin:.5rem 0 1rem">Seçili: <span style="color:var(--pu);font-weight:600">'+
@@ -559,7 +553,12 @@ function stepBody(){
             '<p class="ql">Greft açıklaması (boyut, konum, materyal, hangi implantla ilişkili olduğu vb.)</p>'+ 
             '<textarea class="inp" rows="3" placeholder="Örn: Diş 26 bölgesinde sinüs tabanı grefti; implant apikal ucuna göre konum ve greft yüksekliği..." oninput="st.params.find(function(x){return x.id==='+p.id+'}).greftNote=this.value">'+(p.greftNote||'')+'</textarea>'
           :'')+
-          '</div>'+ 
+          '</div>'+
+          '<div class="param-actions">'+
+          '<button class="param-clear" onclick="clearParamAll('+p.id+')">Parametreyi temizle</button>'+
+          '<button class="param-copy" onclick="cloneParam('+p.id+')" title="Bu parametredeki seçimleri ve girilen değerleri baz alarak yeni bir model varyasyonu oluşturur">Bu parametreden varyasyon oluştur</button>'+
+          (st.params.length>1?'<button class="param-delete" onclick="rmParam('+p.id+')">Model parametresini sil</button>':'<button class="param-delete" disabled title="En az bir model parametresi kalmalıdır">Model parametresini sil</button>')+
+          '</div>'+
           '</div>';
       }).join('')+
       '<button class="badd glow-add" onclick="addParam()">✨ + Yeni Model Parametresi Ekle</button>'
