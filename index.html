@@ -142,15 +142,35 @@ textarea.inp{resize:vertical;min-height:90px}
 .bmail{flex:1;min-width:180px;padding:13px;border-radius:10px;font-size:15px;font-weight:700;
   border:none;background:linear-gradient(135deg,var(--gold),#A07810);color:#fff;
   cursor:pointer;transition:all .2s;font-family:var(--font)}
+.note{font-size:13px;color:var(--tx3);line-height:1.45;margin:.35rem 0 .75rem}
+.badd.glow-add{margin-top:1.5rem;padding:16px 18px;border:1.5px solid rgba(240,208,96,.75);border-radius:16px;
+  background:linear-gradient(135deg,rgba(200,160,40,.22),rgba(74,53,168,.35),rgba(29,158,117,.16));
+  color:#fff;font-size:17px;font-weight:800;letter-spacing:.01em;
+  box-shadow:0 0 0 1px rgba(240,208,96,.16),0 0 18px rgba(240,208,96,.38),0 0 34px rgba(139,117,208,.28);
+  animation:modelAddGlow 1.8s ease-in-out infinite}
+.badd.glow-add:hover{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(240,208,96,.28),0 0 26px rgba(240,208,96,.62),0 0 46px rgba(139,117,208,.42)}
+@keyframes modelAddGlow{0%,100%{filter:drop-shadow(0 0 4px rgba(240,208,96,.35))}50%{filter:drop-shadow(0 0 16px rgba(240,208,96,.85))}}
+.sum-sec-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:1.25rem 0 .5rem;
+  padding:.5rem 1rem;background:rgba(139,117,208,.1);border-radius:8px;border-left:3px solid var(--pu3)}
+.sum-sec-head .sum-ph{margin:0;padding:0;background:transparent;border-left:0}
+.sum-edit{border:1px solid rgba(240,208,96,.45);background:rgba(240,208,96,.12);color:var(--glt);
+  border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font)}
+.sum-edit:hover{background:rgba(240,208,96,.22)}
+
 .analysts{position:fixed;bottom:1.25rem;right:1.25rem;font-size:11px;color:var(--tx3);
   text-align:right;line-height:1.6;background:rgba(20,16,60,.85);
   border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:8px 14px;
   backdrop-filter:blur(12px);pointer-events:none}
 .analysts strong{color:var(--glt);display:block}
 @media print{
-  .prog-bar,.site-header,.nav,.analysts,.sum-acts{display:none!important}
-  .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid}
-  body{background:#fff}
+  .prog-bar,.site-header,.nav,.analysts,.sum-acts,.sum-edit{display:none!important}
+  body{background:#fff!important;color:#111!important;font-size:12pt}
+  .main{max-width:none;padding:0}
+  .card{box-shadow:none!important;border:1px solid #ccc!important;background:#fff!important;color:#111!important;break-inside:auto;page-break-inside:auto;backdrop-filter:none!important}
+  .ctitle,.csub,.ql,.sum-l,.sum-v,.sum-ph,.note,.ig label{color:#111!important}
+  .sum-row{break-inside:avoid;page-break-inside:avoid;border-bottom:1px solid #ddd!important}
+  .sum-sec-head{background:#f4f4f4!important;border-left:3px solid #666!important;break-inside:avoid;page-break-inside:avoid}
+  .pb{background:#fff!important;border:1px solid #ddd!important;break-inside:avoid;page-break-inside:avoid}
 }
 </style>
 </head>
@@ -168,8 +188,8 @@ textarea.inp{resize:vertical;min-height:90px}
 
 <div class="analysts">
   <strong>Analizi Yapanlar</strong>
-  Dr. Öğr. Üyesi Burak HÜLAGÜ<br>
-  Doç. Dr. Ahmet Numan ÖZAKIN
+  Doç. Dr. Ahmet Numan ÖZAKIN<br>
+  Dr. Öğr. Üyesi Burak HÜLAGÜ
 </div>
 
 <script>
@@ -181,7 +201,7 @@ const STEPS=[
   {id:'region',title:'Çene Bölgesi',icon:'🦷',bg:'rgba(200,160,40,.1)'},
   {id:'count', title:'Diş Sayısı',icon:'🔢',bg:'rgba(55,138,221,.1)'},
   {id:'teeth', title:'Diş Seçimi & Roller',icon:'🏗',bg:'rgba(28,20,100,.08)'},
-  {id:'kant',  title:'Kantilever Uzunluğu',icon:'↔',bg:'rgba(216,90,48,.08)'},
+  {id:'kant',  title:'Kantilever Uzantı Uzunluğu',icon:'↔',bg:'rgba(216,90,48,.08)'},
   {id:'impl',  title:'İmplant Detayları',icon:'📏',bg:'rgba(55,138,221,.1)'},
   {id:'model', title:'İmplant & Kemik Modeli',icon:'🧬',bg:'rgba(29,158,117,.08)'},
   {id:'load',  title:'Yükleme Koşulları',icon:'⚡',bg:'rgba(216,90,48,.08)'},
@@ -194,7 +214,7 @@ let cur=0;
 const st={
   person:{name:'',surname:'',phone:'',email:'',dept:''},
   region:null, count:8,
-  params:[{id:1,teeth:[],roles:{},kantLenMap:{},implants:{},loading:{}}],
+  params:[{id:1,teeth:[],roles:{},kantLenMap:{},implants:{},loading:{},greft:null,greftNote:''}],
   implantModel:'',implant3d:null,implantModeling:null,boneModel:null,
   greft:null,greftNote:'',
   dynLoad:false,loadType:null,dynLoadNote:'',
@@ -206,7 +226,7 @@ function getExclude(){return st.count===7?[18,28,48,38]:[];}
 
 function addParam(){
   const id=st.params.length+1;
-  st.params.push({id,teeth:[],roles:{},kantLenMap:{},implants:{},loading:{}});
+  st.params.push({id,teeth:[],roles:{},kantLenMap:{},implants:{},loading:{},greft:null,greftNote:''});
   R();
 }
 function rmParam(id){
@@ -218,14 +238,24 @@ function setRole(pid,t,r){
   const p=st.params.find(x=>x.id===pid);
   if(!p)return;
   if(p.roles[t]===r){delete p.roles[t];}else{p.roles[t]=r;}
+  if(p.roles[t]!=='kant')delete p.kantLenMap[t];
+  if(p.roles[t]!=='implant')delete p.implants[t];
+  if(!(p.roles[t]==='implant'||p.roles[t]==='kant'))delete p.loading[t];
   R();
 }
 function toggleTooth(pid,n){
   const p=st.params.find(x=>x.id===pid);
   if(!p||getExclude().includes(n))return;
-  if(p.roles[n])return;
   const idx=p.teeth.indexOf(n);
-  if(idx>=0)p.teeth.splice(idx,1);else p.teeth.push(n);
+  if(idx>=0){
+    p.teeth.splice(idx,1);
+    delete p.roles[n];
+    delete p.kantLenMap[n];
+    delete p.implants[n];
+    delete p.loading[n];
+  }else{
+    p.teeth.push(n);
+  }
   R();
 }
 function updateArchClasses(pid){
@@ -272,6 +302,8 @@ function toothSVG(showU,showL,pid,interactive){
     const clk=interactive?'onclick="toggleTooth('+(pid||0)+','+n+')"':'';
     return '<g class="'+cls+'" id="'+tid+'" data-arch="'+arch+'" '+clk+
       ' transform="rotate('+rot+','+cx+','+cy+')" style="'+(ex.includes(n)?'pointer-events:none':'')+'">'+
+      '<rect x="'+(cx-Math.floor(w/2)-5)+'" y="'+(cy-Math.floor(h2/2)-5)+
+        '" width="'+(w+10)+'" height="'+(h2+10)+'" rx="8" fill="transparent" pointer-events="all"/>'+ 
       '<rect x="'+(cx-Math.floor(w/2))+'" y="'+(cy-Math.floor(h2/2))+
         '" width="'+w+'" height="'+h2+'" rx="5" fill="url(#tG)" '+
         'stroke="rgba(180,140,30,.35)" stroke-width="1" class="tb"/>'+
@@ -404,26 +436,27 @@ function stepBody(){
                 '</div></div>';
             }).join('')
           :'')+
+          '<div style="margin-top:1rem;padding:1rem 1.1rem;border-radius:12px;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1)">'+
+          '<p style="font-size:15px;font-weight:700;color:#D4CCFF;margin-bottom:.65rem">🦴 Bu model parametresi için kemik grefti</p>'+ 
+          '<p class="ql" style="margin-top:0">Bu parametrede greft bölgesi yer alacak mı?</p>'+ 
+          '<div class="chips">'+
+          '<div class="chip '+(p.greft==='yes'?'sel':'')+'" onclick="st.params.find(function(x){return x.id==='+p.id+'}).greft=&quot;yes&quot;;R()">✅ Evet, greft dahil</div>'+ 
+          '<div class="chip '+(p.greft==='no'?'sel-r':'')+'" onclick="st.params.find(function(x){return x.id==='+p.id+'}).greft=&quot;no&quot;;st.params.find(function(x){return x.id==='+p.id+'}).greftNote=&quot;&quot;;R()">❌ Hayır, greft yok</div>'+ 
+          '</div>'+ 
+          (p.greft==='yes'?
+            '<p class="ql">Greft açıklaması (boyut, konum, materyal, hangi implantla ilişkili olduğu vb.)</p>'+ 
+            '<textarea class="inp" rows="3" placeholder="Örn: Diş 26 bölgesinde sinüs tabanı grefti; implant apikal ucuna göre konum ve greft yüksekliği..." oninput="st.params.find(function(x){return x.id==='+p.id+'}).greftNote=this.value">'+(p.greftNote||'')+'</textarea>'
+          :'')+
+          '</div>'+ 
           '</div>';
       }).join('')+
-      '<button class="badd" onclick="addParam()">+ Yeni Model Parametresi Ekle</button>'+
-      '<div style="margin-top:1.5rem;padding:1.25rem;border-radius:14px;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1)">'+
-      '<p style="font-size:16px;font-weight:600;color:#D4CCFF;margin-bottom:.75rem">🦴 Kemik grefti uygulaması</p>'+
-      '<p class="ql" style="margin-top:0">Analizde kemik grefti bölgesi yer alacak mı?</p>'+
-      '<div class="chips">'+
-      '<div class="chip '+(st.greft==='yes'?'sel':'')+'" onclick="st.greft=&quot;yes&quot;;R()">✅ Evet, greft bölgesi dahil edilecek</div>'+
-      '<div class="chip '+(st.greft==='no'?'sel-r':'')+'" onclick="st.greft=&quot;no&quot;;R()">❌ Hayır, greft yok</div>'+
-      '</div>'+
-      (st.greft==='yes'?
-        '<p class="ql">Greft hakkında açıklama (boyut, konum, materyal vb.)</p>'+
-        '<textarea class="inp" rows="3" placeholder="Örn: 4.1 mm çaplı implantın apikal ucundan 1 mm mesafede tanımlanan greft bölgesi..." oninput="st.greftNote=this.value">'+st.greftNote+'</textarea>'
-      :'')+
-      '</div>'
+      '<button class="badd glow-add" onclick="addParam()">✨ + Yeni Model Parametresi Ekle</button>'
     );
   }
 
   if(s.id==='kant') return (
-    '<p class="ql">Kantilever rolündeki her diş için uzunluğu girin.</p>'+
+    '<p class="ql">Kantilever rolündeki her diş için uzantı uzunluğunu girin.</p>'+
+    '<p class="note">Diş hekimliği açısından doğru ifade <strong>kantilever uzantı uzunluğu</strong>dur. Burada ölçülmesi gereken değer, destek elemandan serbest uca doğru mesiodistal uzantıdır; dişin bukkolingual genişliği değildir.</p>'+
     st.params.map(function(p){
       var kTeeth=p.teeth.filter(function(t){return p.roles[t]==='kant';});
       return '<div class="pb">'+
@@ -431,10 +464,10 @@ function stepBody(){
         (kTeeth.length?
           kTeeth.map(function(t){
             return '<div class="ig" style="margin-bottom:.75rem">'+
-              '<label>Diş '+t+' — Kantilever uzunluğu</label>'+
+              '<label>Diş '+t+' — Kantilever uzantı uzunluğu</label>'+
               '<div class="inp-mm">'+
               '<input class="inp" type="number" min="1" max="30" value="'+(p.kantLenMap[t]||'')+
-              '" oninput="st.params.find(function(x){return x.id==='+p.id+'}).kantLenMap['+t+']=this.value" placeholder="Uzunluk">'+
+              '" oninput="st.params.find(function(x){return x.id==='+p.id+'}).kantLenMap['+t+']=this.value" placeholder="Mesiodistal uzantı">'+
               '<span class="unit">mm</span></div></div>';
           }).join('')
         :'<p style="font-size:14px;color:var(--tx3)">Bu parametrede kantilever rolünde diş seçilmemiş.</p>')+
@@ -495,9 +528,9 @@ function stepBody(){
     '<div style="margin-bottom:1.25rem;padding:1rem 1.25rem;border-radius:12px;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1)">'+
     '<p style="font-size:14px;font-weight:600;color:#D4CCFF;margin-bottom:.6rem">Yükleme tipi</p>'+
     '<div class="chips">'+
-    '<div class="chip '+(st.loadType==='static'?'sel':'')+'" onclick="st.loadType=&quot;static&quot;">⬇ Statik yük</div>'+
-    '<div class="chip '+(st.loadType==='dynamic'?'sel-b':'')+'" onclick="st.loadType=&quot;dynamic&quot;">〰 Dinamik / siklik yük</div>'+
-    '<div class="chip '+(st.loadType==='both'?'sel-r':'')+'" onclick="st.loadType=&quot;both&quot;">⬇〰 Her ikisi</div>'+
+    '<div class="chip '+(st.loadType==='static'?'sel':'')+'" onclick="st.loadType=&quot;static&quot;;R()">⬇ Statik yük</div>'+
+    '<div class="chip '+(st.loadType==='dynamic'?'sel-b':'')+'" onclick="st.loadType=&quot;dynamic&quot;;R()">〰 Dinamik / siklik yük</div>'+
+    '<div class="chip '+(st.loadType==='both'?'sel-r':'')+'" onclick="st.loadType=&quot;both&quot;;R()">⬇〰 Her ikisi</div>'+
     '</div>'+
     (st.loadType==='dynamic'||st.loadType==='both'?
       '<div class="ig" style="margin-top:.75rem"><label>Dinamik yük parametreleri (frekans, çevrim sayısı vb.)</label>'+
@@ -516,8 +549,9 @@ function stepBody(){
               '<div class="inp-grid">'+
               '<div class="ig"><label>Kuvvet büyüklüğü</label>'+
               '<div class="inp-mm"><input class="inp" type="text" value="'+(p.loading[t].force||'')+
-              '" oninput="st.params.find(function(x){return x.id==='+p.id+'}).loading['+t+'].force=this.value" placeholder="Örn: 150">'+
-              '<span class="unit">N</span></div></div>'+
+              '" oninput="st.params.find(function(x){return x.id==='+p.id+'}).loading['+t+'].force=this.value" placeholder="Örn: 150 veya 100, 150, 200">'+
+              '<span class="unit">N</span></div>'+
+              '<p class="note">Not: İstediğiniz adet kuvvet değerini aynı kutuya yazabilirsiniz. Örn: 100, 150, 200 N.</p></div>'+
               '<div class="ig"><label>Yükleme yönü / açısı</label>'+
               '<input class="inp" type="text" value="'+(p.loading[t].dir||'')+
               '" oninput="st.params.find(function(x){return x.id==='+p.id+'}).loading['+t+'].dir=this.value" placeholder="Örn: Aksiyel (0°), Oblik (45°)"></div>'+
@@ -569,49 +603,95 @@ function stepBody(){
   if(s.id==='summ'){
     var jm={upper:'Üst çene (Maksilla)',lower:'Alt çene (Mandibula)',both:'Her iki çene'};
     var bm={patient:'Hasta-özgü CT/CBCT',open:'Açık erişimli anatomik model',team:'Analiz ekibinin geometrik modeli'};
+    var im3={yes:'Evet, 3D data mevcut',no:'Hayır, mevcut değil',partial:'Kısmen mevcut'};
+    var imd={yes:'Analiz ekibi modelleyecek',provide:'Kullanıcı tarafından temin edilecek',other:'Diğer / belirlenecek'};
+    var lm={static:'Statik yük',dynamic:'Dinamik / siklik yük',both:'Statik + dinamik / siklik yük'};
     var rl={implant:'İmplant',pontic:'Pontik',kant:'Kantilever'};
-    function SR(l,v){return '<div class="sum-row"><span class="sum-l">'+l+'</span><span class="sum-v">'+v+'</span></div>';}
+    function esc(v){return String(v==null?'':v).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    function EH(t,i){return '<div class="sum-sec-head"><div class="sum-ph">'+t+'</div><button class="sum-edit" onclick="goEdit('+i+')">Düzenle</button></div>';}
+    function SR(l,v){return '<div class="sum-row"><span class="sum-l">'+l+'</span><span class="sum-v">'+(v&&String(v).trim()?v:'—')+'</span></div>';}
+    function yn(v){return v==='yes'?'Evet':(v==='no'?'Hayır':'—');}
 
-    var html='<div class="sum-ph">Kişisel Bilgiler</div>'+
-      SR('Ad Soyad',st.person.name+' '+st.person.surname)+
-      SR('Telefon',st.person.phone||'—')+
-      SR('E-posta',st.person.email||'—')+
-      SR('Bölüm',st.person.dept||'—')+
-      '<div class="sum-ph">Genel Parametreler</div>'+
+    var html=EH('Kişisel Bilgiler',0)+
+      SR('Ad Soyad',esc(st.person.name+' '+st.person.surname))+
+      SR('Telefon',esc(st.person.phone||'—'))+
+      SR('E-posta',esc(st.person.email||'—'))+
+      SR('Bölüm',esc(st.person.dept||'—'))+
+      EH('Çene Bölgesi',1)+
       SR('Çene',(jm[st.region]||'—'))+
+      EH('Diş Sayısı',2)+
       SR('Diş sayısı',st.count+' diş')+
-      SR('İmplant modeli',st.implantModel||'Belirtilmedi')+
-      SR('Kemik modeli',(bm[st.boneModel]||'—'));
+      EH('İmplant & Kemik Modeli',6)+
+      SR('3D implant datası',(im3[st.implant3d]||'—'))+
+      SR('İmplant geometrisi',(imd[st.implantModeling]||'—'))+
+      SR('Kemik / çene modeli',(bm[st.boneModel]||'—'))+
+      SR('Model notu',esc(st.implantModel||'—'));
 
+    html+=EH('Diş Seçimi, Roller ve Greft',3);
     st.params.forEach(function(p){
-      html+='<div class="sum-ph">Model Parametresi '+p.id+'</div>';
+      html+='<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(3)">Düzenle</button></div>';
       html+=SR('Seçili dişler',p.teeth.length?p.teeth.slice().sort(function(a,b){return a-b;}).join(', '):'—');
       var roleStr=Object.entries(p.roles).map(function(e){return e[0]+': '+(rl[e[1]]||e[1]);}).join(' | ');
       html+=SR('Diş rolleri',roleStr||'—');
-      Object.entries(p.kantLenMap).forEach(function(e){html+=SR('Diş '+e[0]+' kant. uzunluğu',e[1]+' mm');});
-      Object.entries(p.implants).forEach(function(e){
-        var imp=e[1];
-        html+=SR('Diş '+e[0]+' implant',[(imp.diam?'Ø'+imp.diam+' mm':''),(imp.len?'Boy '+imp.len+' mm':'')].filter(Boolean).join(' / ')||'—');
-      });
-      Object.entries(p.loading).forEach(function(e){
-        var lo=e[1];
-        html+=SR('Diş '+e[0]+' yükleme',[(lo.force?lo.force+' N':''),(lo.dir||''),(lo.area||'')].filter(Boolean).join(' | ')||'—');
-      });
+      html+=SR('Greft',yn(p.greft));
+      if(p.greft==='yes')html+=SR('Greft açıklaması',esc(p.greftNote||'—'));
+      html+='</div>';
     });
 
-    if(st.extra)html+=SR('Ek notlar',st.extra);
+    html+=EH('Kantilever Uzantı Uzunluğu',4);
+    var anyK=false;
+    st.params.forEach(function(p){
+      var k=Object.entries(p.kantLenMap);
+      if(k.length){anyK=true;html+='<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(4)">Düzenle</button></div>';
+        k.forEach(function(e){html+=SR('Diş '+e[0]+' kantilever uzantı uzunluğu',esc(e[1])+' mm');});
+        html+='</div>';
+      }
+    });
+    if(!anyK)html+=SR('Kantilever bilgisi','Kantilever rolünde diş seçilmemiş veya uzunluk girilmemiş');
+
+    html+=EH('İmplant Detayları',5);
+    var anyImp=false;
+    st.params.forEach(function(p){
+      var imps=Object.entries(p.implants);
+      if(imps.length){anyImp=true;html+='<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(5)">Düzenle</button></div>';
+        imps.forEach(function(e){var imp=e[1];html+=SR('Diş '+e[0]+' implant',[(imp.diam?'Ø'+esc(imp.diam)+' mm':''),(imp.len?'Boy '+esc(imp.len)+' mm':'')].filter(Boolean).join(' / ')||'—');});
+        html+='</div>';
+      }
+    });
+    if(!anyImp)html+=SR('İmplant bilgisi','İmplant rolünde diş seçilmemiş veya ölçü girilmemiş');
+
+    html+=EH('Yükleme Koşulları',7)+
+      SR('Yükleme tipi',(lm[st.loadType]||'—'))+
+      ((st.loadType==='dynamic'||st.loadType==='both')?SR('Dinamik yük parametreleri',esc(st.dynLoadNote||'—')):'');
+    var anyLoad=false;
+    st.params.forEach(function(p){
+      var loads=Object.entries(p.loading);
+      if(loads.length){anyLoad=true;html+='<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(7)">Düzenle</button></div>';
+        loads.forEach(function(e){var lo=e[1];html+=SR('Diş '+e[0]+' yükleme',[(lo.force?esc(lo.force)+' N':''),(esc(lo.dir)||''),(esc(lo.area)||'')].filter(Boolean).join(' | ')||'—');});
+        html+='</div>';
+      }
+    });
+    if(!anyLoad)html+=SR('Yükleme detayı','Yüklenecek implant/kantilever dişi seçilmemiş veya değer girilmemiş');
+
+    html+=EH('Analiz Çıktıları',8)+
+      SR('Analiz sonuçları',st.outputs.length?st.outputs.map(esc).join(', '):'—')+
+      SR('İncelenecek bölgeler / bileşenler',st.regions.length?st.regions.map(esc).join(', '):'—');
+
+    html+=EH('Ek Notlar',9)+
+      SR('Ek notlar',esc(st.extra||'—'))+
+      SR('Formda eksik / farklı işlenecek konu',esc(st.gaps||'—'));
 
     html+='<div style="margin-top:1.5rem;padding:1rem 1.25rem;border-radius:12px;'+
       'background:rgba(29,158,117,.06);border:1px solid rgba(29,158,117,.25)">'+
-      '<p style="font-size:14px;font-weight:600;color:var(--gr);margin-bottom:4px">✓ Form eksiksiz dolduruldu</p>'+
-      '<p style="font-size:13px;color:#2D8060">İlgili bir adıma dönmek için üstteki adım numaralarına tıklayabilirsiniz.</p></div>'+
+      '<p style="font-size:14px;font-weight:600;color:var(--gr);margin-bottom:4px">✓ Özet hazır</p>'+ 
+      '<p style="font-size:13px;color:#2D8060">Düzeltmek istediğiniz bölümün yanındaki “Düzenle” butonuna basarak ilgili sayfaya dönebilirsiniz.</p></div>'+ 
       '<div class="sum-acts" style="flex-direction:column;gap:.75rem">'+
-      '<button class="bpdf" onclick="window.print()" style="font-size:16px;padding:14px">📄 PDF Olarak Kaydet / Yazdır</button>'+
+      '<button class="bpdf" onclick="window.print()" style="font-size:16px;padding:14px">📄 PDF Olarak Kaydet / Yazdır</button>'+ 
       '<div style="padding:1rem 1.25rem;border-radius:12px;background:rgba(200,160,40,.1);border:1px solid rgba(200,160,40,.3);text-align:center">'+
-      '<p style="font-size:13px;color:rgba(240,208,96,.9)">PDF\'i kaydettikten sonra lütfen analiz ekibine iletiniz</p>'+
-      '<p style="font-size:14px;color:var(--glt);font-weight:600;margin-top:4px">burak.hulagu@atauni.edu.tr</p>'+
-      '<p style="font-size:14px;color:var(--glt);font-weight:600">ahmet.ozakin@atauni.edu.tr</p>'+
-      '</div>'+
+      '<p style="font-size:13px;color:rgba(240,208,96,.9)">PDF\'i kaydettikten sonra lütfen analiz ekibine iletiniz</p>'+ 
+      '<p style="font-size:14px;color:var(--glt);font-weight:600;margin-top:4px">burak.hulagu@atauni.edu.tr</p>'+ 
+      '<p style="font-size:14px;color:var(--glt);font-weight:600">ahmet.ozakin@atauni.edu.tr</p>'+ 
+      '</div>'+ 
       '</div>';
     return html;
   }
@@ -629,12 +709,20 @@ function sendMail(){
     'Çene: '+({upper:'Üst',lower:'Alt',both:'Her iki çene'}[st.region]||'—'),
     'Diş sayısı: '+st.count,
     'İmplant modeli: '+(st.implantModel||'Belirtilmedi'),
-    'Kemik modeli: '+({patient:'Hasta-özgü',open:'Açık erişimli',team:'Ekip modeli'}[st.boneModel]||'—'),''];
+    '3D implant datası: '+({yes:'Evet',no:'Hayır',partial:'Kısmen'}[st.implant3d]||'—'),
+    'İmplant geometrisi: '+({yes:'Analiz ekibi modelleyecek',provide:'Kullanıcı temin edecek',other:'Diğer'}[st.implantModeling]||'—'),
+    'Kemik modeli: '+({patient:'Hasta-özgü',open:'Açık erişimli',team:'Ekip modeli'}[st.boneModel]||'—'),
+    'Yükleme tipi: '+({static:'Statik',dynamic:'Dinamik/siklik',both:'Statik + dinamik/siklik'}[st.loadType]||'—'),
+    'Dinamik yük notu: '+(st.dynLoadNote||'—'),
+    'Analiz çıktıları: '+(st.outputs.join(', ')||'—'),
+    'İncelenecek bölgeler: '+(st.regions.join(', ')||'—'),''];
   st.params.forEach(function(p){
     lines.push('[ MODEL PARAMETRESİ '+p.id+' ]');
     lines.push('Dişler: '+p.teeth.slice().sort(function(a,b){return a-b;}).join(', '));
     Object.entries(p.roles).forEach(function(e){lines.push('Diş '+e[0]+': '+({implant:'İmplant',pontic:'Pontik',kant:'Kantilever'}[e[1]]||e[1]));});
-    Object.entries(p.kantLenMap).forEach(function(e){lines.push('Diş '+e[0]+' kant.: '+e[1]+' mm');});
+    lines.push('Greft: '+(p.greft==='yes'?'Evet':(p.greft==='no'?'Hayır':'—')));
+    if(p.greft==='yes')lines.push('Greft açıklaması: '+(p.greftNote||'—'));
+    Object.entries(p.kantLenMap).forEach(function(e){lines.push('Diş '+e[0]+' kantilever uzantı uzunluğu: '+e[1]+' mm');});
     Object.entries(p.implants).forEach(function(e){lines.push('Diş '+e[0]+' implant: Ø'+(e[1].diam||'?')+' mm / Boy '+(e[1].len||'?')+' mm');});
     Object.entries(p.loading).forEach(function(e){lines.push('Diş '+e[0]+' yük: '+(e[1].force||'?')+' N | '+(e[1].dir||'?')+' | '+(e[1].area||'?'));});
     lines.push('');
@@ -674,9 +762,10 @@ function R(){
     (!isFirst?'<button class="bback" onclick="cur--;R()">← Geri</button>':'<div></div>')+
     (!isLast
       ?'<button class="bnext" onclick="cur++;R()">İleri →</button>'
-      :'<button class="bfin" onclick="window.print()">📄 PDF Kaydet & Yazdır</button>');
+      :'<div></div>');
 }
 function goTo(i){if(i<=maxVisited){cur=i;R();}}
+function goEdit(i){cur=i;if(i>maxVisited)maxVisited=i;R();}
 R();
 </script>
 </body>
