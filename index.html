@@ -2564,6 +2564,97 @@ body.theme-light.dashboard-v13 .dash-sidebar .dash-uni-copy{
   }
 }
 
+
+/* ===== V53 FORCE TOOTH SELECTION ===== */
+.load-tooth-select{
+  margin:.4rem 0 .35rem !important;
+}
+.load-tooth-select .chip{
+  align-items:center !important;
+  gap:4px !important;
+}
+.chip-sub{
+  opacity:.72;
+  font-size:11px;
+  font-weight:600;
+}
+.load-detail-wrap{
+  display:grid;
+  gap:1rem;
+  margin-top:1rem;
+}
+.load-detail-card{
+  padding:1rem;
+  border-radius:14px;
+  background:rgba(255,255,255,.045);
+  border:1.5px solid rgba(255,255,255,.10);
+}
+.load-detail-card .phdr.mini{
+  margin-bottom:.75rem;
+}
+.load-detail-card .phdr.mini .plbl{
+  color:var(--pu2);
+}
+
+
+/* ===== V54 FORCE CARD READABILITY FIX ===== */
+.load-detail-card{
+  background:rgba(15,22,38,.72) !important;
+  border:1.5px solid rgba(190,205,230,.24) !important;
+  box-shadow:0 14px 30px rgba(0,0,0,.18) !important;
+}
+.load-detail-card .phdr.mini{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  margin-bottom:1rem !important;
+}
+.load-detail-card .phdr.mini .plbl{
+  display:inline-flex !important;
+  align-items:center !important;
+  max-width:100% !important;
+  padding:9px 14px !important;
+  border-radius:999px !important;
+  background:rgba(97,76,190,.28) !important;
+  color:#F4F1FF !important;
+  font-size:16px !important;
+  font-weight:900 !important;
+  letter-spacing:.2px !important;
+  text-shadow:none !important;
+}
+.load-detail-card .phdr.mini .sum-edit{
+  background:rgba(55,138,221,.14) !important;
+  border:1.5px solid rgba(91,163,232,.70) !important;
+  color:#EAF4FF !important;
+  font-weight:800 !important;
+  box-shadow:none !important;
+}
+.load-detail-card .ig label{
+  color:#F1EDFF !important;
+  font-weight:850 !important;
+}
+.load-detail-card .note{
+  color:#CFC7FF !important;
+}
+.load-detail-card .inp{
+  color:#FFFFFF !important;
+}
+.load-detail-card .inp::placeholder{
+  color:rgba(235,232,255,.52) !important;
+}
+.load-detail-card .unit{
+  color:#EDE8FF !important;
+  font-weight:900 !important;
+}
+.load-tooth-select .chip.sel-r{
+  color:#FFFFFF !important;
+  font-weight:900 !important;
+}
+.load-tooth-select .chip .chip-sub{
+  color:rgba(255,255,255,.82) !important;
+}
+
 </style>
 </head>
 <body class="dashboard-v13">
@@ -2949,8 +3040,30 @@ function setRole(pid,t,r){
   if(p.roles[t]===r){delete p.roles[t];}else{p.roles[t]=r;}
   if(p.roles[t]!=='kant')delete p.kantLenMap[t];
   if(p.roles[t]!=='implant')delete p.implants[t];
-  if(!(p.roles[t]==='implant'||p.roles[t]==='kant'))delete p.loading[t];
   R();
+}
+function toothRoleText(p,t){
+  var r=(p&&p.roles)?p.roles[t]:null;
+  return r==='implant'?'İmplant':(r==='pontic'?'Pontik':(r==='kant'?'Kantilever':'Rol seçilmedi'));
+}
+function toggleLoadTooth(pid,t){
+  const p=st.params.find(function(x){return x.id===pid;});
+  if(!p)return;
+  p.loading=p.loading||{};
+  if(p.loading[t]){
+    delete p.loading[t];
+  }else{
+    p.loading[t]={force:'',dir:'',area:''};
+  }
+  R();
+}
+function selectedLoadTeeth(p){
+  p.loading=p.loading||{};
+  var selected=Object.keys(p.loading).map(function(k){return parseInt(k,10);}).filter(function(t){
+    return p.teeth&&p.teeth.indexOf(t)>=0;
+  });
+  selected.sort(function(a,b){return a-b;});
+  return selected;
 }
 
 function roleBtn(p,t,r,label){
@@ -3281,7 +3394,7 @@ function stepBody(){
   );
 
   if(s.id==='load') return (
-    '<p class="ql">Her parametre için yükleme koşullarını tanımlayın.</p>'+
+    '<p class="ql">Önce yükleme tipini seçin. Ardından her model parametresi için “hangi dişlere kuvvet uygulanacak?” sorusundan dişleri seçin. Seçilen dişler için kuvvet verileri altta açılır.</p>'+
     '<div style="margin-bottom:1.25rem;padding:1rem 1.25rem;border-radius:12px;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1)">'+
     '<p style="font-size:14px;font-weight:600;color:#D4CCFF;margin-bottom:.6rem">Yükleme tipi</p>'+
     '<div class="chips">'+
@@ -3291,33 +3404,45 @@ function stepBody(){
     '</div>'+
     (st.loadType==='dynamic'||st.loadType==='both'?
       '<div class="ig" style="margin-top:.75rem"><label>Darbe yükü parametreleri (hız, temas süresi, impuls, darbe notu vb.)</label>'+
-      '<input class="inp" type="text" value="'+(st.dynLoadNote||'')+'" oninput="st.dynLoadNote=this.value" placeholder="Örn: 8 m/s, 6 ms temas, anterior-posterior"></div>'
+      '<input class="inp" type="text" value="'+escAttr(st.dynLoadNote||'')+'" oninput="st.dynLoadNote=this.value" placeholder="Örn: 8 m/s, 6 ms temas, anterior-posterior"></div>'
     :'')+
     '</div>'+
     st.params.map(function(p){
-      var lTeeth=p.teeth.filter(function(t){return p.roles[t]==='implant'||p.roles[t]==='kant';});
+      p.loading=p.loading||{};
+      var allTeeth=(p.teeth||[]).slice().sort(function(a,b){return a-b;});
+      var loadTeeth=selectedLoadTeeth(p);
+      var loadSet={};loadTeeth.forEach(function(t){loadSet[t]=true;});
       return '<div class="pb">'+
         '<div class="phdr"><span class="plbl">Parametre '+p.id+'</span></div>'+
-        (lTeeth.length?
-          lTeeth.map(function(t){
+        '<p class="ql" style="margin-top:.2rem">Hangi dişlere kuvvet uygulanacak?</p>'+
+        (allTeeth.length?
+          '<div class="chips load-tooth-select">'+allTeeth.map(function(t){
+            var role=toothRoleText(p,t);
+            return '<button type="button" class="chip '+(loadSet[t]?'sel-r':'')+'" onclick="toggleLoadTooth('+p.id+','+t+');return false;">Diş '+t+' <span class="chip-sub">('+role+')</span></button>';
+          }).join('')+'</div>'+
+          '<p class="note">Kuvvet uygulanacak dişleri burada serbestçe seçin. Seçim implant/kantilever ile sınırlı değildir; seçtiğiniz her diş için aşağıda ayrı kuvvet alanı açılır.</p>'
+        :'<p style="font-size:14px;color:var(--tx3)">Bu parametrede diş seçilmemiş. Önce “Diş Seçimi & Roller” adımında dişleri seçin.</p>')+
+        (loadTeeth.length?
+          '<div class="load-detail-wrap">'+loadTeeth.map(function(t){
             if(!p.loading[t])p.loading[t]={force:'',dir:'',area:''};
-            return '<p style="font-weight:600;color:var(--pu2);margin:.75rem 0 .5rem;font-size:15px">'+
-              'Diş '+t+' — '+(p.roles[t]==='implant'?'İmplant':'Kantilever')+'</p>'+
+            return '<div class="load-detail-card">'+
+              '<div class="phdr mini"><span class="plbl">Diş '+t+' — '+toothRoleText(p,t)+'</span><button type="button" class="sum-edit" onclick="toggleLoadTooth('+p.id+','+t+');return false;">Kuvvet seçimini kaldır</button></div>'+
               '<div class="inp-grid">'+
               '<div class="ig"><label>Kuvvet büyüklüğü</label>'+
-              '<div class="inp-mm"><input class="inp" type="text" value="'+(p.loading[t].force||'')+
+              '<div class="inp-mm"><input class="inp" type="text" value="'+escAttr(p.loading[t].force||'')+
               '" oninput="st.params.find(function(x){return x.id==='+p.id+'}).loading['+t+'].force=this.value" placeholder="Örn: 150 veya 100, 150, 200">'+
               '<span class="unit">N</span></div>'+
-              '<p class="note">Not: İstediğiniz adet kuvvet değerini aynı kutuya yazabilirsiniz. Örn: 100, 150, 200 N.</p></div>'+
+              '<p class="note">Birden fazla kuvvet değeri aynı kutuya yazılabilir. Örn: 100, 150, 200 N.</p></div>'+
               '<div class="ig"><label>Yükleme yönü / açısı</label>'+
-              '<input class="inp" type="text" value="'+(p.loading[t].dir||'')+
+              '<input class="inp" type="text" value="'+escAttr(p.loading[t].dir||'')+
               '" oninput="st.params.find(function(x){return x.id==='+p.id+'}).loading['+t+'].dir=this.value" placeholder="Örn: Aksiyel (0°), Oblik (45°)"></div>'+
               '</div>'+
               '<div class="ig" style="margin-bottom:1rem"><label>Yükleme uygulama bölgesi</label>'+
-              '<input class="inp" type="text" value="'+(p.loading[t].area||'')+
-              '" oninput="st.params.find(function(x){return x.id==='+p.id+'}).loading['+t+'].area=this.value" placeholder="Örn: Oklüzal yüzeyin bukkal 1/3\'ü"></div>';
-          }).join('')
-        :'<p style="font-size:14px;color:var(--tx3)">Bu parametrede yüklenecek diş seçilmemiş.</p>')+
+              '<input class="inp" type="text" value="'+escAttr(p.loading[t].area||'')+
+              '" oninput="st.params.find(function(x){return x.id==='+p.id+'}).loading['+t+'].area=this.value" placeholder="Örn: Oklüzal yüzeyin bukkal 1/3\'ü"></div>'+
+              '</div>';
+          }).join('')+'</div>'
+        :'<p style="font-size:14px;color:var(--tx3);margin-top:.85rem">Henüz kuvvet uygulanacak diş seçilmedi.</p>')+
         '</div>';
     }).join('')
   );
@@ -3463,7 +3588,7 @@ function stepBody(){
         html+='</div>';
       }
     });
-    if(!anyLoad)html+=SR('Yükleme detayı','Yüklenecek implant/kantilever dişi seçilmemiş veya değer girilmemiş');
+    if(!anyLoad)html+=SR('Yükleme detayı','Kuvvet uygulanacak diş seçilmemiş veya değer girilmemiş');
 
     html+=EH('Analiz Çıktıları',10)+
       SR('Analiz sonuçları',st.outputs.length?st.outputs.map(esc).join(', '):'—')+
@@ -3565,10 +3690,10 @@ function getMissingItems(){
         var imp=p.implants[t]||{};
         if(!(imp.diam||'').trim() || !(imp.len||'').trim())add('Parametre '+p.id+' / Diş '+t+' için implant çapı veya boyu eksik.',7);
       }
-      if(p.roles[t]==='implant' || p.roles[t]==='kant'){
-        var lo=p.loading[t]||{};
-        if(!(lo.force||'').trim())add('Parametre '+p.id+' / Diş '+t+' için kuvvet büyüklüğü eksik.',9);
-      }
+    });
+    selectedLoadTeeth(p).forEach(function(t){
+      var lo=p.loading[t]||{};
+      if(!(lo.force||'').trim())add('Parametre '+p.id+' / Diş '+t+' için kuvvet büyüklüğü eksik.',9);
     });
   });
   if(!st.implant3d || !st.implantModeling || !st.boneModel)add('İmplant/kemik modeli seçeneklerinden biri eksik.',8);
