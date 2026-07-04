@@ -3136,7 +3136,7 @@ function toothSVG(showU,showL,pid,interactive){
     const clk=interactive?'onclick="toggleTooth('+(pid||0)+','+n+')"':'';
     return '<g class="'+cls+'" id="'+tid+'" data-arch="'+arch+'" '+clk+
       ' transform="rotate('+rot+','+cx+','+cy+')" style="'+(ex.includes(n)?'pointer-events:none':'')+'">'+
-      '<title>Diş '+n+' — seçmek veya kaldırmak için tıklayın</title>'+
+      '\x3ctitle>Diş '+n+' — seçmek veya kaldırmak için tıklayın\x3c/title>'+
       '<rect x="'+(cx-Math.floor(w/2)-5)+'" y="'+(cy-Math.floor(h2/2)-5)+
         '" width="'+(w+10)+'" height="'+(h2+10)+'" rx="8" fill="transparent" pointer-events="all" data-tooth-hit="1" data-pid="'+(pid||0)+'" data-tooth="'+n+'"/>'+ 
       '<rect x="'+(cx-Math.floor(w/2))+'" y="'+(cy-Math.floor(h2/2))+
@@ -3850,7 +3850,7 @@ function downloadCurrentPageJPEG(){
   });
   var styles=Array.from(document.querySelectorAll('style')).map(function(s){return s.textContent||'';}).join('\n');
   var themeClasses=document.body.className||'';
-  var xhtml='<!DOCTYPE html><html><head><meta charset="utf-8"><style>'+styles+' body{margin:0!important;background:#ffffff!important}.export-wrap{padding:18px;box-sizing:border-box}</style></head><body class="'+themeClasses+'"><div class="export-wrap">'+clone.outerHTML+'</div></body></html>';
+  var xhtml='\x3c!DOCTYPE html>\x3chtml>\x3chead>\x3cmeta charset="utf-8">\x3cstyle>'+styles+' body{margin:0!important;background:#ffffff!important}.export-wrap{padding:18px;box-sizing:border-box}\x3c/style>\x3c/head>\x3cbody class="'+themeClasses+'"><div class="export-wrap">'+clone.outerHTML+'</div>\x3c/body>\x3c/html>';
   var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+(w+36)+'" height="'+(h+36)+'"><foreignObject width="100%" height="100%">'+xhtml.replace(/#/g,'%23')+'</foreignObject></svg>';
   var img=new Image();
   var url='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
@@ -4041,16 +4041,16 @@ function robotBuildTxt(report){
   return lines.join('\n');
 }
 function robotBuildHtml(report){
-  if(!report)return '<!doctype html><meta charset="utf-8"><p>Test raporu yok.</p>';
+  if(!report)return '\x3c!doctype html>\x3cmeta charset="utf-8"><p>Test raporu yok.</p>';
   var rows=report.coverage.map(function(c){return '<tr><td>'+(c.stepIndex+1)+'</td><td>'+robotEsc(c.stepTitle)+'</td><td>'+c.inputs+'</td><td>'+c.buttons+'</td><td>'+c.selectables+'</td><td>'+c.visuals+'</td><td>'+c.total+'</td></tr>';}).join('');
   var logs=report.logs.map(function(l){return '<tr><td class="'+l.type+'">'+robotEsc(l.type)+'</td><td>'+robotEsc(l.step)+'</td><td>'+robotEsc(l.target)+'</td><td>'+robotEsc(l.action)+'</td><td>'+robotEsc(l.result)+'</td><td>'+robotEsc(l.details||'')+'</td></tr>';}).join('');
   var issues=report.logs.filter(function(l){return l.type==='fail'||l.type==='warn';});
-  return '<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>SEA Form Test Raporu</title><style>body{font-family:Arial,system-ui,sans-serif;margin:28px;color:#111}h1{font-size:22px}h2{font-size:16px;margin-top:22px}.metrics{display:flex;gap:10px;flex-wrap:wrap}.metric{border:1px solid #ddd;border-radius:10px;padding:10px 14px;min-width:120px}.metric b{display:block;font-size:22px}table{border-collapse:collapse;width:100%;margin-top:8px;font-size:12px}th,td{border:1px solid #ddd;padding:6px;text-align:left;vertical-align:top}th{background:#f3f3f3}.ok{color:#087b4b;font-weight:bold}.warn{color:#9a7100;font-weight:bold}.fail{color:#b3261e;font-weight:bold}.info{color:#2459a6;font-weight:bold}@media print{body{margin:14mm}}</style></head><body>'+ 
+  return '\x3c!doctype html>\x3chtml lang="tr">\x3chead>\x3cmeta charset="utf-8">\x3ctitle>SEA Form Test Raporu\x3c/title>\x3cstyle>body{font-family:Arial,system-ui,sans-serif;margin:28px;color:#111}h1{font-size:22px}h2{font-size:16px;margin-top:22px}.metrics{display:flex;gap:10px;flex-wrap:wrap}.metric{border:1px solid #ddd;border-radius:10px;padding:10px 14px;min-width:120px}.metric b{display:block;font-size:22px}table{border-collapse:collapse;width:100%;margin-top:8px;font-size:12px}th,td{border:1px solid #ddd;padding:6px;text-align:left;vertical-align:top}th{background:#f3f3f3}.ok{color:#087b4b;font-weight:bold}.warn{color:#9a7100;font-weight:bold}.fail{color:#b3261e;font-weight:bold}.info{color:#2459a6;font-weight:bold}@media print{body{margin:14mm}}\x3c/style>\x3c/head>\x3cbody>'+ 
     '<h1>SEA Form Geliştirici Test Robotu Raporu</h1><p><b>Tarih:</b> '+robotEsc(report.timestamp)+'<br><b>Sürüm:</b> '+robotEsc(report.version)+'<br><b>Not:</b> Bu rapor geliştirici içindir; son kullanıcı arayüzünden kaldırılabilir/gizlenebilir.</p>'+ 
     '<div class="metrics"><div class="metric"><b>'+report.summary.ok+'</b>Başarılı</div><div class="metric"><b>'+report.summary.warn+'</b>Uyarı</div><div class="metric"><b>'+report.summary.fail+'</b>Hata</div><div class="metric"><b>'+report.summary.controls+'</b>Test kapsamındaki alan</div></div>'+ 
     '<h2>Uyarı / Hata Özeti</h2>'+(issues.length?'<ul>'+issues.map(function(i){return '<li class="'+i.type+'">'+robotEsc(i.step)+' — '+robotEsc(i.target)+' — '+robotEsc(i.result)+'</li>';}).join('')+'</ul>':'<p class="ok">Uyarı veya hata bulunmadı.</p>')+
     '<h2>Adım Kapsamı</h2><table><thead><tr><th>#</th><th>Sayfa</th><th>Veri girişi</th><th>Buton</th><th>Seçilebilir</th><th>Görsel seçim</th><th>Toplam</th></tr></thead><tbody>'+rows+'</tbody></table>'+ 
-    '<h2>Ayrıntılı İşlem Logu</h2><table><thead><tr><th>Durum</th><th>Sayfa</th><th>Alan</th><th>İşlem</th><th>Sonuç</th><th>Detay</th></tr></thead><tbody>'+logs+'</tbody></table></body></html>';
+    '<h2>Ayrıntılı İşlem Logu</h2><table><thead><tr><th>Durum</th><th>Sayfa</th><th>Alan</th><th>İşlem</th><th>Sonuç</th><th>Detay</th></tr></thead><tbody>'+logs+'</tbody></table>\x3c/body>\x3c/html>';
 }
 function downloadRobotReport(format){
   if(!robotLastReport){alert('Önce test robotunu çalıştırın.');return;}
