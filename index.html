@@ -180,6 +180,8 @@ textarea.inp{resize:vertical;min-height:90px}
   border:none;background:linear-gradient(135deg,var(--gold),#A07810);color:#fff;
   cursor:pointer;transition:all .2s;font-family:var(--font)}
 .note{font-size:13px;color:var(--tx3);line-height:1.45;margin:.35rem 0 .75rem}
+.mat-warn{font-size:13px;line-height:1.5;margin:0 0 .75rem;padding:.65rem .85rem;border-left:3px solid rgba(240,208,96,.7);background:rgba(240,208,96,.08);border-radius:8px;color:#FFF3B0}
+.mat-warn strong{color:#FFE27A}
 .badd.glow-add{margin-top:1.5rem;padding:16px 18px;border:1.5px solid rgba(240,208,96,.75);border-radius:16px;
   background:linear-gradient(135deg,rgba(200,160,40,.22),rgba(74,53,168,.35),rgba(29,158,117,.16));
   color:#fff;font-size:17px;font-weight:800;letter-spacing:.01em;
@@ -493,6 +495,24 @@ body.theme-light .csub,body.theme-light.dashboard-v13 .csub,body.theme-light .no
 body.theme-light .inp{background:#fff!important;color:#17045c!important;border-color:#d8dce8!important}
 body.theme-light .dash-menu button{color:#17045c!important}
 body.theme-light .dash-menu button.active{background:linear-gradient(135deg,#19045f,#391090)!important;color:#fff!important}
+body.theme-light .sum-row{border-bottom-color:#e4e6ef!important}
+body.theme-light .sum-l{color:#5b4b9e!important}
+body.theme-light .sum-v{color:#17045c!important}
+body.theme-light .sum-ph,body.theme-light .sum-sec-head{color:#19045f!important;background:#f1edff!important;border-left-color:#4A35A8!important}
+body.theme-light .sum-edit{background:#fff3d6!important;border-color:#d9a441!important;color:#8a5a00!important}
+body.theme-light .summary-check{border-color:#e4e6ef!important;background:#fff!important}
+body.theme-light .summary-check.ok{border-color:#8fd6b8!important;background:#eafbf3!important}
+body.theme-light .summary-check.warn{border-color:#e8c874!important;background:#fff8e6!important}
+body.theme-light .summary-check-title{color:#8a5a00!important}
+body.theme-light .summary-check.ok .summary-check-title{color:#0e7a4e!important}
+body.theme-light .summary-check p{color:#4d5872!important}
+body.theme-light .summary-check-item{background:#f7f8fc!important;border-color:#e4e6ef!important}
+body.theme-light .summary-check-item span{color:#17045c!important}
+body.theme-light .mat-warn{background:#fff8e6!important;border-left-color:#d9a441!important;color:#8a5a00!important}
+body.theme-light .final-submit-note{background:#fff8e6!important;border-color:#e8c874!important}
+body.theme-light .final-submit-note p{color:#8a5a00!important}
+body.theme-light .final-submit-note .mail{color:#19045f!important}
+body.theme-light .unit{color:#5b4b9e!important}
 body.theme-ocean{--pu:#073B4C;--pu2:#118AB2;--pu3:#5EEAD4;--gold:#FFD166;--glt:#FFF1A8;--tx:#F0FDFF;--tx2:#CFFAFE;--tx3:#A5F3FC;background:linear-gradient(160deg,#031C28,#06394D 58%,#04202F)!important}
 body.theme-emerald{--pu:#064E3B;--pu2:#059669;--pu3:#34D399;--gold:#FCD34D;--glt:#FEF3C7;--tx:#F0FDF4;--tx2:#D1FAE5;--tx3:#A7F3D0;background:linear-gradient(160deg,#022C22,#064E3B 58%,#021D17)!important}
 body.theme-burgundy{--pu:#4C0519;--pu2:#BE123C;--pu3:#FB7185;--gold:#FBBF24;--glt:#FDE68A;--tx:#FFF1F2;--tx2:#FFE4E6;--tx3:#FECDD3;background:linear-gradient(160deg,#24020D,#4C0519 58%,#190108)!important}
@@ -2756,8 +2776,6 @@ const LOWER = [[48, 102, 236, -30], [47, 124, 254, -25], [46, 148, 278, -20], [4
 
 const STEPS=[
   {id:'person',title:'Kişisel Bilgiler',icon:'👤',bg:'rgba(28,20,100,.08)'},
-  {id:'scenario',title:'Analiz Senaryosu',icon:'🧭',bg:'rgba(200,160,40,.10)'},
-  {id:'scene',title:'Senaryo Detayları',icon:'🧠',bg:'rgba(55,138,221,.10)'},
   {id:'region',title:'Çene Bölgesi',icon:'🦷',bg:'rgba(200,160,40,.1)'},
   {id:'count', title:'Diş Sayısı',icon:'🔢',bg:'rgba(55,138,221,.1)'},
   {id:'teeth', title:'Diş Seçimi & Roller',icon:'🏗',bg:'rgba(28,20,100,.08)'},
@@ -2766,6 +2784,8 @@ const STEPS=[
   {id:'model', title:'İmplant & Kemik Modeli',icon:'🧬',bg:'rgba(29,158,117,.08)'},
   {id:'load',  title:'Yükleme Koşulları',icon:'⚡',bg:'rgba(216,90,48,.08)'},
   {id:'output',title:'Analiz Çıktıları',icon:'📊',bg:'rgba(55,138,221,.1)'},
+  {id:'scenario',title:'Analiz Senaryosu',icon:'🧭',bg:'rgba(200,160,40,.10)'},
+  {id:'scene',title:'Senaryo Detayları',icon:'🧠',bg:'rgba(55,138,221,.10)'},
   {id:'extra', title:'Ek Notlar',icon:'📝',bg:'rgba(28,20,100,.06)'},
   {id:'summ',  title:'Özet & Tamamla',icon:'✅',bg:'rgba(29,158,117,.08)'},
 ];
@@ -2781,7 +2801,7 @@ let st={
   dynLoad:false,loadType:null,dynLoadNote:'',
   outputs:[],regions:[],extraRegion:'',
   extra:'',gaps:'',
-  materials:[],materialSeq:1,
+  materials:[],materialSeq:1,materialsRemovedKeys:[],
 };
 
 var MATERIAL_LABELS={
@@ -2798,23 +2818,12 @@ var MATERIAL_LABELS={
 function ensureMaterials(){
   if(!st.materials)st.materials=[];
   if(!st.materialSeq)st.materialSeq=1;
-  var needed=['mukoza','kortikal','trabekuler'];
-  var hasImplant=false,hasPontik=false,hasKant=false;
-  (st.params||[]).forEach(function(p){
-    Object.keys(p.roles||{}).forEach(function(k){
-      if(p.roles[k]==='implant')hasImplant=true;
-      if(p.roles[k]==='pontic')hasPontik=true;
-      if(p.roles[k]==='kant')hasKant=true;
-    });
-  });
-  var pre=[];
-  if(hasImplant)pre.push('implant','abutment');
-  needed=pre.concat(needed);
-  if(hasPontik)needed.push('pontik');
-  if(hasKant)needed.push('kant');
+  if(!st.materialsRemovedKeys)st.materialsRemovedKeys=[];
+  var needed=['implant','abutment','mukoza','kortikal','trabekuler'];
   needed.forEach(function(key){
     var exists=st.materials.some(function(m){return m.key===key;});
-    if(!exists){
+    var wasRemoved=st.materialsRemovedKeys.indexOf(key)>=0;
+    if(!exists&&!wasRemoved){
       st.materials.push({id:st.materialSeq++,key:key,name:MATERIAL_LABELS[key]||key,value:''});
     }
   });
@@ -2825,7 +2834,10 @@ function addMaterial(){
   R();
 }
 function removeMaterial(id){
-  st.materials=(st.materials||[]).filter(function(m){return m.id!==id;});
+  if(!st.materialsRemovedKeys)st.materialsRemovedKeys=[];
+  var m=(st.materials||[]).find(function(x){return x.id===id;});
+  if(m&&m.key&&st.materialsRemovedKeys.indexOf(m.key)<0)st.materialsRemovedKeys.push(m.key);
+  st.materials=(st.materials||[]).filter(function(x){return x.id!==id;});
   R();
 }
 function setMaterialName(id,v){
@@ -2839,10 +2851,7 @@ function setMaterialValue(id,v){
 function materialsBlock(){
   ensureMaterials();
   return '<p class="ql" style="margin-top:1.5rem">3D modelde yer alan bileşenlerin malzeme özellikleri</p>'+
-  '<div class="note" style="margin-bottom:.75rem;padding:.65rem .75rem;border-left:3px solid rgba(240,208,96,.7);background:rgba(240,208,96,.08);border-radius:8px;color:#FFF3B0">'+
-  '⚠ Her bileşen için mutlaka <strong>E-modülü</strong>, <strong>Poisson oranı</strong> ve <strong>yoğunluk</strong> belirtilmelidir.'+
-  '</div>'+
-  '<p class="note" style="margin-bottom:.75rem">Değerleri doğrudan yazabilir ya da bir kaynak/referans makale belirtebilirsiniz (örn. Yazar Adı, Yıl / DOI). Listede olmayan bir bileşen varsa (örn. protez damak kısmı) “+ Bileşen ekle” ile ekleyebilir, istemediğiniz bir bileşeni kaldırabilirsiniz.</p>'+
+  '<div class="mat-warn">⚠ Her bileşen için mutlaka <strong>E-modülü</strong>, <strong>Poisson oranı</strong> ve <strong>yoğunluk</strong> belirtilmelidir. Değerleri doğrudan yazabilir ya da bir kaynak/referans makale belirtebilirsiniz (örn. Yazar Adı, Yıl / DOI). Listede olmayan bir bileşen varsa (örn. protez damak kısmı) “+ Bileşen ekle” ile ekleyebilir, istemediğiniz bir bileşeni “Kaldır” ile listeden çıkarabilirsiniz.</div>'+
   st.materials.map(function(m){
     return '<div class="pb" style="padding:1rem"><div class="phdr mini">'+
       (m.key?'<span class="plbl">'+m.name+'</span>':
@@ -3326,24 +3335,11 @@ function stepBody(){
 
   if(s.id==='scene'){
     ensureCases();
-    return '<p class="ql">Her senaryo için görsel yalnızca yönlendirici / özet amaçlı gösterilir. Analizde ele alınacak kısımları aşağıdaki kutudan tek tek ekleyin.</p>'+
-      '<p class="note">Bu adımda görsel üzerinden herhangi bir seçim yapılmaz. Seçim sadece mevcut çene ve diş adımlarında yapılır.</p>'+
+    return '<p class="ql">Bu adımda yalnızca senaryolarınıza özel notlarınızı girebilirsiniz.</p>'+
       st.analysisCases.map(function(c){
-        var parts=(c.customZones&&c.customZones.length)?c.customZones.map(function(q){return '<span class="analysis-part-chip">'+escAttr(q.label)+' <button type="button" onclick="return removeCustomZone('+c.id+',\''+q.id+'\')">sil</button></span>';}).join(''):'<span>Henüz analiz kısmı eklenmedi.</span>';
         return '<div class="pb scenario-case"><div class="phdr"><span class="plbl">Analiz Senaryosu '+c.id+' — '+caseTypeLabel(c.type)+'</span></div>'+
-          '<div class="viz-layout"><div class="viz-panel">'+scenarioSVG(c.type,c.id,c.zones)+'</div>'+
-          '<div class="viz-info"><p class="ql" style="margin-top:0">Analizde ele alınacak kısımlar</p>'+
-          '<div class="zone-list analysis-part-list">'+parts+'</div>'+((c.customZones&&c.customZones.length)?'<button type="button" class="clear-all-inline" onclick="return clearCaseCustomZones('+c.id+')">Bu listedeki tüm kısımları temizle</button>':'')+
-          '<div class="analysis-parts-builder"><strong>Kutu kutu analiz kısmı ekleyin</strong><p>Örn: mandibula korpusu, implant boynu, greft alanı, temas yüzeyi, ölçüm düzlemi, darbe hattı, kuron iç yapısı vb.</p><div class="analysis-parts-row"><input id="customZoneInput_'+c.id+'" class="inp" type="text" placeholder="Analizde ele alınacak kısmı yazın" onkeydown="if(event.key===\'Enter\'){event.preventDefault();addCustomZone('+c.id+');}"><button type="button" class="sum-edit" onclick="return addCustomZone('+c.id+')">+ Ekle</button></div>'+
-          '</div>'+
-          '<p class="scenario-static-note">Görsel, senaryoyu özetlemek içindir. Kullanıcı burada yalnızca analiz kapsamı listesini oluşturur.</p></div></div>'+
-          scenarioDetailFields(c)+
-          '<div class="ig" style="margin-top:1rem"><label>Senaryo özel notu</label><textarea class="inp" rows="3" oninput="setCaseNote('+c.id+',this.value)" placeholder="Bu senaryoya ait özel beklenti, veri dosyası, modelleme notu...">'+escAttr(c.note||'')+'</textarea></div>'+
-          '<div class="param-actions">'+
-          '<button class="param-clear" onclick="clearAnalysisCase('+c.id+')">Senaryo detaylarını temizle</button>'+
-          '<button class="param-copy" onclick="cloneAnalysisCase('+c.id+')">Bu senaryoyu kopyala ve çoğalt</button>'+
-          (st.analysisCases.length>1?'<button class="param-delete" onclick="rmAnalysisCase('+c.id+')">Senaryoyu sil</button>':'<button class="param-delete" disabled>Senaryoyu sil</button>')+
-          '</div></div>';
+          '<div class="ig"><label>Senaryo özel notu</label><textarea class="inp" rows="4" oninput="setCaseNote('+c.id+',this.value)" placeholder="Bu senaryoya ait özel beklenti, veri dosyası, modelleme notu...">'+escAttr(c.note||'')+'</textarea></div>'+
+          '</div>';
       }).join('');
   }
 
@@ -3574,10 +3570,8 @@ function stepBody(){
   );
 
   if(s.id==='extra') return (
-    '<p class="ql">Eklemek istediğiniz ek bilgi veya özel koşullar var mı?</p>'+
-    '<textarea class="inp" rows="4" placeholder="Metodolojik notlar, özel gereksinimler, varsa ön bilgiler..." oninput="st.extra=this.value">'+st.extra+'</textarea>'+
     '<p class="ql">Formda eksik gördüğünüz ya da farklı işlenmesini istediğiniz bir konu var mı?</p>'+
-    '<textarea class="inp" rows="3" placeholder="Form yapısına dair öneri ve görüşleriniz..." oninput="st.gaps=this.value">'+st.gaps+'</textarea>'
+    '<textarea class="inp" rows="4" placeholder="Form yapısına dair öneri ve görüşleriniz..." oninput="st.gaps=this.value">'+st.gaps+'</textarea>'
   );
 
   if(s.id==='summ'){
@@ -3612,21 +3606,46 @@ function stepBody(){
       true
     );
 
-    ensureCases();
-    var scenBody=st.analysisCases.map(function(c){
-      var details=Object.entries(c.details||{}).filter(function(e){return String(e[1]||'').trim();}).map(function(e){return e[0]+': '+esc(e[1]);}).join(' | ');
-      return '<div class="pb"><div class="phdr"><span class="plbl">Analiz Senaryosu '+c.id+'</span><button class="sum-edit" onclick="goEdit(1)">Düzenle</button></div>'+
-        SR('Senaryo tipi',escAttr(caseTypeLabel(c.type)))+
-        SR('Görsel seçimler',c.zones.length?c.zones.map(zoneLabel).map(esc).join(', '):'—')+
-        SR('Parametreler',details||'—')+
-        SR('Senaryo notu',esc(c.note||'—'))+
-        '<button class="sum-edit" onclick="goEdit(2)">Senaryo detaylarını düzenle</button></div>';
-    }).join('');
-    html+=SEC('Analiz Senaryoları',1,scenBody,true);
+    html+=SEC('Çene Bölgesi',1,SR('Çene',(jm[st.region]||'—')),true);
+    html+=SEC('Diş Sayısı',2,SR('Diş sayısı',st.count+' diş'),true);
 
-    html+=SEC('Çene Bölgesi',3,SR('Çene',(jm[st.region]||'—')),true);
-    html+=SEC('Diş Sayısı',4,SR('Diş sayısı',st.count+' diş'),true);
-    html+=SEC('İmplant & Kemik Modeli',8,
+    var teethBody=st.params.map(function(p){
+      var b='<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(3)">Düzenle</button></div>';
+      b+=SR('Seçili dişler',p.teeth.length?p.teeth.slice().sort(function(a,b){return a-b;}).join(', '):'—');
+      var roleStr=Object.entries(p.roles).map(function(e){return e[0]+': '+(rl[e[1]]||e[1]);}).join(' | ');
+      b+=SR('Diş rolleri',roleStr||'—');
+      b+=SR('Greft',yn(p.greft));
+      if(p.greft==='yes')b+=SR('Greft açıklaması',esc(p.greftNote||'—'));
+      b+='</div>';
+      return b;
+    }).join('');
+    html+=SEC('Diş Seçimi, Roller ve Greft',3,teethBody,true);
+
+    var anyK=false;
+    var kantBody=st.params.map(function(p){
+      var k=Object.entries(p.kantLenMap);
+      if(!k.length)return '';
+      anyK=true;
+      return '<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(4)">Düzenle</button></div>'+
+        k.map(function(e){return SR('Diş '+e[0]+' kantilever uzantı uzunluğu',esc(e[1])+' mm');}).join('')+
+        '</div>';
+    }).join('');
+    if(!anyK)kantBody=SR('Kantilever bilgisi','Kantilever rolünde diş seçilmemiş veya uzunluk girilmemiş');
+    html+=SEC('Kantilever Uzantı Uzunluğu',4,kantBody,true);
+
+    var anyImp=false;
+    var impBody=st.params.map(function(p){
+      var imps=Object.entries(p.implants);
+      if(!imps.length)return '';
+      anyImp=true;
+      return '<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(5)">Düzenle</button></div>'+
+        imps.map(function(e){var imp=e[1];return SR('Diş '+e[0]+' implant',[(imp.diam?'Ø'+esc(imp.diam)+' mm':''),(imp.len?'Boy '+esc(imp.len)+' mm':'')].filter(Boolean).join(' / ')||'—');}).join('')+
+        '</div>';
+    }).join('');
+    if(!anyImp)impBody=SR('İmplant bilgisi','İmplant rolünde diş seçilmemiş veya ölçü girilmemiş');
+    html+=SEC('İmplant Detayları',5,impBody,true);
+
+    html+=SEC('İmplant & Kemik Modeli',6,
       SR('3D implant datası',(im3[st.implant3d]||'—'))+
       SR('İmplant geometrisi',(imd[st.implantModeling]||'—'))+
       SR('Kemik / çene modeli',(bm[st.boneModel]||'—'))+
@@ -3638,43 +3657,7 @@ function stepBody(){
     var matBody='<div class="pb">'+
       (st.materials.length?st.materials.map(function(m){return SR(esc(m.name||'(isimsiz bileşen)'),esc(m.value||'—'));}).join(''):'<p style="font-size:14px;color:var(--tx3)">Malzeme özelliği girilmemiş.</p>')+
       '</div>';
-    html+=SEC('Malzeme Özellikleri',8,matBody,true);
-
-    var teethBody=st.params.map(function(p){
-      var b='<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(5)">Düzenle</button></div>';
-      b+=SR('Seçili dişler',p.teeth.length?p.teeth.slice().sort(function(a,b){return a-b;}).join(', '):'—');
-      var roleStr=Object.entries(p.roles).map(function(e){return e[0]+': '+(rl[e[1]]||e[1]);}).join(' | ');
-      b+=SR('Diş rolleri',roleStr||'—');
-      b+=SR('Greft',yn(p.greft));
-      if(p.greft==='yes')b+=SR('Greft açıklaması',esc(p.greftNote||'—'));
-      b+='</div>';
-      return b;
-    }).join('');
-    html+=SEC('Diş Seçimi, Roller ve Greft',5,teethBody,true);
-
-    var anyK=false;
-    var kantBody=st.params.map(function(p){
-      var k=Object.entries(p.kantLenMap);
-      if(!k.length)return '';
-      anyK=true;
-      return '<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(6)">Düzenle</button></div>'+
-        k.map(function(e){return SR('Diş '+e[0]+' kantilever uzantı uzunluğu',esc(e[1])+' mm');}).join('')+
-        '</div>';
-    }).join('');
-    if(!anyK)kantBody=SR('Kantilever bilgisi','Kantilever rolünde diş seçilmemiş veya uzunluk girilmemiş');
-    html+=SEC('Kantilever Uzantı Uzunluğu',6,kantBody,true);
-
-    var anyImp=false;
-    var impBody=st.params.map(function(p){
-      var imps=Object.entries(p.implants);
-      if(!imps.length)return '';
-      anyImp=true;
-      return '<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(7)">Düzenle</button></div>'+
-        imps.map(function(e){var imp=e[1];return SR('Diş '+e[0]+' implant',[(imp.diam?'Ø'+esc(imp.diam)+' mm':''),(imp.len?'Boy '+esc(imp.len)+' mm':'')].filter(Boolean).join(' / ')||'—');}).join('')+
-        '</div>';
-    }).join('');
-    if(!anyImp)impBody=SR('İmplant bilgisi','İmplant rolünde diş seçilmemiş veya ölçü girilmemiş');
-    html+=SEC('İmplant Detayları',7,impBody,true);
+    html+=SEC('Malzeme Özellikleri',6,matBody,true);
 
     var anyLoad=false;
     var loadBody=SR('Yükleme tipi',(lm[st.loadType]||'—'))+
@@ -3683,21 +3666,35 @@ function stepBody(){
         var loads=Object.entries(p.loading);
         if(!loads.length)return '';
         anyLoad=true;
-        return '<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(9)">Düzenle</button></div>'+
+        return '<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(7)">Düzenle</button></div>'+
           loads.map(function(e){var lo=e[1];return SR('Diş '+e[0]+' yükleme',[(lo.force?esc(lo.force)+' N':''),(esc(lo.dir)||''),(esc(lo.area)||'')].filter(Boolean).join(' | ')||'—');}).join('')+
           '</div>';
       }).join('');
     if(!anyLoad)loadBody+=SR('Yükleme detayı','Kuvvet uygulanacak diş seçilmemiş veya değer girilmemiş');
-    html+=SEC('Yükleme Koşulları',9,loadBody,true);
+    html+=SEC('Yükleme Koşulları',7,loadBody,true);
 
-    html+=SEC('Analiz Çıktıları',10,
+    html+=SEC('Analiz Çıktıları',8,
       SR('Analiz sonuçları',st.outputs.length?st.outputs.map(esc).join(', '):'—')+
       SR('İncelenecek bölgeler / bileşenler',st.regions.length?st.regions.map(esc).join(', '):'—'),
       true
     );
 
+    ensureCases();
+    var scenBody=st.analysisCases.map(function(c){
+      return '<div class="pb"><div class="phdr"><span class="plbl">Analiz Senaryosu '+c.id+'</span><button class="sum-edit" onclick="goEdit(9)">Düzenle</button></div>'+
+        SR('Senaryo tipi',escAttr(caseTypeLabel(c.type)))+
+        '<button class="sum-edit" onclick="goEdit(10)">Senaryo notunu düzenle</button></div>';
+    }).join('');
+    html+=SEC('Analiz Senaryosu',9,scenBody,true);
+
+    var scenNoteBody=st.analysisCases.map(function(c){
+      return '<div class="pb"><div class="phdr"><span class="plbl">Analiz Senaryosu '+c.id+'</span><button class="sum-edit" onclick="goEdit(10)">Düzenle</button></div>'+
+        SR('Senaryo özel notu',esc(c.note||'—'))+
+        '</div>';
+    }).join('');
+    html+=SEC('Senaryo Detayları',10,scenNoteBody,true);
+
     html+=SEC('Ek Notlar',11,
-      SR('Ek notlar',esc(st.extra||'—'))+
       SR('Formda eksik / farklı işlenecek konu',esc(st.gaps||'—')),
       true
     );
@@ -3750,6 +3747,7 @@ function sendMail(){
     lines.push('');
   });
   if(st.extra)lines.push('EK NOTLAR: '+st.extra);
+  if(st.gaps)lines.push('FORMDA EKSİK/FARKLI İŞLENECEK KONU: '+st.gaps);
   var subject=encodeURIComponent('SEA Model Formu — '+st.person.name+' '+st.person.surname);
   var body=encodeURIComponent(lines.join('\n'));
   window.location.href='mailto:burak.hulagu@atauni.edu.tr?subject='+subject+'&body='+body;
@@ -3777,45 +3775,45 @@ function getMissingItems(){
   var nameOk=(st.person.name||'').trim()&&(st.person.surname||'').trim();
   if(!nameOk)add('Ad ve soyad bilgisi eksik.',0);
   if(!(st.person.email||'').trim())add('E-posta bilgisi eksik.',0);
-  if(!st.analysisCases.length)add('Analiz senaryosu oluşturulmadı.',1);
+  if(!st.analysisCases.length)add('Analiz senaryosu oluşturulmadı.',9);
   st.analysisCases.forEach(function(c){
-    if(!c.type)add('Analiz Senaryosu '+c.id+' için senaryo tipi seçilmedi.',1);
+    if(!c.type)add('Analiz Senaryosu '+c.id+' için senaryo tipi seçilmedi.',9);
   });
-  if(!st.region)add('Çene bölgesi seçilmedi.',3);
-  if(!st.params.length || st.params.every(function(p){return !p.teeth.length;}))add('Hiç diş seçilmedi.',5);
+  if(!st.region)add('Çene bölgesi seçilmedi.',1);
+  if(!st.params.length || st.params.every(function(p){return !p.teeth.length;}))add('Hiç diş seçilmedi.',3);
   st.params.forEach(function(p){
-    if(!p.teeth.length)add('Model Parametresi '+p.id+' için diş seçimi yok.',5);
+    if(!p.teeth.length)add('Model Parametresi '+p.id+' için diş seçimi yok.',3);
     var noRole=p.teeth.filter(function(t){return !p.roles[t];});
-    if(noRole.length)add('Model Parametresi '+p.id+' içinde rolü seçilmeyen diş var: '+noRole.join(', ')+'.',5);
-    if(p.greft==null)add('Model Parametresi '+p.id+' için greft durumu seçilmedi.',5);
+    if(noRole.length)add('Model Parametresi '+p.id+' içinde rolü seçilmeyen diş var: '+noRole.join(', ')+'.',3);
+    if(p.greft==null)add('Model Parametresi '+p.id+' için greft durumu seçilmedi.',3);
     p.teeth.forEach(function(t){
-      if(p.roles[t]==='kant' && !(p.kantLenMap[t]||'').trim())add('Parametre '+p.id+' / Diş '+t+' için kantilever uzantı uzunluğu eksik.',6);
+      if(p.roles[t]==='kant' && !(p.kantLenMap[t]||'').trim())add('Parametre '+p.id+' / Diş '+t+' için kantilever uzantı uzunluğu eksik.',4);
       if(p.roles[t]==='implant'){
         var imp=p.implants[t]||{};
-        if(!(imp.diam||'').trim() || !(imp.len||'').trim())add('Parametre '+p.id+' / Diş '+t+' için implant çapı veya boyu eksik.',7);
+        if(!(imp.diam||'').trim() || !(imp.len||'').trim())add('Parametre '+p.id+' / Diş '+t+' için implant çapı veya boyu eksik.',5);
       }
     });
     selectedLoadTeeth(p).forEach(function(t){
       var lo=p.loading[t]||{};
-      if(!(lo.force||'').trim())add('Parametre '+p.id+' / Diş '+t+' için kuvvet büyüklüğü eksik.',9);
-      if(!(lo.dir||'').trim())add('Parametre '+p.id+' / Diş '+t+' için yükleme yönü/açısı eksik.',9);
-      if(!(lo.area||'').trim())add('Parametre '+p.id+' / Diş '+t+' için yükleme uygulama bölgesi eksik.',9);
+      if(!(lo.force||'').trim())add('Parametre '+p.id+' / Diş '+t+' için kuvvet büyüklüğü eksik.',7);
+      if(!(lo.dir||'').trim())add('Parametre '+p.id+' / Diş '+t+' için yükleme yönü/açısı eksik.',7);
+      if(!(lo.area||'').trim())add('Parametre '+p.id+' / Diş '+t+' için yükleme uygulama bölgesi eksik.',7);
     });
   });
-  if(!st.implant3d || !st.implantModeling || !st.boneModel)add('İmplant/kemik modeli seçeneklerinden biri eksik.',8);
+  if(!st.implant3d || !st.implantModeling || !st.boneModel)add('İmplant/kemik modeli seçeneklerinden biri eksik.',6);
   ensureMaterials();
-  if(!st.materials.length)add('Hiç malzeme özelliği bileşeni eklenmedi.',8);
+  if(!st.materials.length)add('Hiç malzeme özelliği bileşeni eklenmedi.',6);
   st.materials.forEach(function(m){
-    if(!(m.name||'').trim())add('İsimsiz bir malzeme bileşeni var; bileşen adını girin.',8);
-    else if(!(m.value||'').trim())add('"'+m.name+'" için malzeme özelliği veya referans girilmedi.',8);
+    if(!(m.name||'').trim())add('İsimsiz bir malzeme bileşeni var; bileşen adını girin.',6);
+    else if(!(m.value||'').trim())add('"'+m.name+'" için malzeme özelliği veya referans girilmedi.',6);
   });
-  if(!st.loadType)add('Yükleme tipi seçilmedi.',9);
-  if(!st.outputs.length)add('Analiz çıktısı seçilmedi.',10);
-  if(!st.regions.length)add('İncelenecek bölge/bileşen seçilmedi.',10);
+  if(!st.loadType)add('Yükleme tipi seçilmedi.',7);
+  if(!st.outputs.length)add('Analiz çıktısı seçilmedi.',8);
+  if(!st.regions.length)add('İncelenecek bölge/bileşen seçilmedi.',8);
   return items;
 }
 function goSummary(){cur=STEPS.length-1;maxVisited=STEPS.length-1;R();setTimeout(scrollFormTop,0);}
-var STORAGE_KEY='seaFormDraftV39';
+var STORAGE_KEY='seaFormDraftV40';
 function saveDraft(){
   try{localStorage.setItem(STORAGE_KEY,JSON.stringify({st:st,cur:cur,maxVisited:maxVisited,ts:Date.now()}));}catch(e){}
 }
@@ -3834,13 +3832,16 @@ function loadDraft(){
       if(typeof p.greft==='undefined')p.greft=null;if(typeof p.greftNote==='undefined')p.greftNote='';
     });
     ensureCases();
+    if(!Array.isArray(st.materials))st.materials=[];
+    if(!st.materialSeq)st.materialSeq=1;
+    if(!Array.isArray(st.materialsRemovedKeys))st.materialsRemovedKeys=[];
   }catch(e){}
 }
 
 function renderDashboardNav(){
   var box=document.getElementById('dashNav');
   if(!box)return;
-  var shortNames=['Genel Bilgiler','Senaryolar','Senaryo Detayı','Çene Bölgesi','Diş Sayısı','Diş & Roller','Kantilever','İmplant','Model','Kuvvet / Darbe','Çıktılar','Notlar','Rapor'];
+  var shortNames=['Genel Bilgiler','Çene Bölgesi','Diş Sayısı','Diş & Roller','Kantilever','İmplant','Model','Kuvvet / Darbe','Çıktılar','Senaryolar','Senaryo Detayı','Notlar','Rapor'];
   box.innerHTML=STEPS.map(function(s,i){
     return '<button type="button" class="'+(i===cur?'active':'')+'" onclick="goTo('+i+')">'+
       '<span class="dash-ico">'+s.icon+'</span><span><span class="dash-step-title">'+(shortNames[i]||s.title)+'</span>'+
@@ -3913,7 +3914,7 @@ function R(){
   document.getElementById('prog').innerHTML=STEPS.map(function(s,i){
     var cls=i<cur?'done':i===cur?'active':'';
     var lc=i<cur?'done':'';
-    var shortNames=['Kişisel','Senaryo','Detay','Çene','Diş Sayısı','Diş & Rol','Kant.','İmplant','Model','Yükleme','Çıktılar','Notlar','Özet'];
+    var shortNames=['Kişisel','Çene','Diş Sayısı','Diş & Rol','Kant.','İmplant','Model','Yükleme','Çıktılar','Senaryo','Detay','Notlar','Özet'];
     return '<div class="si"><div class="sp '+cls+'" onclick="goTo('+i+')">'+
       (i<cur?'✓':(i+1))+
       '</div><div class="sn">'+(shortNames[i]||s.title)+'</div></div>'+
