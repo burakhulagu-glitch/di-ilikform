@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dental Simulation Form v39 — Dental Trauma & Impact Simulation</title>
+<title>Dental Analiz Modeli Oluşturma Formu</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -2707,6 +2707,1155 @@ body.theme-light.dashboard-v13 .dash-sidebar .dash-uni-copy{
   color:rgba(255,255,255,.82) !important;
 }
 
+/* ===== V55 CALM, SIMPLE WORKFLOW ===== */
+:root{
+  --simple-navy:#14213d;
+  --simple-blue:#2859a8;
+  --simple-blue-soft:#eaf1fb;
+  --simple-bg:#f4f6f9;
+  --simple-card:#ffffff;
+  --simple-text:#182235;
+  --simple-muted:#5e6b7e;
+  --simple-line:#dce2ea;
+  --simple-green:#177a55;
+  --simple-red:#b44343;
+}
+html{scroll-behavior:smooth}
+body.dashboard-v13,
+body.dashboard-v13.theme-light{
+  background:var(--simple-bg)!important;
+  color:var(--simple-text)!important;
+  font-size:16px!important;
+  line-height:1.55!important;
+}
+body.dashboard-v13 .dash-sidebar{
+  width:264px!important;
+  padding:22px 16px!important;
+  background:var(--simple-navy)!important;
+  border-right:0!important;
+  box-shadow:none!important;
+}
+body.dashboard-v13 .dash-uni-header{
+  display:block!important;
+  padding:0 6px 18px!important;
+  margin:0 0 14px!important;
+  border-bottom:1px solid rgba(255,255,255,.12)!important;
+}
+body.dashboard-v13 .dash-uni-logo{display:none!important}
+body.dashboard-v13 .dash-uni-copy strong{
+  color:#fff!important;font-size:16px!important;font-weight:800!important;line-height:1.25!important
+}
+body.dashboard-v13 .dash-uni-copy span{
+  color:#bac6d9!important;font-size:12px!important;margin-top:4px!important
+}
+body.dashboard-v13 .dash-menu{
+  display:block!important;
+  padding:0 3px 10px!important;
+  overflow-y:auto!important;
+}
+.dash-group-label{
+  margin:18px 8px 7px;
+  color:#8fa1bc;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.dash-group-label:first-child{margin-top:2px}
+body.dashboard-v13 .dash-menu button{
+  display:grid!important;
+  grid-template-columns:30px 1fr!important;
+  width:100%!important;
+  min-height:46px!important;
+  margin:2px 0!important;
+  padding:7px 9px!important;
+  border:1px solid transparent!important;
+  border-radius:10px!important;
+  background:transparent!important;
+  color:#d5deec!important;
+  text-align:left!important;
+  box-shadow:none!important;
+}
+body.dashboard-v13 .dash-menu button:hover{
+  background:rgba(255,255,255,.07)!important;
+  color:#fff!important;
+}
+body.dashboard-v13 .dash-menu button.active{
+  background:#fff!important;
+  color:var(--simple-navy)!important;
+  border-color:#fff!important;
+  box-shadow:0 5px 16px rgba(0,0,0,.12)!important;
+}
+body.dashboard-v13 .dash-menu .dash-ico{
+  width:24px!important;height:24px!important;border-radius:7px!important;
+  display:grid!important;place-items:center!important;
+  background:rgba(255,255,255,.10)!important;
+  color:#fff!important;font-size:11px!important;font-weight:800!important
+}
+body.dashboard-v13 .dash-menu button.active .dash-ico{
+  background:var(--simple-blue-soft)!important;color:var(--simple-blue)!important
+}
+.dash-step-title{font-size:12px!important;font-weight:750!important;color:inherit!important}
+.dash-step-sub{font-size:9px!important;color:#8fa1bc!important;margin-top:2px!important}
+body.dashboard-v13 .dash-menu button.active .dash-step-sub{color:#68758a!important}
+body.dashboard-v13 .dash-side-actions{
+  border-top:1px solid rgba(255,255,255,.12)!important;
+  padding-top:12px!important;
+}
+body.dashboard-v13 .dash-dev-btn{
+  width:100%!important;min-height:40px!important;border-radius:9px!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  background:rgba(255,255,255,.06)!important;color:#e6edf7!important;
+  font-size:11px!important;font-weight:700!important
+}
+body.dashboard-v13 .dash-side-actions>.dash-dev-btn{display:none!important}
+body.dashboard-v13 .global-clear-wrap{margin-top:8px!important}
+body.dashboard-v13 .global-clear-btn{
+  padding:8px!important;border:0!important;background:transparent!important;
+  color:#e5a7a7!important;font-size:10px!important;box-shadow:none!important
+}
+body.dashboard-v13 .dash-side-footer{display:none!important}
+body.dashboard-v13 .dash-preview{display:none!important}
+body.dashboard-v13 .site-header{display:none!important}
+body.dashboard-v13 .prog-bar{display:none!important}
+body.dashboard-v13 .main{
+  max-width:1040px!important;
+  margin:0 auto 0 264px!important;
+  padding:42px 34px 110px!important;
+  background:transparent!important;
+}
+body.dashboard-v13 .card{
+  padding:clamp(24px,4vw,44px)!important;
+  margin:0!important;
+  border:1px solid var(--simple-line)!important;
+  border-radius:18px!important;
+  background:var(--simple-card)!important;
+  color:var(--simple-text)!important;
+  box-shadow:0 12px 34px rgba(25,39,65,.07)!important;
+  backdrop-filter:none!important;
+}
+body.dashboard-v13 .chdr{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:50px 1fr auto!important;
+  align-items:start!important;
+  gap:14px!important;
+  margin-bottom:26px!important;
+  padding-bottom:22px!important;
+  border-bottom:1px solid var(--simple-line)!important;
+}
+body.dashboard-v13 .cicon{
+  width:48px!important;height:48px!important;border-radius:12px!important;
+  background:var(--simple-blue-soft)!important;
+  color:var(--simple-blue)!important;font-size:21px!important
+}
+body.dashboard-v13 .ctitle{
+  color:var(--simple-text)!important;font-size:25px!important;font-weight:800!important;line-height:1.2!important
+}
+body.dashboard-v13 .csub{
+  margin-top:5px!important;color:var(--simple-muted)!important;font-size:12px!important;font-weight:700!important
+}
+.step-guide{
+  grid-column:2 / -1;
+  margin:-6px 0 0!important;
+  color:var(--simple-muted)!important;
+  font-size:14px!important;
+  line-height:1.55!important;
+}
+body.dashboard-v13 .clear-step{
+  align-self:start!important;
+  padding:8px 10px!important;border:0!important;border-radius:8px!important;
+  background:#f8ecec!important;color:var(--simple-red)!important;
+  font-size:10px!important;font-weight:750!important
+}
+body.dashboard-v13 .ql{
+  color:var(--simple-text)!important;font-size:15px!important;font-weight:750!important;line-height:1.45!important
+}
+body.dashboard-v13 .note,
+body.dashboard-v13 .csub,
+body.dashboard-v13 .pb .note{color:var(--simple-muted)!important}
+body.dashboard-v13 .ig{gap:7px!important}
+body.dashboard-v13 .ig label{
+  color:#344258!important;font-size:13px!important;font-weight:750!important;line-height:1.4!important
+}
+body.dashboard-v13 .inp,
+body.dashboard-v13.theme-light .inp{
+  min-height:48px!important;
+  padding:12px 14px!important;
+  border:1px solid #cbd4e0!important;
+  border-radius:10px!important;
+  background:#fff!important;
+  color:var(--simple-text)!important;
+  font-size:15px!important;
+  box-shadow:none!important;
+}
+body.dashboard-v13 .inp:focus{
+  border-color:var(--simple-blue)!important;
+  box-shadow:0 0 0 3px rgba(40,89,168,.12)!important;
+  outline:none!important;
+}
+body.dashboard-v13 .inp::placeholder{color:#8994a5!important;opacity:1!important}
+body.dashboard-v13 textarea.inp{min-height:108px!important}
+body.dashboard-v13 .unit{color:#536177!important}
+body.dashboard-v13 .inp-grid{gap:16px!important}
+body.dashboard-v13 .chips{gap:9px!important}
+body.dashboard-v13 .chip,
+body.dashboard-v13 .rc{
+  min-height:42px!important;
+  padding:9px 14px!important;
+  border:1px solid #cbd4e0!important;
+  border-radius:9px!important;
+  background:#fff!important;
+  color:#344258!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  box-shadow:none!important;
+}
+body.dashboard-v13 .chip:hover,
+body.dashboard-v13 .rc:hover{
+  border-color:var(--simple-blue)!important;background:var(--simple-blue-soft)!important;color:var(--simple-blue)!important
+}
+body.dashboard-v13 .chip.sel,
+body.dashboard-v13 .chip.sel-t,
+body.dashboard-v13 .chip.sel-r,
+body.dashboard-v13 .chip.sel-b,
+body.dashboard-v13 .rc.sel,
+body.dashboard-v13 .rc.ri,
+body.dashboard-v13 .rc.rp,
+body.dashboard-v13 .rc.rk{
+  border-color:var(--simple-blue)!important;
+  background:var(--simple-blue)!important;
+  color:#fff!important;
+}
+body.dashboard-v13 .pb,
+body.dashboard-v13.theme-light .pb,
+body.dashboard-v13 .load-detail-card{
+  padding:20px!important;
+  border:1px solid var(--simple-line)!important;
+  border-radius:14px!important;
+  background:#f9fafc!important;
+  color:var(--simple-text)!important;
+  box-shadow:none!important;
+}
+body.dashboard-v13 .plbl,
+body.dashboard-v13 .load-detail-card .phdr.mini .plbl{
+  padding:6px 10px!important;
+  border-radius:7px!important;
+  background:var(--simple-blue-soft)!important;
+  color:var(--simple-blue)!important;
+  font-size:13px!important;
+  font-weight:800!important;
+}
+body.dashboard-v13 .load-detail-card .ig label{color:#344258!important}
+body.dashboard-v13 .load-detail-card .inp{color:var(--simple-text)!important;background:#fff!important}
+body.dashboard-v13 .load-detail-card .inp::placeholder{color:#8994a5!important}
+body.dashboard-v13 .load-detail-card .unit{color:#536177!important}
+body.dashboard-v13 .badd,
+body.dashboard-v13 .badd.glow-add,
+body.dashboard-v13 .param-copy{
+  min-height:48px!important;
+  border:1px solid #aac0df!important;
+  border-radius:10px!important;
+  background:var(--simple-blue-soft)!important;
+  color:var(--simple-blue)!important;
+  font-size:14px!important;
+  font-weight:800!important;
+  box-shadow:none!important;
+  animation:none!important;
+  filter:none!important;
+}
+body.dashboard-v13 .badd:hover,
+body.dashboard-v13 .badd.glow-add:hover,
+body.dashboard-v13 .param-copy:hover{
+  border-color:var(--simple-blue)!important;background:#dfeafa!important;transform:none!important
+}
+body.dashboard-v13 .param-scenario-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+body.dashboard-v13 .param-scenario-card{
+  min-height:84px!important;padding:14px!important;border:1px solid var(--simple-line)!important;
+  background:#fff!important;color:var(--simple-text)!important;border-radius:11px!important;box-shadow:none!important
+}
+body.dashboard-v13 .param-scenario-card.active{
+  border-color:var(--simple-blue)!important;background:var(--simple-blue-soft)!important;box-shadow:0 0 0 2px rgba(40,89,168,.08)!important
+}
+body.dashboard-v13 .param-scenario-card strong{color:var(--simple-text)!important;font-size:13px!important}
+body.dashboard-v13 .param-scenario-card small{color:var(--simple-muted)!important;font-size:11px!important;line-height:1.45!important}
+body.dashboard-v13 .mat-warn,
+body.dashboard-v13 .summary-check.warn,
+body.dashboard-v13 .final-submit-note{
+  border:1px solid #ead7aa!important;border-left:4px solid #c7952e!important;
+  background:#fff9eb!important;color:#72520d!important;border-radius:10px!important
+}
+body.dashboard-v13 .mat-warn strong{color:#624506!important}
+body.dashboard-v13 .summary-check.ok{
+  border:1px solid #a9dcc9!important;background:#effaf6!important;color:#115c41!important
+}
+body.dashboard-v13 .summary-check-title,
+body.dashboard-v13 .summary-check p,
+body.dashboard-v13 .summary-check-item span{color:inherit!important}
+body.dashboard-v13 .summary-check-item{background:#fff!important;border-color:var(--simple-line)!important}
+body.dashboard-v13 .arch-wrap,
+body.dashboard-v13 .viz-card,
+body.dashboard-v13 .callout-map{
+  background:#eef2f7!important;border-color:var(--simple-line)!important;box-shadow:none!important
+}
+body.dashboard-v13 .nav{
+  position:fixed!important;
+  left:264px!important;right:0!important;bottom:0!important;z-index:120!important;
+  min-height:76px!important;
+  margin:0!important;padding:13px max(34px,calc((100vw - 264px - 1040px)/2 + 34px))!important;
+  border-top:1px solid var(--simple-line)!important;
+  background:rgba(255,255,255,.96)!important;
+  box-shadow:0 -7px 24px rgba(25,39,65,.07)!important;
+  backdrop-filter:blur(10px)!important;
+}
+body.dashboard-v13 .bback,
+body.dashboard-v13 .bsummary,
+body.dashboard-v13 .bnext,
+body.dashboard-v13 .bfin{
+  min-height:46px!important;padding:0 20px!important;border-radius:10px!important;
+  font-size:14px!important;font-weight:800!important;box-shadow:none!important;transform:none!important
+}
+body.dashboard-v13 .bback{
+  border:1px solid #cbd4e0!important;background:#fff!important;color:#344258!important
+}
+body.dashboard-v13 .bnext,
+body.dashboard-v13 .bfin{
+  border:1px solid var(--simple-blue)!important;background:var(--simple-blue)!important;color:#fff!important
+}
+body.dashboard-v13 .bsummary{
+  border:1px solid #aac0df!important;background:var(--simple-blue-soft)!important;color:var(--simple-blue)!important
+}
+body.dashboard-v13 .sum-row{border-bottom-color:var(--simple-line)!important}
+body.dashboard-v13 .sum-l{color:var(--simple-muted)!important}
+body.dashboard-v13 .sum-v{color:var(--simple-text)!important}
+body.dashboard-v13 .sum-ph,
+body.dashboard-v13 .sum-sec-head{
+  background:var(--simple-blue-soft)!important;color:var(--simple-blue)!important;border-left-color:var(--simple-blue)!important
+}
+body.dashboard-v13 .report-preview,
+body.dashboard-v13 .report-table-group{background:#fff!important;border-color:var(--simple-line)!important}
+body.dashboard-v13 .report-preview>summary,
+body.dashboard-v13 .report-table-title,
+body.dashboard-v13 .report-table td{color:var(--simple-text)!important}
+body.dashboard-v13 .report-preview-note,
+body.dashboard-v13 .report-table th{color:var(--simple-muted)!important}
+
+@media(max-width:920px){
+  body.dashboard-v13 .dash-sidebar{position:static!important;width:100%!important;min-height:0!important;padding:16px!important}
+  body.dashboard-v13 .dash-uni-header{padding-bottom:12px!important;margin-bottom:10px!important}
+  body.dashboard-v13 .dash-menu{display:flex!important;gap:7px!important;overflow-x:auto!important;padding-bottom:8px!important}
+  .dash-group-label{display:none!important}
+  body.dashboard-v13 .dash-menu button{min-width:150px!important}
+  body.dashboard-v13 .dash-side-actions{display:grid!important;grid-template-columns:1fr auto!important;gap:8px!important}
+  body.dashboard-v13 .global-clear-wrap{margin:0!important}
+  body.dashboard-v13 .main{margin:0!important;padding:22px 16px 105px!important;max-width:none!important}
+  body.dashboard-v13 .nav{left:0!important;padding:12px 16px!important}
+}
+@media(max-width:620px){
+  body.dashboard-v13 .card{padding:20px 16px!important;border-radius:14px!important}
+  body.dashboard-v13 .chdr{grid-template-columns:42px 1fr!important;gap:11px!important}
+  body.dashboard-v13 .cicon{width:42px!important;height:42px!important;font-size:18px!important}
+  body.dashboard-v13 .ctitle{font-size:21px!important}
+  body.dashboard-v13 .clear-step{grid-column:2!important;justify-self:start!important}
+  .step-guide{grid-column:1 / -1!important;margin-top:0!important}
+  body.dashboard-v13 .param-scenario-grid{grid-template-columns:1fr!important}
+  body.dashboard-v13 .nav-slot.mid{display:none!important}
+  body.dashboard-v13 .nav{flex-wrap:nowrap!important;gap:8px!important}
+  body.dashboard-v13 .nav-slot.left,
+  body.dashboard-v13 .nav-slot.right{width:50%!important}
+  body.dashboard-v13 .nav-slot.left{justify-content:flex-start!important}
+  body.dashboard-v13 .nav-slot.right{justify-content:flex-end!important}
+  body.dashboard-v13 .bback,
+  body.dashboard-v13 .bnext,
+  body.dashboard-v13 .bfin{width:100%!important;padding:0 12px!important}
+}
+
+/* ===== V56 COLOR CONTROLS + UNIFIED MODEL BUILDER ===== */
+body.dashboard-v13 .ui-color-control{
+  display:block!important;
+  margin:10px 0 0!important;
+  padding:0!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  border-radius:10px!important;
+  background:rgba(255,255,255,.06)!important;
+  color:var(--sidebar-text,#fff)!important;
+  box-shadow:none!important;
+}
+body.dashboard-v13 .ui-color-control>summary{
+  padding:11px 12px!important;
+  color:var(--sidebar-text,#fff)!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  cursor:pointer!important;
+  list-style-position:inside!important;
+}
+.ui-color-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  padding:0 10px 10px;
+}
+.ui-color-grid label{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:7px;
+  min-width:0;
+  padding:6px 7px;
+  border-radius:8px;
+  background:rgba(255,255,255,.07);
+  color:var(--sidebar-text,#fff);
+  font-size:10px;
+  font-weight:700;
+}
+.ui-color-grid input[type="color"]{
+  width:28px;
+  height:24px;
+  flex:0 0 28px;
+  padding:0;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:6px;
+  background:transparent;
+  cursor:pointer;
+}
+.ui-reset-colors{
+  width:calc(100% - 20px);
+  margin:0 10px 10px;
+  padding:8px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:8px;
+  background:transparent;
+  color:var(--sidebar-muted,#c5d0e0);
+  font-size:9px;
+  font-weight:750;
+  cursor:pointer;
+}
+body.dashboard-v13 .dash-sidebar{background:var(--simple-navy)!important}
+body.dashboard-v13 .dash-uni-copy strong,
+body.dashboard-v13 .dash-menu button,
+body.dashboard-v13 .dash-menu button:hover{color:var(--sidebar-text,#fff)!important}
+body.dashboard-v13 .dash-uni-copy span,
+body.dashboard-v13 .dash-step-sub,
+.dash-group-label{color:var(--sidebar-muted,#bac6d9)!important}
+body.dashboard-v13 .dash-menu button.active{color:var(--simple-text)!important;background:var(--simple-card)!important;border-color:var(--simple-card)!important}
+body.dashboard-v13 .dash-menu button.active .dash-step-sub{color:var(--simple-muted)!important}
+body.dashboard-v13 .dash-menu button.active .dash-ico{background:var(--simple-blue-soft)!important;color:var(--simple-blue)!important}
+body.dashboard-v13,
+body.dashboard-v13.theme-light{background:var(--simple-bg)!important;color:var(--simple-text)!important}
+body.dashboard-v13 .card,
+body.dashboard-v13.theme-light .card{background:var(--simple-card)!important;color:var(--simple-text)!important;border-color:var(--simple-line)!important}
+body.dashboard-v13 .ctitle,
+body.dashboard-v13 .ql,
+body.dashboard-v13 .ig label,
+body.dashboard-v13 .param-scenario-card strong,
+body.dashboard-v13 .report-preview>summary,
+body.dashboard-v13 .report-table-title,
+body.dashboard-v13 .report-table td{color:var(--simple-text)!important}
+body.dashboard-v13 .csub,
+body.dashboard-v13 .step-guide,
+body.dashboard-v13 .note,
+body.dashboard-v13 .param-scenario-card small,
+body.dashboard-v13 .report-preview-note,
+body.dashboard-v13 .report-table th{color:var(--simple-muted)!important}
+body.dashboard-v13 [style*="color:#D4CCFF"],
+body.dashboard-v13 [style*="color: #D4CCFF"]{color:var(--simple-text)!important}
+body.dashboard-v13 [style*="color:var(--tx3)"],
+body.dashboard-v13 [style*="color: var(--tx3)"]{color:var(--simple-muted)!important}
+body.dashboard-v13 [style*="color:var(--pu)"],
+body.dashboard-v13 [style*="color: var(--pu)"]{color:var(--simple-blue)!important}
+body.dashboard-v13 .inp,
+body.dashboard-v13.theme-light .inp{background:var(--simple-card)!important;color:var(--simple-text)!important;border-color:var(--simple-line)!important}
+body.dashboard-v13 .inp::placeholder{color:var(--simple-muted)!important;opacity:.74!important}
+body.dashboard-v13 .chip,
+body.dashboard-v13 .rc{background:var(--simple-card)!important;color:var(--simple-text)!important;border-color:var(--simple-line)!important}
+body.dashboard-v13 .chip:hover,
+body.dashboard-v13 .rc:hover{background:var(--simple-blue-soft)!important;color:var(--simple-blue)!important;border-color:var(--simple-blue)!important}
+body.dashboard-v13 .pb,
+body.dashboard-v13.theme-light .pb,
+body.dashboard-v13 .load-detail-card{background:color-mix(in srgb,var(--simple-card) 88%,var(--simple-bg))!important;color:var(--simple-text)!important;border-color:var(--simple-line)!important}
+body.dashboard-v13 .nav{background:color-mix(in srgb,var(--simple-card) 96%,transparent)!important;border-color:var(--simple-line)!important}
+body.dashboard-v13 .scenario-card,
+body.dashboard-v13 .scenario-selected,
+body.dashboard-v13 .param-scenario-box,
+body.dashboard-v13 .model-param-guide,
+body.dashboard-v13 .rr,
+body.dashboard-v13 .custom-zone-builder{
+  background:color-mix(in srgb,var(--simple-card) 90%,var(--simple-bg))!important;
+  border-color:var(--simple-line)!important;
+  color:var(--simple-text)!important;
+  box-shadow:none!important;
+}
+body.dashboard-v13 .scenario-card strong,
+body.dashboard-v13 .scenario-card h4,
+body.dashboard-v13 .scenario-selected strong,
+body.dashboard-v13 .param-scenario-head strong,
+body.dashboard-v13 .model-param-guide strong,
+body.dashboard-v13 .custom-zone-builder strong{color:var(--simple-text)!important}
+body.dashboard-v13 .scenario-card p,
+body.dashboard-v13 .scenario-card small,
+body.dashboard-v13 .param-scenario-head span,
+body.dashboard-v13 .model-param-guide,
+body.dashboard-v13 .custom-zone-builder p{color:var(--simple-muted)!important}
+
+.builder-basics{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:18px;
+}
+.builder-basic-card{
+  padding:17px;
+  border:1px solid var(--simple-line);
+  border-radius:13px;
+  background:color-mix(in srgb,var(--simple-card) 88%,var(--simple-bg));
+}
+.builder-basic-card.full{grid-column:1 / -1}
+.builder-basic-card h3{
+  margin:0 0 5px;
+  color:var(--simple-text);
+  font-size:14px;
+  font-weight:800;
+}
+.builder-basic-card>p{
+  margin:0 0 11px;
+  color:var(--simple-muted);
+  font-size:11px;
+  line-height:1.45;
+}
+.model-builder-card{
+  margin:0 0 18px;
+  padding:0;
+  overflow:hidden;
+  border:1px solid var(--simple-line);
+  border-top:4px solid var(--simple-blue);
+  border-radius:15px;
+  background:var(--simple-card);
+  box-shadow:0 8px 22px rgba(25,39,65,.05);
+}
+.model-builder-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:17px 19px;
+  border-bottom:1px solid var(--simple-line);
+  background:var(--simple-blue-soft);
+}
+.model-builder-head h3{margin:0;color:var(--simple-text);font-size:18px;font-weight:850}
+.model-builder-head p{margin:3px 0 0;color:var(--simple-muted);font-size:11px}
+.model-count-badge{
+  padding:7px 10px;
+  border-radius:999px;
+  background:var(--simple-card);
+  color:var(--simple-blue);
+  font-size:11px;
+  font-weight:800;
+  white-space:nowrap;
+}
+.model-builder-body{padding:19px}
+.builder-section{
+  padding:0 0 20px;
+  margin:0 0 20px;
+  border-bottom:1px solid var(--simple-line);
+}
+.builder-section:last-of-type{border-bottom:0;margin-bottom:0}
+.builder-section-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 11px;
+  color:var(--simple-text);
+  font-size:14px;
+  font-weight:850;
+}
+.builder-section-title span{
+  width:24px;height:24px;display:grid;place-items:center;
+  border-radius:7px;background:var(--simple-blue-soft);color:var(--simple-blue);font-size:11px
+}
+.model-scenario-select{max-width:520px}
+.selected-teeth-line{margin:9px 0 0;color:var(--simple-muted);font-size:12px}
+.selected-teeth-line strong{color:var(--simple-blue)}
+.tooth-config-list{display:grid;gap:10px;margin-top:14px}
+.tooth-config-card{
+  padding:14px;
+  border:1px solid var(--simple-line);
+  border-radius:12px;
+  background:color-mix(in srgb,var(--simple-card) 92%,var(--simple-bg));
+}
+.tooth-config-top{
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr) auto;
+  align-items:center;
+  gap:11px;
+}
+.tooth-config-number{
+  width:46px;height:46px;display:grid;place-items:center;
+  border-radius:11px;background:var(--simple-blue);color:#fff;font-size:15px;font-weight:850
+}
+.tooth-config-card .rchips{gap:6px}
+.tooth-config-card .rc{min-height:36px!important;padding:7px 10px!important;font-size:11px!important}
+.tooth-remove-simple{
+  padding:7px 9px;border:0;border-radius:8px;background:#f8ecec;color:#a33e3e;
+  font-size:10px;font-weight:750;cursor:pointer
+}
+.tooth-inline-fields{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:11px;
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid var(--simple-line);
+}
+.tooth-inline-fields .wide{grid-column:1 / -1}
+.tooth-load-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  grid-column:1 / -1;
+  padding:10px 12px;
+  border:1px solid var(--simple-line);
+  border-radius:10px;
+  background:var(--simple-card);
+  color:var(--simple-text);
+}
+.tooth-load-toggle button{
+  padding:8px 10px;border:1px solid var(--simple-line);border-radius:8px;
+  background:var(--simple-card);color:var(--simple-text);font-size:10px;font-weight:800;cursor:pointer
+}
+.tooth-load-toggle.active{border-color:var(--simple-blue);background:var(--simple-blue-soft)}
+.tooth-load-toggle.active button{border-color:var(--simple-blue);background:var(--simple-blue);color:#fff}
+.bulk-field-box{
+  grid-column:1 / -1;
+  overflow:hidden;
+  border:1px solid var(--simple-line);
+  border-radius:11px;
+  background:var(--theme-field-surface,var(--simple-card));
+}
+.bulk-field-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:9px 11px;
+  border-bottom:1px solid var(--simple-line);
+  background:var(--theme-soft-surface,var(--simple-blue-soft));
+}
+.bulk-field-head strong{color:var(--simple-text);font-size:11px;font-weight:900}
+.bulk-field-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.bulk-apply-btn,
+.bulk-restore-btn{
+  min-height:32px;
+  padding:0 10px;
+  border:1px solid var(--simple-blue);
+  border-radius:8px;
+  background:var(--simple-blue);
+  color:var(--theme-on-accent,#fff);
+  font-size:10px;
+  font-weight:900;
+  cursor:pointer;
+}
+.field-remove-x{
+  width:32px;
+  height:32px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  border:1px solid rgba(220,80,80,.55);
+  border-radius:8px;
+  background:rgba(220,80,80,.13);
+  color:#ffb4b4;
+  font-size:19px;
+  line-height:1;
+  font-weight:900;
+  cursor:pointer;
+}
+.bulk-field-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:11px;
+  padding:12px;
+}
+.bulk-field-grid .wide{grid-column:1 / -1}
+.field-removed-row{
+  grid-column:1 / -1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:11px 12px;
+  border:1px dashed var(--simple-line);
+  border-radius:10px;
+  background:var(--theme-field-surface,var(--simple-card));
+}
+.field-removed-row span{color:var(--simple-muted);font-size:11px;line-height:1.4}
+.model-actions-simple{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  flex-wrap:wrap;
+  padding-top:15px;
+  border-top:1px solid var(--simple-line);
+}
+.model-actions-simple button{
+  min-height:38px;padding:0 11px;border:1px solid var(--simple-line);border-radius:9px;
+  background:var(--simple-card);color:var(--simple-text);font-size:10px;font-weight:800;cursor:pointer
+}
+.model-actions-simple .copy{border-color:var(--simple-blue);background:var(--simple-blue-soft);color:var(--simple-blue)}
+.model-actions-simple .delete{color:#a33e3e}
+.model-actions-simple button:disabled{opacity:.42;cursor:not-allowed}
+.add-model-simple{
+  width:100%;min-height:54px;border:1px dashed var(--simple-blue);border-radius:13px;
+  background:var(--simple-blue-soft);color:var(--simple-blue);font-size:14px;font-weight:850;cursor:pointer
+}
+.model-count-setup{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  margin:0 0 18px;
+  padding:18px 20px;
+  border:2px solid var(--simple-blue);
+  border-radius:14px;
+  background:var(--theme-soft-surface,var(--simple-blue-soft));
+  color:var(--simple-text);
+  box-shadow:0 0 0 4px var(--theme-focus-ring,rgba(40,89,168,.14));
+}
+.model-count-copy{min-width:0}
+.model-count-kicker{
+  display:inline-flex;
+  margin:0 0 7px;
+  padding:4px 8px;
+  border-radius:999px;
+  background:var(--simple-blue);
+  color:var(--theme-on-accent,#fff);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.05em;
+}
+.model-count-setup h3{margin:0 0 5px;color:var(--simple-text);font-size:18px;font-weight:900}
+.model-count-setup p{margin:0;color:var(--simple-muted);font-size:12px;line-height:1.5}
+.model-count-control{
+  display:grid;
+  grid-template-columns:auto auto;
+  align-items:center;
+  gap:3px 12px;
+  flex:0 0 auto;
+  min-width:205px;
+}
+.model-count-value{grid-row:1 / span 2;font-size:36px;line-height:1;color:var(--simple-text);font-weight:950}
+.model-count-label{color:var(--simple-text);font-size:12px;font-weight:850}
+.model-count-add{
+  min-height:38px;
+  padding:0 13px;
+  border:1px solid var(--simple-blue);
+  border-radius:9px;
+  background:var(--simple-blue);
+  color:var(--theme-on-accent,#fff);
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+@media(max-width:720px){
+  .builder-basics{grid-template-columns:1fr}
+  .builder-basic-card.full{grid-column:auto}
+  .tooth-config-top{grid-template-columns:46px 1fr}
+  .tooth-remove-simple{grid-column:2;justify-self:start}
+  .tooth-inline-fields{grid-template-columns:1fr}
+  .tooth-inline-fields .wide{grid-column:auto}
+  .model-builder-head{align-items:flex-start}
+  .model-count-setup{align-items:stretch;flex-direction:column}
+  .model-count-control{min-width:0;grid-template-columns:auto 1fr}
+  .bulk-field-head,.field-removed-row{align-items:stretch;flex-direction:column}
+  .bulk-field-actions{justify-content:stretch}
+  .bulk-apply-btn,.bulk-restore-btn{width:100%}
+  .field-remove-x{align-self:flex-end}
+  .bulk-field-grid{grid-template-columns:1fr}
+  .bulk-field-grid .wide{grid-column:auto}
+}
+
+/* ===== V57 GOOGLE-FORMS-LIKE SINGLE THEME COLOR ===== */
+body.dashboard-v13 .simple-theme-control{
+  display:block!important;
+  margin:10px 0 0!important;
+  padding:11px!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  border-radius:10px!important;
+  background:rgba(255,255,255,.07)!important;
+  color:var(--sidebar-text,#fff)!important;
+  box-shadow:none!important;
+}
+.simple-theme-title{
+  display:block;
+  color:var(--sidebar-text,#fff);
+  font-size:11px;
+  font-weight:850;
+}
+.simple-theme-help{
+  display:block;
+  margin-top:2px;
+  color:var(--sidebar-muted,#c5d0e0);
+  font-size:9px;
+  line-height:1.35;
+}
+.simple-theme-swatches{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+.theme-swatch{
+  position:relative;
+  width:25px;
+  height:25px;
+  flex:0 0 25px;
+  padding:0;
+  border:2px solid rgba(255,255,255,.42);
+  border-radius:50%;
+  background:var(--swatch);
+  box-shadow:0 0 0 1px rgba(0,0,0,.12);
+  cursor:pointer;
+}
+.theme-swatch.active:after{
+  content:'✓';
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  text-shadow:0 1px 2px rgba(0,0,0,.35);
+}
+.custom-swatch{
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:conic-gradient(#e64980,#f59f00,#40c057,#15aabf,#4c6ef5,#7950f2,#e64980);
+  color:#fff;
+  font-size:15px;
+  font-weight:900;
+}
+.custom-swatch input{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+  cursor:pointer;
+}
+.custom-swatch span{
+  position:relative;
+  z-index:1;
+  pointer-events:none;
+  text-shadow:0 1px 3px rgba(0,0,0,.45);
+}
+body.dashboard-v13 .card{
+  position:relative!important;
+  overflow:hidden!important;
+}
+body.dashboard-v13 .main>#fbody>.card,
+body.theme-light.dashboard-v13 .main>#fbody>.card{
+  background:var(--theme-main-surface,#eef2f8)!important;
+}
+body.dashboard-v13 .card:before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:7px;
+  background:var(--simple-blue);
+}
+body.dashboard-v13 .model-builder-card{border-top-color:var(--simple-blue)!important}
+body.dashboard-v13 .bnext,
+body.dashboard-v13 .bfin,
+body.dashboard-v13 .chip.sel,
+body.dashboard-v13 .chip.sel-t,
+body.dashboard-v13 .chip.sel-r,
+body.dashboard-v13 .chip.sel-b,
+body.dashboard-v13 .rc.sel,
+body.dashboard-v13 .rc.ri,
+body.dashboard-v13 .rc.rp,
+body.dashboard-v13 .rc.rk,
+.tooth-config-number{
+  background:var(--simple-blue)!important;
+  border-color:var(--simple-blue)!important;
+  color:var(--theme-on-accent,#fff)!important;
+}
+body.dashboard-v13 .dash-menu button.active{
+  border-left:4px solid var(--simple-blue)!important;
+  padding-left:6px!important;
+}
+body.dashboard-v13 .inp:focus{
+  border-color:var(--simple-blue)!important;
+  box-shadow:0 0 0 3px var(--theme-focus-ring,rgba(40,89,168,.14))!important;
+}
+body.dashboard-v13 .bnext,
+body.dashboard-v13 .bfin{color:var(--theme-on-accent,#fff)!important}
+
+@media(max-width:920px){
+  body.dashboard-v13 .simple-theme-control{margin:0!important;min-width:235px!important}
+}
+
+/* ===== V58 FULL-SURFACE DARK THEME — INCLUDING THE CENTER WORKSPACE ===== */
+body.dashboard-v13,
+body.theme-light.dashboard-v13,
+body.dashboard-v13 .main,
+body.theme-light.dashboard-v13 .main{
+  background:var(--theme-page,#111827)!important;
+  color:var(--simple-text,#f8fafc)!important;
+}
+body.dashboard-v13 .main>#fbody>.card,
+body.theme-light.dashboard-v13 .main>#fbody>.card{
+  background:var(--theme-main-surface,#1f2937)!important;
+  border-color:var(--simple-line,#475569)!important;
+  box-shadow:0 18px 45px rgba(0,0,0,.28)!important;
+}
+body.dashboard-v13 .nav,
+body.theme-light.dashboard-v13 .nav{
+  background:var(--theme-page,#111827)!important;
+  border-color:var(--simple-line,#475569)!important;
+  box-shadow:0 -8px 24px rgba(0,0,0,.22)!important;
+}
+body.dashboard-v13 .inp,
+body.theme-light.dashboard-v13 .inp,
+body.dashboard-v13 input.inp,
+body.dashboard-v13 textarea.inp,
+body.dashboard-v13 select.inp{
+  background:var(--theme-field-surface,#263244)!important;
+  color:var(--simple-text,#f8fafc)!important;
+  border-color:var(--simple-line,#475569)!important;
+}
+body.dashboard-v13 .inp::placeholder,
+body.dashboard-v13 input::placeholder,
+body.dashboard-v13 textarea::placeholder{
+  color:var(--simple-muted,#cbd5e1)!important;
+  opacity:.76!important;
+}
+body.dashboard-v13 select.inp option,
+body.dashboard-v13 select.inp optgroup{
+  background:var(--theme-field-surface,#263244)!important;
+  color:var(--simple-text,#f8fafc)!important;
+}
+body.dashboard-v13 .pb,
+body.theme-light.dashboard-v13 .pb,
+body.dashboard-v13 .builder-basic-card,
+body.dashboard-v13 .model-builder-card,
+body.dashboard-v13 .tooth-config-card,
+body.dashboard-v13 .tooth-load-toggle,
+body.dashboard-v13 .param-scenario-card,
+body.dashboard-v13 .scenario-card,
+body.dashboard-v13 .scenario-selected,
+body.dashboard-v13 .param-scenario-box,
+body.dashboard-v13 .model-param-guide,
+body.dashboard-v13 .rr,
+body.dashboard-v13 .custom-zone-builder,
+body.dashboard-v13 .load-detail-card,
+body.dashboard-v13 .report-preview,
+body.dashboard-v13 .report-table-group,
+body.dashboard-v13 .summary-check-item,
+body.dashboard-v13 .model-preview-item{
+  background:var(--theme-raised-surface,#273449)!important;
+  color:var(--simple-text,#f8fafc)!important;
+  border-color:var(--simple-line,#475569)!important;
+  box-shadow:none!important;
+}
+body.dashboard-v13 .model-builder-head,
+body.dashboard-v13 .sum-sec-head,
+body.dashboard-v13 .sum-ph,
+body.dashboard-v13 .report-table-title,
+body.dashboard-v13 .plbl,
+body.dashboard-v13 .load-detail-card .phdr.mini .plbl,
+body.dashboard-v13 .cicon{
+  background:var(--theme-soft-surface,#32415a)!important;
+  color:var(--simple-text,#f8fafc)!important;
+  border-color:var(--simple-line,#475569)!important;
+}
+body.dashboard-v13 .chip,
+body.dashboard-v13 .rc,
+body.dashboard-v13 .bback,
+body.dashboard-v13 .bsummary,
+body.dashboard-v13 .model-actions-simple button,
+body.dashboard-v13 .tooth-load-toggle button{
+  background:var(--theme-field-surface,#263244)!important;
+  color:var(--simple-text,#f8fafc)!important;
+  border-color:var(--simple-line,#475569)!important;
+}
+body.dashboard-v13 .ctitle,
+body.dashboard-v13 .ql,
+body.dashboard-v13 .ig label,
+body.dashboard-v13 .builder-basic-card h3,
+body.dashboard-v13 .builder-section-title,
+body.dashboard-v13 .model-builder-head h3,
+body.dashboard-v13 .param-scenario-card strong,
+body.dashboard-v13 .scenario-card strong,
+body.dashboard-v13 .scenario-card h4,
+body.dashboard-v13 .scenario-selected strong,
+body.dashboard-v13 .param-scenario-head strong,
+body.dashboard-v13 .model-param-guide strong,
+body.dashboard-v13 .custom-zone-builder strong,
+body.dashboard-v13 .report-preview>summary,
+body.dashboard-v13 .report-table-title,
+body.dashboard-v13 .report-table td,
+body.dashboard-v13 .summary-check-item span,
+body.dashboard-v13 .sum-v{
+  color:var(--simple-text,#f8fafc)!important;
+}
+body.dashboard-v13 .csub,
+body.dashboard-v13 .step-guide,
+body.dashboard-v13 .note,
+body.dashboard-v13 .builder-basic-card>p,
+body.dashboard-v13 .model-builder-head p,
+body.dashboard-v13 .param-scenario-card small,
+body.dashboard-v13 .scenario-card p,
+body.dashboard-v13 .scenario-card small,
+body.dashboard-v13 .param-scenario-head span,
+body.dashboard-v13 .model-param-guide,
+body.dashboard-v13 .custom-zone-builder p,
+body.dashboard-v13 .report-preview-note,
+body.dashboard-v13 .report-table th,
+body.dashboard-v13 .sum-l,
+body.dashboard-v13 .selected-teeth-line,
+body.dashboard-v13 .unit{
+  color:var(--simple-muted,#cbd5e1)!important;
+}
+body.dashboard-v13 .chdr,
+body.dashboard-v13 .builder-section,
+body.dashboard-v13 .tooth-inline-fields,
+body.dashboard-v13 .model-actions-simple,
+body.dashboard-v13 .sum-row,
+body.dashboard-v13 .report-table th,
+body.dashboard-v13 .report-table td{
+  border-color:var(--simple-line,#475569)!important;
+}
+body.dashboard-v13 .arch-wrap,
+body.dashboard-v13 .viz-card,
+body.dashboard-v13 .callout-map{
+  background:var(--theme-field-surface,#263244)!important;
+  border-color:var(--simple-line,#475569)!important;
+}
+body.dashboard-v13 .dash-menu button.active{
+  background:var(--theme-raised-surface,#273449)!important;
+  color:var(--simple-text,#f8fafc)!important;
+  border-color:var(--simple-line,#475569)!important;
+  border-left-color:var(--simple-blue)!important;
+}
+body.dashboard-v13 .dash-menu button.active .dash-step-sub{color:var(--simple-muted,#cbd5e1)!important}
+body.dashboard-v13 .clear-step{
+  background:rgba(220,80,80,.14)!important;
+  color:#ffb4b4!important;
+}
+body.dashboard-v13 .report-table th{background:var(--theme-field-surface,#263244)!important}
+body.dashboard-v13 .summary-check.warn,
+body.dashboard-v13 .mat-warn,
+body.dashboard-v13 .final-submit-note{
+  background:#3a311f!important;
+  color:#ffe1a0!important;
+  border-color:#7a6230!important;
+}
+body.dashboard-v13 .summary-check.ok{
+  background:#16382e!important;
+  color:#a7f3d0!important;
+  border-color:#2f725d!important;
+}
+
+/* ===== V59 TRUE WHITE THEME + GUARANTEED TEXT CONTRAST ===== */
+.theme-swatch-white{border-color:rgba(255,255,255,.72)!important;box-shadow:0 0 0 1px rgba(0,0,0,.28),inset 0 0 0 1px #d7dde6!important}
+.theme-swatch-white.active:after{color:#172033!important;text-shadow:none!important}
+
+body.dashboard-v13 .main .card,
+body.theme-light.dashboard-v13 .main .card{
+  color:var(--simple-text,#f8fafc)!important;
+}
+body.dashboard-v13 .main .ctitle,
+body.theme-light.dashboard-v13 .main .ctitle,
+body.dashboard-v13 .main .ql,
+body.theme-light.dashboard-v13 .main .ql,
+body.dashboard-v13 .main .ig label,
+body.theme-light.dashboard-v13 .main .ig label,
+body.dashboard-v13 .main h1,
+body.dashboard-v13 .main h2,
+body.dashboard-v13 .main h3,
+body.dashboard-v13 .main h4,
+body.dashboard-v13 .main .builder-section-title,
+body.dashboard-v13 .main .builder-basic-card h3,
+body.dashboard-v13 .main .model-builder-head h3{
+  color:var(--simple-text,#f8fafc)!important;
+}
+body.dashboard-v13 .main .csub,
+body.theme-light.dashboard-v13 .main .csub,
+body.dashboard-v13 .main .step-guide,
+body.theme-light.dashboard-v13 .main .step-guide,
+body.dashboard-v13 .main .note,
+body.theme-light.dashboard-v13 .main .note,
+body.dashboard-v13 .main .unit,
+body.theme-light.dashboard-v13 .main .unit{
+  color:var(--simple-muted,#cbd5e1)!important;
+}
+body.dashboard-v13 .main .chip,
+body.theme-light.dashboard-v13 .main .chip,
+body.dashboard-v13 .main .rc,
+body.theme-light.dashboard-v13 .main .rc{
+  background:var(--theme-field-surface,#263244)!important;
+  color:var(--simple-text,#f8fafc)!important;
+  border-color:var(--simple-line,#475569)!important;
+}
+body.dashboard-v13 .main .chip:hover,
+body.theme-light.dashboard-v13 .main .chip:hover,
+body.dashboard-v13 .main .rc:hover,
+body.theme-light.dashboard-v13 .main .rc:hover{
+  background:var(--theme-soft-surface,#32415a)!important;
+  color:var(--simple-text,#f8fafc)!important;
+  border-color:var(--simple-blue,#2859a8)!important;
+}
+body.dashboard-v13 .main .chip.sel,
+body.dashboard-v13 .main .chip.sel-t,
+body.dashboard-v13 .main .chip.sel-r,
+body.dashboard-v13 .main .chip.sel-b,
+body.theme-light.dashboard-v13 .main .chip.sel,
+body.theme-light.dashboard-v13 .main .chip.sel-t,
+body.theme-light.dashboard-v13 .main .chip.sel-r,
+body.theme-light.dashboard-v13 .main .chip.sel-b,
+body.dashboard-v13 .main .rc.sel,
+body.dashboard-v13 .main .rc.ri,
+body.dashboard-v13 .main .rc.rp,
+body.dashboard-v13 .main .rc.rk{
+  background:var(--simple-blue,#2859a8)!important;
+  color:var(--theme-on-accent,#fff)!important;
+  border-color:var(--simple-blue,#2859a8)!important;
+}
+body.dashboard-v13 .main .chip.sel *,
+body.dashboard-v13 .main .chip.sel-t *,
+body.dashboard-v13 .main .chip.sel-r *,
+body.dashboard-v13 .main .chip.sel-b *,
+body.dashboard-v13 .main .rc.sel *,
+body.dashboard-v13 .main .rc.ri *,
+body.dashboard-v13 .main .rc.rp *,
+body.dashboard-v13 .main .rc.rk *{
+  color:inherit!important;
+}
+body.dashboard-v13 .main .plbl,
+body.dashboard-v13 .main .sum-ph,
+body.dashboard-v13 .main .sum-sec-head,
+body.dashboard-v13 .main [style*="color:var(--pu)"],
+body.dashboard-v13 .main [style*="color: var(--pu)"]{
+  color:var(--theme-readable-accent,var(--simple-text,#f8fafc))!important;
+}
+body.dashboard-v13[data-form-surface="light"] .main>#fbody>.card{
+  box-shadow:0 18px 42px rgba(25,39,65,.10)!important;
+}
+body.dashboard-v13[data-form-surface="light"] .summary-check.warn,
+body.dashboard-v13[data-form-surface="light"] .mat-warn,
+body.dashboard-v13[data-form-surface="light"] .final-submit-note{
+  background:#fff9eb!important;color:#72520d!important;border-color:#ead7aa!important;
+}
+body.dashboard-v13[data-form-surface="light"] .summary-check.ok{
+  background:#effaf6!important;color:#115c41!important;border-color:#a9dcc9!important;
+}
+
 </style>
 </head>
 <body class="dashboard-v13">
@@ -2730,17 +3879,18 @@ body.theme-light.dashboard-v13 .dash-sidebar .dash-uni-copy{
       <button type="button" class="dash-dev-btn" onclick="triggerBackupImport()">JSON yedeğini yükle</button>
       <input type="file" id="backupJsonInput" accept="application/json,.json" onchange="importBackupFile(this.files&&this.files[0]);this.value=''" hidden>
     </div>
-    <div class="theme-control">
-      <span class="theme-control-label">🎨 Tema / Renk</span>
-      <div class="theme-buttons-many">
-        <button type="button" id="themeCurrentBtn" class="theme-btn" onclick="setThemeMode('current')"><span class="theme-dot dot-current"></span>Mevcut</button>
-        <button type="button" id="themeLightBtn" class="theme-btn" onclick="setThemeMode('light')"><span class="theme-dot dot-light"></span>Beyaz</button>
-        <button type="button" id="themeOceanBtn" class="theme-btn" onclick="setThemeMode('ocean')"><span class="theme-dot dot-ocean"></span>Okyanus</button>
-        <button type="button" id="themeEmeraldBtn" class="theme-btn" onclick="setThemeMode('emerald')"><span class="theme-dot dot-emerald"></span>Zümrüt</button>
-        <button type="button" id="themeBurgundyBtn" class="theme-btn" onclick="setThemeMode('burgundy')"><span class="theme-dot dot-burgundy"></span>Bordo</button>
-        <button type="button" id="themeGraphiteBtn" class="theme-btn" onclick="setThemeMode('graphite')"><span class="theme-dot dot-graphite"></span>Grafit</button>
-        <button type="button" id="themeCustomBtn" class="theme-btn theme-custom-btn" onclick="applyCustomThemeFromPicker()"><span class="theme-dot dot-custom" id="themeCustomDot"></span>Özel</button>
-        <label class="theme-color-picker-label"><span>Renk paleti</span><input type="color" id="themeColorPicker" value="#1C1464" oninput="setCustomThemeColor(this.value)" onchange="setCustomThemeColor(this.value)"></label>
+    <div class="theme-control simple-theme-control">
+      <span class="simple-theme-title">Form rengi</span>
+      <span class="simple-theme-help">Bir renk seçin; diğer renkler otomatik ayarlanır.</span>
+      <div class="simple-theme-swatches" aria-label="Form tema rengi">
+        <button type="button" class="theme-swatch" data-theme-color="#2859a8" style="--swatch:#2859a8" onclick="applyFormTheme('#2859a8')" aria-label="Mavi tema"></button>
+        <button type="button" class="theme-swatch theme-swatch-white" data-theme-color="#ffffff" style="--swatch:#ffffff" onclick="applyFormTheme('#ffffff')" aria-label="Beyaz tema"></button>
+        <button type="button" class="theme-swatch" data-theme-color="#673ab7" style="--swatch:#673ab7" onclick="applyFormTheme('#673ab7')" aria-label="Mor tema"></button>
+        <button type="button" class="theme-swatch" data-theme-color="#087f5b" style="--swatch:#087f5b" onclick="applyFormTheme('#087f5b')" aria-label="Yeşil tema"></button>
+        <button type="button" class="theme-swatch" data-theme-color="#0b7285" style="--swatch:#0b7285" onclick="applyFormTheme('#0b7285')" aria-label="Turkuaz tema"></button>
+        <button type="button" class="theme-swatch" data-theme-color="#a61e4d" style="--swatch:#a61e4d" onclick="applyFormTheme('#a61e4d')" aria-label="Bordo tema"></button>
+        <button type="button" class="theme-swatch" data-theme-color="#343a40" style="--swatch:#343a40" onclick="applyFormTheme('#343a40')" aria-label="Grafit tema"></button>
+        <label class="theme-swatch custom-swatch" aria-label="Özel tema rengi"><input type="color" id="formThemePicker" value="#2859a8" oninput="applyFormTheme(this.value)"><span>+</span></label>
       </div>
     </div>
     <div class="global-clear-wrap"><button type="button" class="global-clear-btn" onclick="return clearEntireForm()">Tüm formu tamamen temizle</button></div>
@@ -3178,19 +4328,25 @@ const LOWER = [[48, 102, 236, -30], [47, 124, 254, -25], [46, 148, 278, -20], [4
 
 const STEPS=[
   {id:'person',title:'Kişisel Bilgiler',icon:'👤',bg:'rgba(28,20,100,.08)'},
-  {id:'region',title:'Çene Bölgesi',icon:'🦷',bg:'rgba(200,160,40,.1)'},
-  {id:'count', title:'Diş Sayısı',icon:'🔢',bg:'rgba(55,138,221,.1)'},
-  {id:'teeth', title:'Diş Seçimi & Roller',icon:'🏗',bg:'rgba(28,20,100,.08)'},
-  {id:'kant',  title:'Kantilever Uzantı Uzunluğu',icon:'↔',bg:'rgba(216,90,48,.08)'},
-  {id:'impl',  title:'İmplant Detayları',icon:'📏',bg:'rgba(55,138,221,.1)'},
+  {id:'builder',title:'Model Kurulumu',icon:'🦷',bg:'rgba(40,89,168,.10)'},
   {id:'model', title:'İmplant & Kemik Modeli',icon:'🧬',bg:'rgba(29,158,117,.08)'},
-  {id:'load',  title:'Yükleme Koşulları',icon:'⚡',bg:'rgba(216,90,48,.08)'},
   {id:'output',title:'Analiz Çıktıları',icon:'📊',bg:'rgba(55,138,221,.1)'},
   {id:'scenario',title:'Analiz Senaryosu',icon:'🧭',bg:'rgba(200,160,40,.10)'},
   {id:'scene',title:'Senaryo Detayları',icon:'🧠',bg:'rgba(55,138,221,.10)'},
   {id:'extra', title:'Ek Notlar',icon:'📝',bg:'rgba(28,20,100,.06)'},
   {id:'summ',  title:'Özet & Tamamla',icon:'✅',bg:'rgba(29,158,117,.08)'},
 ];
+
+const STEP_HELP={
+  person:'Formu hazırlayan kişinin iletişim bilgilerini girin.',
+  builder:'Her modeli tek kartta kurun: çeneyi, dişleri, görevleri, implant/kantilever ölçülerini ve yükleri aynı ekranda tamamlayın.',
+  model:'İmplant modeli, kemik modeli ve malzeme özelliklerini tanımlayın.',
+  output:'Raporda görmek istediğiniz sonuçları ve incelenecek bölgeleri seçin.',
+  scenario:'Analizin amacına uygun senaryo veya senaryoları ekleyin.',
+  scene:'Seçtiğiniz her senaryonun uygulanacağı anatomik bölgeleri ve ayrıntıları belirtin.',
+  extra:'Ekibin bilmesi gereken özel istekleri, varsayımları ve boşlukları yazın.',
+  summ:'Bilgileri son kez kontrol edin; ardından düzenli PDF raporu ve JSON yedeğini indirin.'
+};
 
 let cur=0;
 let st={
@@ -3268,7 +4424,15 @@ function materialsBlock(){
 
 function getExclude(){return st.count===7?[18,28,48,38]:[];}
 
-function freshParam(id){var t=(st&&st.analysisCases&&st.analysisCases[0]&&st.analysisCases[0].type)||'dental_implant';return {id:id,scenarioType:t,teeth:[],roles:{},kantLenMap:{},implants:{},loading:{},greft:null,greftNote:''};}
+function freshParam(id){var t=(st&&st.analysisCases&&st.analysisCases[0]&&st.analysisCases[0].type)||'dental_implant';return {id:id,scenarioType:t,teeth:[],roles:{},kantLenMap:{},implants:{},loading:{},loadDisabled:{},implantDisabled:{},kantDisabled:{},greft:null,greftNote:''};}
+function ensureParamInputMaps(p){
+  p.loading=p.loading||{};
+  p.implants=p.implants||{};
+  p.kantLenMap=p.kantLenMap||{};
+  p.loadDisabled=p.loadDisabled||{};
+  p.implantDisabled=p.implantDisabled||{};
+  p.kantDisabled=p.kantDisabled||{};
+}
 function purgeExcludedTeeth(){
   const ex=getExclude();
   if(!ex.length)return;
@@ -3279,6 +4443,9 @@ function purgeExcludedTeeth(){
       delete p.kantLenMap[n];
       delete p.implants[n];
       delete p.loading[n];
+      if(p.loadDisabled)delete p.loadDisabled[n];
+      if(p.implantDisabled)delete p.implantDisabled[n];
+      if(p.kantDisabled)delete p.kantDisabled[n];
     });
   });
 }
@@ -3290,6 +4457,9 @@ function removeTooth(pid,n){
   delete p.kantLenMap[n];
   delete p.implants[n];
   delete p.loading[n];
+  if(p.loadDisabled)delete p.loadDisabled[n];
+  if(p.implantDisabled)delete p.implantDisabled[n];
+  if(p.kantDisabled)delete p.kantDisabled[n];
   R();
 }
 function clearParamAll(pid){
@@ -3314,6 +4484,7 @@ function resetStep(){
   if(id==='person')st.person={name:'',surname:'',phone:'',email:'',dept:''};
   else if(id==='scenario')st.analysisCases=[freshCase(1,'dental_implant')];
   else if(id==='scene')st.analysisCases.forEach(function(c){c.zones=[];c.details={};c.note='';});
+  else if(id==='builder'){st.region=null;st.count=8;st.params=[freshParam(1)];st.loadType=null;st.dynLoadNote='';}
   else if(id==='region')st.region=null;
   else if(id==='count')st.count=8;
   else if(id==='teeth')st.params=[freshParam(1)];
@@ -3530,33 +4701,102 @@ function scenarioDetailFields(c){
 function setRole(pid,t,r){
   const p=st.params.find(x=>x.id===pid);
   if(!p)return;
+  ensureParamInputMaps(p);
   if(p.roles[t]===r){delete p.roles[t];}else{p.roles[t]=r;}
-  if(p.roles[t]!=='kant')delete p.kantLenMap[t];
-  if(p.roles[t]!=='implant')delete p.implants[t];
+  if(p.roles[t]!=='kant'){delete p.kantLenMap[t];delete p.kantDisabled[t];}
+  else{delete p.kantDisabled[t];if(typeof p.kantLenMap[t]==='undefined')p.kantLenMap[t]='';}
+  if(p.roles[t]!=='implant'){delete p.implants[t];delete p.implantDisabled[t];}
+  else{delete p.implantDisabled[t];if(!p.implants[t])p.implants[t]={diam:'',len:''};}
   R();
 }
 function toothRoleText(p,t){
   var r=(p&&p.roles)?p.roles[t]:null;
-  return r==='implant'?'İmplant':(r==='pontic'?'Pontik':(r==='kant'?'Kantilever':'Rol seçilmedi'));
+  return r==='implant'?'İmplant':(r==='pontic'?'Pontik':(r==='kant'?'Kantilever':(r==='normal'?'Normal diş':'Rol seçilmedi')));
 }
 function toggleLoadTooth(pid,t){
   const p=st.params.find(function(x){return x.id===pid;});
   if(!p)return;
-  p.loading=p.loading||{};
+  ensureParamInputMaps(p);
   if(p.loading[t]){
     delete p.loading[t];
+    p.loadDisabled[t]=true;
   }else{
+    delete p.loadDisabled[t];
     p.loading[t]={force:'',dir:'',area:''};
   }
   R();
 }
+function removeLoadInput(pid,t){
+  var p=st.params.find(function(x){return x.id===pid;});if(!p)return false;
+  ensureParamInputMaps(p);delete p.loading[t];p.loadDisabled[t]=true;R();return false;
+}
+function restoreLoadInput(pid,t){
+  var p=st.params.find(function(x){return x.id===pid;});if(!p)return false;
+  ensureParamInputMaps(p);delete p.loadDisabled[t];p.loading[t]=p.loading[t]||{force:'',dir:'',area:''};R();return false;
+}
+function removeImplantInput(pid,t){
+  var p=st.params.find(function(x){return x.id===pid;});if(!p)return false;
+  ensureParamInputMaps(p);delete p.implants[t];p.implantDisabled[t]=true;R();return false;
+}
+function restoreImplantInput(pid,t){
+  var p=st.params.find(function(x){return x.id===pid;});if(!p)return false;
+  ensureParamInputMaps(p);delete p.implantDisabled[t];p.implants[t]=p.implants[t]||{diam:'',len:''};R();return false;
+}
+function removeKantInput(pid,t){
+  var p=st.params.find(function(x){return x.id===pid;});if(!p)return false;
+  ensureParamInputMaps(p);delete p.kantLenMap[t];p.kantDisabled[t]=true;R();return false;
+}
+function restoreKantInput(pid,t){
+  var p=st.params.find(function(x){return x.id===pid;});if(!p)return false;
+  ensureParamInputMaps(p);delete p.kantDisabled[t];if(typeof p.kantLenMap[t]==='undefined')p.kantLenMap[t]='';R();return false;
+}
 function selectedLoadTeeth(p){
-  p.loading=p.loading||{};
+  ensureParamInputMaps(p);
   var selected=Object.keys(p.loading).map(function(k){return parseInt(k,10);}).filter(function(t){
     return p.teeth&&p.teeth.indexOf(t)>=0;
   });
   selected.sort(function(a,b){return a-b;});
   return selected;
+}
+function applyLoadToAllModelTeeth(pid,sourceTooth){
+  var p=st.params.find(function(x){return x.id===pid;});
+  if(!p)return false;
+  ensureParamInputMaps(p);
+  var source=p.loading[sourceTooth]||{force:'',dir:'',area:''};
+  if(!String(source.force||'').trim()&&!String(source.dir||'').trim()&&!String(source.area||'').trim()){
+    alert('Önce ilk dişin yük bilgilerini girin.');
+    return false;
+  }
+  (p.teeth||[]).forEach(function(t){
+    delete p.loadDisabled[t];
+    if(t===sourceTooth)return;
+    p.loading[t]={force:String(source.force||''),dir:String(source.dir||''),area:String(source.area||'')};
+  });
+  R();
+  return false;
+}
+function applyImplantToAllModelTeeth(pid,sourceTooth){
+  var p=st.params.find(function(x){return x.id===pid;});if(!p)return false;
+  ensureParamInputMaps(p);
+  var source=p.implants[sourceTooth]||{diam:'',len:''};
+  if(!String(source.diam||'').trim()&&!String(source.len||'').trim()){
+    alert('Önce bu dişin implant çapını veya boyunu girin.');return false;
+  }
+  (p.teeth||[]).filter(function(t){return p.roles[t]==='implant';}).forEach(function(t){
+    delete p.implantDisabled[t];
+    p.implants[t]={diam:String(source.diam||''),len:String(source.len||'')};
+  });
+  R();return false;
+}
+function applyKantToAllModelTeeth(pid,sourceTooth){
+  var p=st.params.find(function(x){return x.id===pid;});if(!p)return false;
+  ensureParamInputMaps(p);
+  var source=String(p.kantLenMap[sourceTooth]||'');
+  if(!source.trim()){alert('Önce bu dişin kantilever uzunluğunu girin.');return false;}
+  (p.teeth||[]).filter(function(t){return p.roles[t]==='kant';}).forEach(function(t){
+    delete p.kantDisabled[t];p.kantLenMap[t]=source;
+  });
+  R();return false;
 }
 
 function roleBtn(p,t,r,label){
@@ -3573,6 +4813,7 @@ function roleBtn(p,t,r,label){
 function toggleTooth(pid,n){
   const p=st.params.find(x=>x.id===pid);
   if(!p||getExclude().includes(n))return;
+  ensureParamInputMaps(p);
   const idx=p.teeth.indexOf(n);
   if(idx>=0){
     p.teeth.splice(idx,1);
@@ -3580,8 +4821,13 @@ function toggleTooth(pid,n){
     delete p.kantLenMap[n];
     delete p.implants[n];
     delete p.loading[n];
+    delete p.loadDisabled[n];
+    delete p.implantDisabled[n];
+    delete p.kantDisabled[n];
   }else{
     p.teeth.push(n);
+    delete p.loadDisabled[n];
+    p.loading[n]={force:'',dir:'',area:''};
   }
   R();
 }
@@ -3703,6 +4949,112 @@ function chip(key,val,lbl,sc){
   return '<div class="chip '+(s?sc:'')+'" onclick="st[\''+key+'\']=\''+val+'\';R()">'+lbl+'</div>';
 }
 
+function modelBuilderBody(){
+  ensureModelScenarios();
+  var showUpper=st.region!=='lower';
+  var showLower=st.region!=='upper';
+  var modelSetup=
+    '<section class="model-count-setup" aria-label="Model sayısını oluşturma alanı">'+
+      '<div class="model-count-copy"><span class="model-count-kicker">İLK OLARAK BURADAN BAŞLAYIN</span><h3>Kaç farklı model analiz edilecek?</h3><p>Karşılaştırılacak her farklı implant, kantilever, diş düzeni veya yükleme koşulu için ayrı bir model oluşturun.</p></div>'+
+      '<div class="model-count-control"><strong class="model-count-value">'+st.params.length+'</strong><span class="model-count-label">model oluşturuldu</span><button type="button" class="model-count-add" onclick="addParam()">+ Bir model daha ekle</button></div>'+
+    '</section>';
+  var basics=
+    '<div class="builder-basics">'+
+      '<section class="builder-basic-card"><h3>1. Çene bölgesi</h3><p>Diş şemasında gösterilecek bölgeyi seçin.</p><div class="chips">'+
+        chip('region','upper','Üst çene','sel')+chip('region','lower','Alt çene','sel-t')+chip('region','both','Her iki çene','sel-b')+
+      '</div></section>'+
+      '<section class="builder-basic-card"><h3>2. Diş dizilimi</h3><p>Yirmi yaş dişlerinin modele dahil edilme durumunu belirleyin.</p><div class="chips">'+
+        '<button type="button" class="chip '+(st.count===8?'sel':'')+'" onclick="st.count=8;purgeExcludedTeeth();R()">8 diş — dahil</button>'+
+        '<button type="button" class="chip '+(st.count===7?'sel-t':'')+'" onclick="st.count=7;purgeExcludedTeeth();R()">7 diş — hariç</button>'+
+      '</div></section>'+
+      '<section class="builder-basic-card full"><h3>3. Genel yükleme tipi</h3><p>Diş bazlı kuvvetleri aşağıda, ilgili dişin satırında gireceksiniz.</p><div class="chips">'+
+        '<button type="button" class="chip '+(st.loadType==='static'?'sel':'')+'" onclick="st.loadType=&quot;static&quot;;R()">Statik yük</button>'+
+        '<button type="button" class="chip '+(st.loadType==='dynamic'?'sel-b':'')+'" onclick="st.loadType=&quot;dynamic&quot;;R()">Darbe yükü</button>'+
+        '<button type="button" class="chip '+(st.loadType==='both'?'sel-r':'')+'" onclick="st.loadType=&quot;both&quot;;R()">Statik + darbe</button>'+
+      '</div>'+
+      ((st.loadType==='dynamic'||st.loadType==='both')?'<div class="ig" style="margin-top:12px"><label>Darbe yükü parametreleri</label><input class="inp" type="text" value="'+escAttr(st.dynLoadNote||'')+'" oninput="st.dynLoadNote=this.value" placeholder="Örn: 8 m/s, 6 ms temas, anterior-posterior"></div>':'')+
+      '</section>'+
+    '</div>';
+
+  var models=st.params.map(function(p){
+    ensureParamInputMaps(p);p.roles=p.roles||{};
+    var selected=(p.teeth||[]).slice().sort(function(a,b){return a-b;});
+    selected.forEach(function(t){
+      if(!p.loadDisabled[t]&&!p.loading[t])p.loading[t]={force:'',dir:'',area:''};
+    });
+    var implantTeeth=selected.filter(function(t){return p.roles[t]==='implant';});
+    var kantTeeth=selected.filter(function(t){return p.roles[t]==='kant';});
+    var scenarioOptions=Object.keys(CASE_TYPES).map(function(key){
+      return '<option value="'+key+'" '+((p.scenarioType||'dental_implant')===key?'selected':'')+'>'+caseTypeLabel(key)+'</option>';
+    }).join('');
+    var toothCards=selected.map(function(t){
+      var role=p.roles[t]||'';
+      var roleFields='';
+      if(role==='implant'){
+        if(!p.implantDisabled[t]){
+          if(!p.implants[t])p.implants[t]={diam:'',len:''};
+          roleFields+=
+            '<div class="bulk-field-box"><div class="bulk-field-head"><strong>İmplant ölçüleri</strong><div class="bulk-field-actions">'+
+              (implantTeeth.length>1?'<button type="button" class="bulk-apply-btn" onclick="return applyImplantToAllModelTeeth('+p.id+','+t+')">Bu ölçüleri tüm implantlara uygula</button>':'')+
+              '<button type="button" class="field-remove-x" title="Yalnız bu dişin implant ölçülerini kaldır" aria-label="Yalnız bu dişin implant ölçülerini kaldır" onclick="return removeImplantInput('+p.id+','+t+')">×</button></div></div>'+
+            '<div class="bulk-field-grid"><div class="ig"><label>İmplant çapı</label><div class="inp-mm"><input class="inp" type="text" value="'+escAttr(p.implants[t].diam||'')+'" oninput="st.params.find(function(x){return x.id==='+p.id+'}).implants['+t+'].diam=this.value" placeholder="Örn: 4,5"><span class="unit">mm</span></div></div>'+
+            '<div class="ig"><label>İmplant boyu</label><div class="inp-mm"><input class="inp" type="text" value="'+escAttr(p.implants[t].len||'')+'" oninput="st.params.find(function(x){return x.id==='+p.id+'}).implants['+t+'].len=this.value" placeholder="Örn: 10"><span class="unit">mm</span></div></div></div></div>';
+        }else{
+          roleFields+='<div class="field-removed-row"><span>Bu dişin implant ölçüsü kaldırıldı.</span><button type="button" class="bulk-restore-btn" onclick="return restoreImplantInput('+p.id+','+t+')">+ İmplant ölçüsü ekle</button></div>';
+        }
+      }
+      if(role==='kant'){
+        if(!p.kantDisabled[t]){
+          if(typeof p.kantLenMap[t]==='undefined')p.kantLenMap[t]='';
+          roleFields+=
+            '<div class="bulk-field-box"><div class="bulk-field-head"><strong>Kantilever ölçüsü</strong><div class="bulk-field-actions">'+
+              (kantTeeth.length>1?'<button type="button" class="bulk-apply-btn" onclick="return applyKantToAllModelTeeth('+p.id+','+t+')">Bu uzunluğu tüm kantileverlere uygula</button>':'')+
+              '<button type="button" class="field-remove-x" title="Yalnız bu dişin kantilever uzunluğunu kaldır" aria-label="Yalnız bu dişin kantilever uzunluğunu kaldır" onclick="return removeKantInput('+p.id+','+t+')">×</button></div></div>'+
+            '<div class="bulk-field-grid"><div class="ig wide"><label>Kantilever uzantı uzunluğu</label><div class="inp-mm"><input class="inp" type="number" min="1" max="30" value="'+escAttr(p.kantLenMap[t]||'')+'" oninput="st.params.find(function(x){return x.id==='+p.id+'}).kantLenMap['+t+']=this.value" placeholder="Mesiodistal uzantı"><span class="unit">mm</span></div></div></div></div>';
+        }else{
+          roleFields+='<div class="field-removed-row"><span>Bu dişin kantilever uzunluğu kaldırıldı.</span><button type="button" class="bulk-restore-btn" onclick="return restoreKantInput('+p.id+','+t+')">+ Kantilever uzunluğu ekle</button></div>';
+        }
+      }
+      var hasLoad=!p.loadDisabled[t];
+      if(hasLoad&&!p.loading[t])p.loading[t]={force:'',dir:'',area:''};
+      var loadFields=hasLoad?
+        '<div class="bulk-field-box"><div class="bulk-field-head"><strong>Bu dişin yük bilgileri</strong><div class="bulk-field-actions">'+
+          (selected.length>1?'<button type="button" class="bulk-apply-btn" onclick="return applyLoadToAllModelTeeth('+p.id+','+t+')">Bu yükü tüm dişlere uygula</button>':'')+
+          '<button type="button" class="field-remove-x" title="Yalnız bu dişin yükünü kaldır" aria-label="Yalnız bu dişin yükünü kaldır" onclick="return removeLoadInput('+p.id+','+t+')">×</button></div></div>'+
+        '<div class="bulk-field-grid"><div class="ig"><label>Kuvvet büyüklüğü</label><div class="inp-mm"><input class="inp" type="text" value="'+escAttr(p.loading[t].force||'')+'" oninput="st.params.find(function(x){return x.id==='+p.id+'}).loading['+t+'].force=this.value" placeholder="Örn: 150 veya 100, 150, 200"><span class="unit">N</span></div></div>'+
+        '<div class="ig"><label>Yükleme yönü / açısı</label><input class="inp" type="text" value="'+escAttr(p.loading[t].dir||'')+'" oninput="st.params.find(function(x){return x.id==='+p.id+'}).loading['+t+'].dir=this.value" placeholder="Örn: Aksiyel (0°), oblik (45°)"></div>'+
+        '<div class="ig wide"><label>Yükün uygulandığı bölge</label><input class="inp" type="text" value="'+escAttr(p.loading[t].area||'')+'" oninput="st.params.find(function(x){return x.id==='+p.id+'}).loading['+t+'].area=this.value" placeholder="Örn: Oklüzal yüzeyin bukkal 1/3’ü"></div></div></div>':
+        '<div class="field-removed-row"><span>Bu dişin yük girdisi kaldırıldı.</span><button type="button" class="bulk-restore-btn" onclick="return restoreLoadInput('+p.id+','+t+')">+ Bu dişe yük girdisi ekle</button></div>';
+      return '<div class="tooth-config-card">'+
+        '<div class="tooth-config-top"><div class="tooth-config-number">'+t+'</div><div class="rchips">'+
+          roleBtn(p,t,'normal','Normal')+roleBtn(p,t,'implant','İmplant')+roleBtn(p,t,'pontic','Pontik')+roleBtn(p,t,'kant','Kantilever')+
+        '</div><button type="button" class="tooth-remove-simple" onclick="removeTooth('+p.id+','+t+')">Dişi kaldır</button></div>'+
+        '<div class="tooth-inline-fields">'+roleFields+loadFields+
+        '</div></div>';
+    }).join('');
+
+    return '<article class="model-builder-card">'+
+      '<header class="model-builder-head"><div><h3>Model '+p.id+'</h3><p>Diş, görev, ölçü ve yük bilgileri bu kartta birlikte tutulur.</p></div><span class="model-count-badge">'+selected.length+' diş seçili</span></header>'+
+      '<div class="model-builder-body">'+
+        '<section class="builder-section"><h4 class="builder-section-title"><span>1</span>Modelin analiz türü</h4><div class="ig model-scenario-select"><label>Bu model hangi senaryoya ait?</label><select class="inp" onchange="setParamScenario('+p.id+',this.value)">'+scenarioOptions+'</select></div></section>'+
+        '<section class="builder-section"><h4 class="builder-section-title"><span>2</span>Dişleri seçin</h4><div class="arch-wrap">'+toothSVG(showUpper,showLower,p.id,true)+'</div><p class="selected-teeth-line">Seçili dişler: <strong>'+(selected.length?selected.join(', '):'Henüz seçim yok')+'</strong></p></section>'+
+        '<section class="builder-section"><h4 class="builder-section-title"><span>3</span>Diş görevleri, ölçüler ve yükler</h4>'+
+          (toothCards?'<div class="tooth-config-list">'+toothCards+'</div>':'<p class="note">Yukarıdaki şemadan diş seçtiğinizde görev, implant/kantilever ölçüsü ve yük alanları burada açılır.</p>')+
+        '</section>'+
+        '<section class="builder-section"><h4 class="builder-section-title"><span>4</span>Greft bilgisi</h4><div class="chips">'+
+          '<button type="button" class="chip '+(p.greft==='yes'?'sel-t':'')+'" onclick="st.params.find(function(x){return x.id==='+p.id+'}).greft=&quot;yes&quot;;R()">Greft var</button>'+
+          '<button type="button" class="chip '+(p.greft==='no'?'sel-r':'')+'" onclick="st.params.find(function(x){return x.id==='+p.id+'}).greft=&quot;no&quot;;R()">Greft yok</button>'+
+          '<button type="button" class="chip '+(p.greft==='unknown'?'sel-b':'')+'" onclick="st.params.find(function(x){return x.id==='+p.id+'}).greft=&quot;unknown&quot;;R()">Belirsiz</button>'+
+        '</div><textarea class="inp" rows="2" style="margin-top:10px" placeholder="Greft alanı, sinüs lifting, kemik tozu yüksekliği veya temas ilişkisi..." oninput="st.params.find(function(x){return x.id==='+p.id+'}).greftNote=this.value">'+escAttr(p.greftNote||'')+'</textarea></section>'+
+        '<div class="model-actions-simple"><button type="button" onclick="clearParamAll('+p.id+')">Modeli temizle</button><button type="button" class="copy" onclick="cloneParam('+p.id+')">Kopyala ve yeni model oluştur</button>'+
+          (st.params.length>1?'<button type="button" class="delete" onclick="rmParam('+p.id+')">Modeli sil</button>':'<button type="button" class="delete" disabled>Modeli sil</button>')+
+        '</div>'+
+      '</div></article>';
+  }).join('');
+
+  return modelSetup+basics+models+'<button type="button" class="add-model-simple" onclick="addParam()">+ Yeni model oluştur</button>';
+}
+
 function stepBody(){
   var s=STEPS[cur];
 
@@ -3716,6 +5068,8 @@ function stepBody(){
     '</div>'+
     '<div class="ig"><label>Bölüm / Anabilim Dalı</label><input class="inp" value="'+st.person.dept+'" oninput="st.person.dept=this.value" placeholder="Örn: Protetik Diş Tedavisi ABD"></div>'
   );
+
+  if(s.id==='builder')return modelBuilderBody();
 
 
   if(s.id==='scenario'){
@@ -3982,7 +5336,7 @@ function stepBody(){
     var im3={yes:'Evet, 3D data mevcut',no:'Hayır, mevcut değil',partial:'Kısmen mevcut'};
     var imd={yes:'Analiz ekibi modelleyecek',provide:'Kullanıcı tarafından temin edilecek',other:'Diğer / belirlenecek'};
     var lm={static:'Statik yük',dynamic:'Darbe yükü',both:'Statik + darbe yükü'};
-    var rl={implant:'İmplant',pontic:'Pontik',kant:'Kantilever'};
+    var rl={normal:'Normal',implant:'İmplant',pontic:'Pontik',kant:'Kantilever'};
     function esc(v){return String(v==null?'':v).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
     function EH(t,i){return '<div class="sum-ph">'+t+'</div><button class="sum-edit" onclick="goEdit('+i+')">Düzenle</button>';}
     function SEC(t,i,body,newpage){
@@ -4009,10 +5363,10 @@ function stepBody(){
     );
 
     html+=SEC('Çene Bölgesi',1,SR('Çene',(jm[st.region]||'—')),true);
-    html+=SEC('Diş Sayısı',2,SR('Diş sayısı',st.count+' diş'),true);
+    html+=SEC('Diş Sayısı',1,SR('Diş sayısı',st.count+' diş'),true);
 
     var teethBody=st.params.map(function(p){
-      var b='<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(3)">Düzenle</button></div>';
+      var b='<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(1)">Düzenle</button></div>';
       b+=SR('Seçili dişler',p.teeth.length?p.teeth.slice().sort(function(a,b){return a-b;}).join(', '):'—');
       var roleStr=Object.entries(p.roles).map(function(e){return e[0]+': '+(rl[e[1]]||e[1]);}).join(' | ');
       b+=SR('Diş rolleri',roleStr||'—');
@@ -4021,33 +5375,33 @@ function stepBody(){
       b+='</div>';
       return b;
     }).join('');
-    html+=SEC('Diş Seçimi, Roller ve Greft',3,teethBody,true);
+    html+=SEC('Diş Seçimi, Roller ve Greft',1,teethBody,true);
 
     var anyK=false;
     var kantBody=st.params.map(function(p){
       var k=Object.entries(p.kantLenMap);
       if(!k.length)return '';
       anyK=true;
-      return '<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(4)">Düzenle</button></div>'+
+      return '<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(1)">Düzenle</button></div>'+
         k.map(function(e){return SR('Diş '+e[0]+' kantilever uzantı uzunluğu',esc(e[1])+' mm');}).join('')+
         '</div>';
     }).join('');
     if(!anyK)kantBody=SR('Kantilever bilgisi','Kantilever rolünde diş seçilmemiş veya uzunluk girilmemiş');
-    html+=SEC('Kantilever Uzantı Uzunluğu',4,kantBody,true);
+    html+=SEC('Kantilever Uzantı Uzunluğu',1,kantBody,true);
 
     var anyImp=false;
     var impBody=st.params.map(function(p){
       var imps=Object.entries(p.implants);
       if(!imps.length)return '';
       anyImp=true;
-      return '<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(5)">Düzenle</button></div>'+
+      return '<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(1)">Düzenle</button></div>'+
         imps.map(function(e){var imp=e[1];return SR('Diş '+e[0]+' implant',[(imp.diam?'Ø'+esc(imp.diam)+' mm':''),(imp.len?'Boy '+esc(imp.len)+' mm':'')].filter(Boolean).join(' / ')||'—');}).join('')+
         '</div>';
     }).join('');
     if(!anyImp)impBody=SR('İmplant bilgisi','İmplant rolünde diş seçilmemiş veya ölçü girilmemiş');
-    html+=SEC('İmplant Detayları',5,impBody,true);
+    html+=SEC('İmplant Detayları',1,impBody,true);
 
-    html+=SEC('İmplant & Kemik Modeli',6,
+    html+=SEC('İmplant & Kemik Modeli',2,
       SR('3D implant datası',(im3[st.implant3d]||'—'))+
       SR('İmplant geometrisi',(imd[st.implantModeling]||'—'))+
       SR('Kemik / çene modeli',(bm[st.boneModel]||'—'))+
@@ -4059,7 +5413,7 @@ function stepBody(){
     var matBody='<div class="pb">'+
       (st.materials.length?st.materials.map(function(m){return SR(esc(m.name||'(isimsiz bileşen)'),esc(m.value||'—'));}).join(''):'<p style="font-size:14px;color:var(--tx3)">Malzeme özelliği girilmemiş.</p>')+
       '</div>';
-    html+=SEC('Malzeme Özellikleri',6,matBody,true);
+    html+=SEC('Malzeme Özellikleri',2,matBody,true);
 
     var anyLoad=false;
     var loadBody=SR('Yükleme tipi',(lm[st.loadType]||'—'))+
@@ -4068,14 +5422,14 @@ function stepBody(){
         var loads=Object.entries(p.loading);
         if(!loads.length)return '';
         anyLoad=true;
-        return '<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(7)">Düzenle</button></div>'+
+        return '<div class="pb"><div class="phdr"><span class="plbl">Model Parametresi '+p.id+'</span><button class="sum-edit" onclick="goEdit(1)">Düzenle</button></div>'+
           loads.map(function(e){var lo=e[1];return SR('Diş '+e[0]+' yükleme',[(lo.force?esc(lo.force)+' N':''),(esc(lo.dir)||''),(esc(lo.area)||'')].filter(Boolean).join(' | ')||'—');}).join('')+
           '</div>';
       }).join('');
     if(!anyLoad)loadBody+=SR('Yükleme detayı','Kuvvet uygulanacak diş seçilmemiş veya değer girilmemiş');
-    html+=SEC('Yükleme Koşulları',7,loadBody,true);
+    html+=SEC('Yükleme Koşulları',1,loadBody,true);
 
-    html+=SEC('Analiz Çıktıları',8,
+    html+=SEC('Analiz Çıktıları',3,
       SR('Analiz sonuçları',st.outputs.length?st.outputs.map(esc).join(', '):'—')+
       SR('İncelenecek bölgeler / bileşenler',st.regions.length?st.regions.map(esc).join(', '):'—'),
       true
@@ -4083,20 +5437,20 @@ function stepBody(){
 
     ensureCases();
     var scenBody=st.analysisCases.map(function(c){
-      return '<div class="pb"><div class="phdr"><span class="plbl">Analiz Senaryosu '+c.id+'</span><button class="sum-edit" onclick="goEdit(9)">Düzenle</button></div>'+
+      return '<div class="pb"><div class="phdr"><span class="plbl">Analiz Senaryosu '+c.id+'</span><button class="sum-edit" onclick="goEdit(4)">Düzenle</button></div>'+
         SR('Senaryo tipi',escAttr(caseTypeLabel(c.type)))+
-        '<button class="sum-edit" onclick="goEdit(10)">Senaryo notunu düzenle</button></div>';
+        '<button class="sum-edit" onclick="goEdit(5)">Senaryo notunu düzenle</button></div>';
     }).join('');
-    html+=SEC('Analiz Senaryosu',9,scenBody,true);
+    html+=SEC('Analiz Senaryosu',4,scenBody,true);
 
     var scenNoteBody=st.analysisCases.map(function(c){
-      return '<div class="pb"><div class="phdr"><span class="plbl">Analiz Senaryosu '+c.id+'</span><button class="sum-edit" onclick="goEdit(10)">Düzenle</button></div>'+
+      return '<div class="pb"><div class="phdr"><span class="plbl">Analiz Senaryosu '+c.id+'</span><button class="sum-edit" onclick="goEdit(5)">Düzenle</button></div>'+
         SR('Senaryo özel notu',esc(c.note||'—'))+
         '</div>';
     }).join('');
-    html+=SEC('Senaryo Detayları',10,scenNoteBody,true);
+    html+=SEC('Senaryo Detayları',5,scenNoteBody,true);
 
-    html+=SEC('Ek Notlar',11,
+    html+=SEC('Ek Notlar',6,
       SR('Formda eksik / farklı işlenecek konu',esc(st.gaps||'—')),
       true
     );
@@ -4182,41 +5536,41 @@ function getMissingItems(){
   var nameOk=(st.person.name||'').trim()&&(st.person.surname||'').trim();
   if(!nameOk)add('Ad ve soyad bilgisi eksik.',0);
   if(!(st.person.email||'').trim())add('E-posta bilgisi eksik.',0);
-  if(!st.analysisCases.length)add('Analiz senaryosu oluşturulmadı.',9);
+  if(!st.analysisCases.length)add('Analiz senaryosu oluşturulmadı.',4);
   st.analysisCases.forEach(function(c){
-    if(!c.type)add('Analiz Senaryosu '+c.id+' için senaryo tipi seçilmedi.',9);
+    if(!c.type)add('Analiz Senaryosu '+c.id+' için senaryo tipi seçilmedi.',4);
   });
   if(!st.region)add('Çene bölgesi seçilmedi.',1);
-  if(!st.params.length || st.params.every(function(p){return !p.teeth.length;}))add('Hiç diş seçilmedi.',3);
+  if(!st.params.length || st.params.every(function(p){return !p.teeth.length;}))add('Hiç diş seçilmedi.',1);
   st.params.forEach(function(p){
-    if(!p.teeth.length)add('Model Parametresi '+p.id+' için diş seçimi yok.',3);
+    if(!p.teeth.length)add('Model Parametresi '+p.id+' için diş seçimi yok.',1);
     var noRole=p.teeth.filter(function(t){return !p.roles[t];});
-    if(noRole.length)add('Model Parametresi '+p.id+' içinde rolü seçilmeyen diş var: '+noRole.join(', ')+'.',3);
-    if(p.greft==null)add('Model Parametresi '+p.id+' için greft durumu seçilmedi.',3);
+    if(noRole.length)add('Model Parametresi '+p.id+' içinde rolü seçilmeyen diş var: '+noRole.join(', ')+'.',1);
+    if(p.greft==null)add('Model Parametresi '+p.id+' için greft durumu seçilmedi.',1);
     p.teeth.forEach(function(t){
-      if(p.roles[t]==='kant' && !(p.kantLenMap[t]||'').trim())add('Parametre '+p.id+' / Diş '+t+' için kantilever uzantı uzunluğu eksik.',4);
+      if(p.roles[t]==='kant' && !(p.kantLenMap[t]||'').trim())add('Parametre '+p.id+' / Diş '+t+' için kantilever uzantı uzunluğu eksik.',1);
       if(p.roles[t]==='implant'){
         var imp=p.implants[t]||{};
-        if(!(imp.diam||'').trim() || !(imp.len||'').trim())add('Parametre '+p.id+' / Diş '+t+' için implant çapı veya boyu eksik.',5);
+        if(!(imp.diam||'').trim() || !(imp.len||'').trim())add('Parametre '+p.id+' / Diş '+t+' için implant çapı veya boyu eksik.',1);
       }
     });
     selectedLoadTeeth(p).forEach(function(t){
       var lo=p.loading[t]||{};
-      if(!(lo.force||'').trim())add('Parametre '+p.id+' / Diş '+t+' için kuvvet büyüklüğü eksik.',7);
-      if(!(lo.dir||'').trim())add('Parametre '+p.id+' / Diş '+t+' için yükleme yönü/açısı eksik.',7);
-      if(!(lo.area||'').trim())add('Parametre '+p.id+' / Diş '+t+' için yükleme uygulama bölgesi eksik.',7);
+      if(!(lo.force||'').trim())add('Parametre '+p.id+' / Diş '+t+' için kuvvet büyüklüğü eksik.',1);
+      if(!(lo.dir||'').trim())add('Parametre '+p.id+' / Diş '+t+' için yükleme yönü/açısı eksik.',1);
+      if(!(lo.area||'').trim())add('Parametre '+p.id+' / Diş '+t+' için yükleme uygulama bölgesi eksik.',1);
     });
   });
-  if(!st.implant3d || !st.implantModeling || !st.boneModel)add('İmplant/kemik modeli seçeneklerinden biri eksik.',6);
+  if(!st.implant3d || !st.implantModeling || !st.boneModel)add('İmplant/kemik modeli seçeneklerinden biri eksik.',2);
   ensureMaterials();
-  if(!st.materials.length)add('Hiç malzeme özelliği bileşeni eklenmedi.',6);
+  if(!st.materials.length)add('Hiç malzeme özelliği bileşeni eklenmedi.',2);
   st.materials.forEach(function(m){
-    if(!(m.name||'').trim())add('İsimsiz bir malzeme bileşeni var; bileşen adını girin.',6);
-    else if(!(m.value||'').trim())add('"'+m.name+'" için malzeme özelliği veya referans girilmedi.',6);
+    if(!(m.name||'').trim())add('İsimsiz bir malzeme bileşeni var; bileşen adını girin.',2);
+    else if(!(m.value||'').trim())add('"'+m.name+'" için malzeme özelliği veya referans girilmedi.',2);
   });
-  if(!st.loadType)add('Yükleme tipi seçilmedi.',7);
-  if(!st.outputs.length)add('Analiz çıktısı seçilmedi.',8);
-  if(!st.regions.length)add('İncelenecek bölge/bileşen seçilmedi.',8);
+  if(!st.loadType)add('Yükleme tipi seçilmedi.',1);
+  if(!st.outputs.length)add('Analiz çıktısı seçilmedi.',3);
+  if(!st.regions.length)add('İncelenecek bölge/bileşen seçilmedi.',3);
   return items;
 }
 function goSummary(){cur=STEPS.length-1;maxVisited=STEPS.length-1;R();setTimeout(scrollFormTop,0);}
@@ -4243,6 +5597,9 @@ function normalizeStateForUse(){
     if(!p.kantLenMap||typeof p.kantLenMap!=='object'||Array.isArray(p.kantLenMap))p.kantLenMap={};
     if(!p.implants||typeof p.implants!=='object'||Array.isArray(p.implants))p.implants={};
     if(!p.loading||typeof p.loading!=='object'||Array.isArray(p.loading))p.loading={};
+    if(!p.loadDisabled||typeof p.loadDisabled!=='object'||Array.isArray(p.loadDisabled))p.loadDisabled={};
+    if(!p.implantDisabled||typeof p.implantDisabled!=='object'||Array.isArray(p.implantDisabled))p.implantDisabled={};
+    if(!p.kantDisabled||typeof p.kantDisabled!=='object'||Array.isArray(p.kantDisabled))p.kantDisabled={};
     if(typeof p.greft==='undefined')p.greft=null;
     if(typeof p.greftNote!=='string')p.greftNote='';
   });
@@ -4286,7 +5643,7 @@ function buildReportTablesHtml(){
   var implant3d={yes:'Evet, 3D veri mevcut',no:'Hayır, mevcut değil',partial:'Kısmen mevcut'};
   var implantModeling={yes:'Analiz ekibi modelleyecek',provide:'Kullanıcı tarafından temin edilecek',other:'Diğer / belirlenecek'};
   var loadType={static:'Statik yük',dynamic:'Darbe yükü',both:'Statik + darbe yükü'};
-  var role={implant:'İmplant',pontic:'Pontik',kant:'Kantilever'};
+  var role={normal:'Normal',implant:'İmplant',pontic:'Pontik',kant:'Kantilever'};
   var yesNo=function(v){return v==='yes'?'Evet':(v==='no'?'Hayır':'—');};
   var tables='';
 
@@ -4386,7 +5743,7 @@ function backupPayload(){
     st:JSON.parse(JSON.stringify(st)),
     cur:cur,
     maxVisited:maxVisited,
-    theme:{mode:themeMode,customColor:customColor}
+    theme:{mode:themeMode,customColor:customColor,themeColor:getFormThemeColor(),interfaceColors:getInterfaceColors()}
   };
 }
 
@@ -4534,7 +5891,9 @@ function importBackupFile(file){
       if(data&&data.theme&&data.theme.customColor){
         try{localStorage.setItem('sea-theme-custom-color',data.theme.customColor);}catch(e){}
       }
-      if(data&&data.theme&&data.theme.mode)setThemeMode(data.theme.mode);
+      if(data&&data.theme&&data.theme.themeColor)applyFormTheme(data.theme.themeColor);
+      else if(data&&data.theme&&data.theme.interfaceColors)applyInterfaceColors(data.theme.interfaceColors);
+      setThemeMode('light');
       saveDraft();R();setTimeout(scrollFormTop,0);
       alert('JSON yedeği yüklendi. Tüm seçimleriniz özet ekranında geri getirildi.');
     }catch(e){
@@ -4573,11 +5932,13 @@ function loadDraft(){
 function renderDashboardNav(){
   var box=document.getElementById('dashNav');
   if(!box)return;
-  var shortNames=['Genel Bilgiler','Çene Bölgesi','Diş Sayısı','Diş & Roller','Kantilever','İmplant','Model','Kuvvet / Darbe','Çıktılar','Senaryolar','Senaryo Detayı','Notlar','Rapor'];
+  var shortNames=['İletişim Bilgileri','Model Kurulumu','Malzeme & Kemik','İstenen Sonuçlar','Analiz Senaryoları','Senaryo Notları','Ek Notlar','Kontrol & İndirme'];
+  var groups={0:'Başlangıç',1:'Model tasarımı',3:'Analiz kurulumu',6:'Tamamlama'};
   box.innerHTML=STEPS.map(function(s,i){
-    return '<button type="button" class="'+(i===cur?'active':'')+'" onclick="goTo('+i+')">'+
-      '<span class="dash-ico">'+s.icon+'</span><span><span class="dash-step-title">'+(shortNames[i]||s.title)+'</span>'+
-      '<span class="dash-step-sub">Adım '+(i+1)+' / '+STEPS.length+'</span></span></button>';
+    var group=groups[i]?'<div class="dash-group-label">'+groups[i]+'</div>':'';
+    return group+'<button type="button" class="'+(i===cur?'active':'')+'" onclick="goTo('+i+')">'+
+      '<span class="dash-ico">'+(i+1)+'</span><span><span class="dash-step-title">'+(shortNames[i]||s.title)+'</span>'+
+      '<span class="dash-step-sub">'+(i<cur?'Tamamlandı':i===cur?'Şimdi':'Sırada')+'</span></span></button>';
   }).join('');
 }
 function firstActiveCase(){
@@ -4646,7 +6007,7 @@ function R(){
   document.getElementById('prog').innerHTML=STEPS.map(function(s,i){
     var cls=i<cur?'done':i===cur?'active':'';
     var lc=i<cur?'done':'';
-    var shortNames=['Kişisel','Çene','Diş Sayısı','Diş & Rol','Kant.','İmplant','Model','Yükleme','Çıktılar','Senaryo','Detay','Notlar','Özet'];
+    var shortNames=['Kişisel','Model Kurulumu','Malzeme','Çıktılar','Senaryo','Detay','Notlar','Özet'];
     return '<div class="si"><div class="sp '+cls+'" onclick="goTo('+i+')">'+
       (i<cur?'✓':(i+1))+
       '</div><div class="sn">'+(shortNames[i]||s.title)+'</div></div>'+
@@ -4663,12 +6024,13 @@ function R(){
     '<div><div class="ctitle">'+s.title+'</div>'+
     '<div class="csub">Adım '+(cur+1)+' / '+STEPS.length+'</div></div>'+
     '<button class="clear-step" onclick="resetStep()">Seçimleri / verileri kaldır</button>'+
+    '<p class="step-guide">'+(STEP_HELP[s.id]||'Bu adımdaki bilgileri tamamlayın.')+'</p>'+
     '</div>'+summaryReturn+stepBody()+'</div>';
 
   document.getElementById('fnav').innerHTML=
     '<div class="nav-slot left">'+(!isFirst?'<button class="bback" onclick="prevStep()">← Geri</button>':'')+'</div>'+
     '<div class="nav-slot mid">'+(canReturnSummary?'<button class="bsummary" onclick="goSummary()">Özet sayfasına git</button>':'')+'</div>'+
-    '<div class="nav-slot right">'+(!isLast?'<button class="bnext" onclick="nextStep()">İleri →</button>':'')+'</div>';
+    '<div class="nav-slot right">'+(!isLast?'<button class="bnext" onclick="nextStep()">Kaydet ve devam et →</button>':'')+'</div>';
   renderDashboardNav();
   renderLivePreview();
   saveDraft();
@@ -4794,6 +6156,99 @@ function setCustomThemeColor(hex){
   applyCustomThemeVars(hex);
   setThemeMode('custom');
 }
+
+var FORM_THEME_DEFAULT='#2859a8';
+var FORM_THEME_STORAGE='sea-form-theme-color-v2';
+var formThemeColor=FORM_THEME_DEFAULT;
+function normalizeUiHex(v,fallback){
+  v=String(v||'').trim();
+  return /^#[0-9a-fA-F]{6}$/.test(v)?v.toLowerCase():fallback;
+}
+function mixUiHex(a,b,t){
+  a=normalizeUiHex(a,'#000000');b=normalizeUiHex(b,'#ffffff');t=Math.max(0,Math.min(1,Number(t)||0));
+  var ar=parseInt(a.slice(1,3),16),ag=parseInt(a.slice(3,5),16),ab=parseInt(a.slice(5,7),16);
+  var br=parseInt(b.slice(1,3),16),bg=parseInt(b.slice(3,5),16),bb=parseInt(b.slice(5,7),16);
+  function h(n){return Math.round(n).toString(16).padStart(2,'0');}
+  return '#'+h(ar+(br-ar)*t)+h(ag+(bg-ag)*t)+h(ab+(bb-ab)*t);
+}
+function uiContrastText(hex){
+  hex=normalizeUiHex(hex,'#14213d');
+  var r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return ((r*299+g*587+b*114)/1000)>160?'#152033':'#ffffff';
+}
+function uiHexLuma(hex){
+  hex=normalizeUiHex(hex,'#14213d');
+  var r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return (r*299+g*587+b*114)/1000;
+}
+function getFormThemeColor(){return formThemeColor;}
+function getInterfaceColors(){
+  var lightTheme=uiHexLuma(formThemeColor)>210;
+  return {
+    accent:formThemeColor,
+    bg:lightTheme?mixUiHex(formThemeColor,'#f3f5f8',.88):mixUiHex(formThemeColor,'#0b1020',.76),
+    card:lightTheme?mixUiHex(formThemeColor,'#ffffff',.94):mixUiHex(formThemeColor,'#151d2d',.68),
+    text:lightTheme?'#172033':'#f8fafc',
+    sidebar:lightTheme?'#1f2937':mixUiHex(formThemeColor,'#0b1020',.82)
+  };
+}
+function applyFormTheme(hex,shouldSave){
+  formThemeColor=normalizeUiHex(hex,FORM_THEME_DEFAULT);
+  var root=document.documentElement.style;
+  var lightTheme=uiHexLuma(formThemeColor)>210;
+  var accent=lightTheme?mixUiHex(formThemeColor,'#334155',.72):formThemeColor;
+  var text=lightTheme?'#172033':'#f8fafc';
+  var muted=lightTheme?'#5f6b7a':'#cbd5e1';
+  var bg=lightTheme?mixUiHex(formThemeColor,'#f3f5f8',.88):mixUiHex(formThemeColor,'#0b1020',.76);
+  var mainSurface=lightTheme?mixUiHex(formThemeColor,'#ffffff',.94):mixUiHex(formThemeColor,'#151d2d',.68);
+  var fieldSurface=lightTheme?'#ffffff':mixUiHex(formThemeColor,'#243043',.78);
+  var raisedSurface=lightTheme?mixUiHex(formThemeColor,'#f8fafc',.90):mixUiHex(formThemeColor,'#2b374b',.72);
+  var softSurface=lightTheme?mixUiHex(accent,'#ffffff',.88):mixUiHex(formThemeColor,'#34435d',.68);
+  var line=lightTheme?mixUiHex(accent,'#d5dce6',.80):mixUiHex(formThemeColor,'#64748b',.68);
+  var soft=softSurface;
+  var card=raisedSurface;
+  var sidebar=lightTheme?'#1f2937':mixUiHex(formThemeColor,'#0b1020',.82);
+  var sideText='#f8fafc';
+  var sideMuted='#cbd5e1';
+  var readableAccent=lightTheme?accent:mixUiHex(formThemeColor,'#ffffff',.62);
+  var c=hexToRgb(accent);
+  if(document.body)document.body.setAttribute('data-form-surface',lightTheme?'light':'dark');
+  root.setProperty('--theme-page',bg);
+  root.setProperty('--simple-bg',bg);
+  root.setProperty('--theme-main-surface',mainSurface);
+  root.setProperty('--theme-field-surface',fieldSurface);
+  root.setProperty('--theme-raised-surface',raisedSurface);
+  root.setProperty('--theme-soft-surface',softSurface);
+  root.setProperty('--simple-card',card);
+  root.setProperty('--simple-text',text);
+  root.setProperty('--simple-muted',muted);
+  root.setProperty('--simple-line',line);
+  root.setProperty('--simple-blue',accent);
+  root.setProperty('--simple-blue-soft',soft);
+  root.setProperty('--simple-navy',sidebar);
+  root.setProperty('--sidebar-text',sideText);
+  root.setProperty('--sidebar-muted',sideMuted);
+  root.setProperty('--theme-readable-accent',readableAccent);
+  root.setProperty('--theme-on-accent',uiContrastText(accent));
+  root.setProperty('--theme-focus-ring','rgba('+c.r+','+c.g+','+c.b+',.16)');
+  var picker=document.getElementById('formThemePicker');
+  if(picker)picker.value=formThemeColor;
+  document.querySelectorAll('.theme-swatch[data-theme-color]').forEach(function(btn){
+    btn.classList.toggle('active',String(btn.getAttribute('data-theme-color')||'').toLowerCase()===formThemeColor);
+  });
+  if(shouldSave!==false){try{localStorage.setItem(FORM_THEME_STORAGE,formThemeColor);}catch(e){}}
+}
+function applyInterfaceColors(colors){applyFormTheme((colors&&colors.accent)||FORM_THEME_DEFAULT);}
+function saveInterfaceColors(){try{localStorage.setItem(FORM_THEME_STORAGE,formThemeColor);}catch(e){}}
+function setInterfaceColor(key,value){if(key==='accent')applyFormTheme(value);}
+function resetInterfaceColors(){applyFormTheme(FORM_THEME_DEFAULT);}
+function initInterfaceColors(){
+  var saved=FORM_THEME_DEFAULT;
+  try{
+    saved=localStorage.getItem(FORM_THEME_STORAGE)||saved;
+  }catch(e){}
+  applyFormTheme(saved,false);
+}
 function applyCustomThemeFromPicker(){
   var picker=document.getElementById('themeColorPicker');
   setCustomThemeColor(picker?picker.value:'#1C1464');
@@ -4818,15 +6273,15 @@ function setThemeMode(mode){
   });
 }
 function initThemeMode(){
-  var custom='#1C1464',mode='current';
+  var custom='#1C1464';
   try{
     custom=localStorage.getItem('sea-theme-custom-color')||custom;
-    mode=localStorage.getItem('sea-theme-mode')||'current';
   }catch(e){}
   applyCustomThemeVars(custom);
   var picker=document.getElementById('themeColorPicker');
   if(picker)picker.value=custom;
-  setThemeMode(mode);
+  setThemeMode('light');
+  initInterfaceColors();
 }
 
 var robotLastReport=null;
@@ -4975,7 +6430,7 @@ function runFormRobot(){
   try{
     pass('Başlatma','STEPS','yükleme','Adım listesi okundu',STEPS.length+' adım');
     if(!Array.isArray(STEPS)||STEPS.length<10)fail('Başlatma','STEPS','kontrol','Adım listesi beklenenden kısa');
-    var required=['person','scenario','scene','region','count','teeth','kant','impl','model','load','output','extra','summ'];
+    var required=['person','builder','model','output','scenario','scene','extra','summ'];
     var missingSteps=required.filter(function(id){return !STEPS.some(function(s){return s.id===id;});});
     if(missingSteps.length)fail('Başlatma','Zorunlu adımlar','kontrol','Eksik adım var',missingSteps.join(', '));
     else pass('Başlatma','Zorunlu adımlar','kontrol','Temel adımlar tam');
@@ -5058,7 +6513,7 @@ function runFormRobot(){
     removeTooth(firstParam,12);
     if(st.params[0].teeth.indexOf(12)<0)pass('Diş Seçimi & Roller','Dişi kaldır','kaldırma','Diş ve bağlı veriler silindi'); else fail('Diş Seçimi & Roller','Dişi kaldır','kaldırma','Diş silinmedi');
 
-    st.extraRegion='Robot özel bölge';cur=10;R();addExtraRegion();
+    st.extraRegion='Robot özel bölge';cur=STEPS.findIndex(function(s){return s.id==='output';});R();addExtraRegion();
     if(st.regions.indexOf('Robot özel bölge')>=0)pass('Analiz Çıktıları','Özel bölge + Ekle','ekleme','Listeye eklendi'); else fail('Analiz Çıktıları','Özel bölge + Ekle','ekleme','Listeye eklenmedi');
     var ridx=st.regions.indexOf('Robot özel bölge');removeRegionAt(ridx);
     if(st.regions.indexOf('Robot özel bölge')<0)pass('Analiz Çıktıları','Özel bölge kaldır','kaldırma','Listeden kaldırıldı'); else fail('Analiz Çıktıları','Özel bölge kaldır','kaldırma','Listeden kaldırılmadı');
@@ -5068,7 +6523,7 @@ function runFormRobot(){
     if(printButtons===1)pass('Özet & Tamamla','PDF/Yazdır','kontrol','Son sayfada tek buton var'); else fail('Özet & Tamamla','PDF/Yazdır','kontrol','Buton sayısı beklenenden farklı',String(printButtons));
     var editButtons=document.querySelectorAll('.sum-edit').length;
     if(editButtons>0)pass('Özet & Tamamla','Düzenle butonları','kontrol','Düzenle seçenekleri var',String(editButtons)+' adet'); else fail('Özet & Tamamla','Düzenle butonları','kontrol','Düzenle butonu bulunamadı');
-    goEdit(5);
+    goEdit(1);
     if(document.querySelector('.summary-return')&&document.querySelector('.bsummary'))pass('Özet dönüş akışı','Özet sayfasına git','kontrol','Düzenleme sonrası dönüş butonu görünüyor'); else fail('Özet dönüş akışı','Özet sayfasına git','kontrol','Dönüş butonu görünmedi');
     var footer=document.querySelector('.analysts');
     var fpos=footer?getComputedStyle(footer).position:'none';
@@ -5099,6 +6554,10 @@ document.addEventListener('click',function(e){
   var n=parseInt(parts[2],10);
   if(!isNaN(pid)&&!isNaN(n)){toggleTooth(pid,n);e.preventDefault();e.stopPropagation();}
 },true);
+document.addEventListener('wheel',function(e){
+  var numberInput=e.target&&e.target.closest?e.target.closest('input[type="number"]'):null;
+  if(numberInput&&document.activeElement===numberInput)numberInput.blur();
+},{capture:true,passive:true});
 initDevRobotPanel();
 loadDraft();
 initThemeMode();
